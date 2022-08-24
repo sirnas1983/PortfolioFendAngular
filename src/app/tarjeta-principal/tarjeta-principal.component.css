@@ -1,0 +1,7 @@
+.dark-icon {
+    filter:invert(00%);
+}
+
+.light-icon {
+    filter:invert(100%);
+}

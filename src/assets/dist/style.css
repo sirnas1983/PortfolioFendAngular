@@ -1,0 +1,151 @@
+* {
+    font-family:'Roboto';
+}
+
+#navbar-links-list {
+    list-style-type: none;
+}
+
+.fa-pencil, .fa-trash-can {
+    color: black;
+}
+
+.navbar-images {
+    max-height: 40px;
+}
+
+#navbar{
+    position:sticky; 
+    top: 0px;
+    z-index: 3;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+}
+
+.habilidad, .habilidad-cierre {
+    background-color: rgb(114, 156, 235);
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.75rem;
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;
+}
+
+.modal-body .fa-pencil{
+    color:rgb(255, 255, 255);
+}
+
+.habilidad-cierre {
+    background-color: rgb(0, 0, 0);
+    border-style: none;
+}
+
+.modal .habilidad, .modal .habilidad-cierre {
+    background-color: rgb(230, 231, 233);
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 600;
+    line-height: 1;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.75rem;
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;    
+}
+
+.modal .habilidad-cierre {
+    color:inherit;
+    background-color:none;
+    border: solid 0.1rem black;
+    margin-bottom: 0.25rem;
+}
+
+#presentation-card, #skills-card, #expertize-card, #knowledge-card, #aboutme-card, #language-card, #course-card {
+    background-color: rgba(254, 254, 248, 0.95);
+    color:black;
+    margin: 0.25rem 0.5rem;
+    border: 0.2rem solid rgb(81, 98, 105);
+    padding: 1.8rem 1rem;
+}
+
+#btn-modal {
+    color:aliceblue;
+}
+
+.no-list-style {
+    list-style-type: none;
+}
+
+.lh-1 {
+    line-height: 1rem;
+    /*font-size: 1rem;*/
+}
+
+.boton {
+    min-width: 110px;
+    margin-bottom: 3px;
+    transition: box-shadow 100ms;
+}
+
+.boton:hover {
+    box-shadow:  0.1rem 0.1rem 0.25rem black;
+}
+
+.modal{
+    color:aliceblue;
+}
+
+#banner {
+    border-radius: 1.5rem; 
+    max-height:540px; 
+    width: 100%;
+    margin-top: -0.75em; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+#profile-image{
+    max-width: 200px; 
+    margin-top:-100px;
+    margin-left: 20px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 10px black, -5px -5px 10px black, -5px 5px 10px black, 5px -5px 10px black;
+}
+
+body {
+    background-color: slategrey;
+    
+}
+
+#portfolio-body {
+    color:rgb(54, 54, 53);
+    font-weight: 500;
+  }
+  
+.navbar-images .dark-icon {
+    filter:invert(100%);
+}
+
+.navbar-images .light-icon {
+    filter:invert(0%);
+}
+
+.list-icon {
+    max-height: 4rem;
+    padding-bottom: 1rem;
+}
+
+               
+
