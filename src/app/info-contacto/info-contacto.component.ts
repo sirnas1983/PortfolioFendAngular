@@ -9,7 +9,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 export class InfoContactoComponent implements OnInit {
 
   contacto : any;
-
+  validate=false;
   constructor(private datos:ObtenerDatosService) { }
 
   ngOnInit(): void {

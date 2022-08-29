@@ -8,7 +8,7 @@
       class="btn fa-solid float-end fa-chevron-up">
       </button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <button class="btn float-end fa-solid fa-add"></button>
+      <button *ngIf="validate" class="btn float-end fa-solid fa-add"></button>
     </div>
   </div>
   <div id="estudio-visible">
@@ -35,10 +35,10 @@
   </div>
   <div class="col-sm-2">           
     <a href="#" class="float-end ms-3">
-      <span class="fa-solid fa-lg fa-pencil"></span>
+      <span *ngIf="validate" class="fa-solid fa-lg fa-pencil"></span>
     </a>
     <a href="#" class="ms-5 float-end">
-      <span class="fa-solid fa-lg fa-trash-can"></span>
+      <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can"></span>
     </a>        
   </div>
 </div>

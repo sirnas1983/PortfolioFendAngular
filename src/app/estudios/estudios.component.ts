@@ -9,7 +9,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class EstudiosComponent implements OnInit {
   estudios : any;
-
+  validate=false;
   constructor(private datos:ObtenerDatosService) { }
 
   ngOnInit(): void {

@@ -8,7 +8,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 
 export class ConocimientosComponent implements OnInit {
-
+  validate=false; 
   conocimientos : any;
 
   constructor(private datos:ObtenerDatosService) { }

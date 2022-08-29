@@ -4,7 +4,7 @@
     <div class="col-6"><button id="chevron-experiencia" onclick="desplegar('experiencia-visible','chevron-experiencia')" 
       class="btn fa-solid float-end fa-chevron-up"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <button class="btn float-end fa-solid fa-add"></button>
+      <button *ngIf="validate" class="btn float-end fa-solid fa-add"></button>
     </div>
   <div id="experiencia-visible">
   <div class="row lh-1 mt-4"  *ngFor="let experiencia of experiencias.experiencias">
@@ -16,7 +16,7 @@
         <div><p><b>Empresa: </b>{{experiencia.empresa}}</p></div>
         <div><p><b>Área: </b>{{experiencia.area}}</p></div>
         <div><p><b>Tareas Realizadas: </b>{{experiencia.tareas}}</p></div>
-        <div><p><b>Desde: </b>{{experiencia.fechaInicio | date:"mm/yyyy"}}<b> Hasta: </b>{{experiencia.fechaFin | date:"mm/yyyy"}}</p></div>
+        <div><p><b>Desde: </b>{{experiencia.fechaInicio | date:"MM/yyyy"}}<b> Hasta: </b>{{experiencia.fechaFin | date:"MM/yyyy"}}</p></div>
         <div><p><b>Lugar: </b>{{experiencia.lugar}}</p></div>
         <a *ngIf="experiencia.link" [href]="experiencia.link">Link</a>
       </li>
@@ -24,10 +24,10 @@
     </div>
     <div class="col-sm-2">           
       <a href="#" class="ms-3 float-end">
-        <span class="fa-solid fa-lg fa-pencil"></span>
+        <span *ngIf="validate" class="fa-solid fa-lg fa-pencil"></span>
       </a>
       <a href="#" class="ms-5 float-end">
-        <span class="fa-solid fa-lg fa-trash-can"></span>
+        <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can"></span>
       </a>        
     </div>
   </div>

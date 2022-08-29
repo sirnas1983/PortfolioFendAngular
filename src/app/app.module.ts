@@ -46,4 +46,5 @@ import { ObtenerDatosService } from './servicios/obtener-datos.service';
   bootstrap: [AppComponent],
   entryComponents: [FormularioLoginComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

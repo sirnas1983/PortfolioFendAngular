@@ -9,10 +9,11 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 export class HabilidadesComponent implements OnInit {
 
   habilidades : any;
-
+  validate=false;
   constructor(private datos:ObtenerDatosService) { }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.habilidades = data});
+    
   }
 }

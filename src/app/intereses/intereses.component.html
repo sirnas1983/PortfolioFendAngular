@@ -11,12 +11,12 @@
         <span *ngFor="let interes of intereses.intereses">
           <button class="disabled pt-1 rounded-pill bg-white">
             {{interes.nombre}}
-            <button class="btn fa-solid fa-trash-can fa-sm float-end pt-2">
+            <button class="btn fa-solid fa-trash-can fa-sm float-end pt-2" *.ngIf="validate">
             </button>
           </button>
         </span>
       </div>
-      <a class="bg-dark p-2"><button type="button" id="btn-agregar" class="btn fa-solid fa-lg fa-add float-end"></button></a>
+      <a *.ngIf="validate" class="bg-dark p-2"><button type="button" id="btn-agregar" class="btn fa-solid fa-lg fa-add float-end"></button></a>
 </div>
 </div>
 </div>

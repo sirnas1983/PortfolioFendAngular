@@ -13,24 +13,24 @@
   <hr>
   <div class="row">
     <div class="col-sm-6">
-        <div><h4><u>Soft Skills<button class="btn float-end fa-solid fa-add"></button></u></h4></div>
+        <div><h4><u>Soft Skills<button *ngIf="validate" class="btn float-end fa-solid fa-add"></button></u></h4></div>
         <div *ngFor="let x of habilidades.softskills" class="progress">
           <div class="progress-bar progress-bar-striped" [style.width.%]="x.cantidad">
             {{x.nombre}} - {{x.cantidad}}%
           </div>
           <div class="progress-bar bg-transparent mx-auto" ></div>
-          <button class="btn fa-solid fa-trash-can float-end">
+          <button *ngIf="validate" class="btn fa-solid fa-trash-can float-end">
           </button>
         </div>
         </div>
         <div class="col-sm-6">
-          <div><h4><u>Hard Skills<button class="btn float-end fa-solid fa-add"></button></u></h4></div>
+          <div><h4><u>Hard Skills<button *ngIf="validate" class="btn float-end fa-solid fa-add"></button></u></h4></div>
           <div *ngFor="let y of habilidades.hardskills" class="progress">
             <div class="progress-bar progress-bar-striped" [style.width.%]="y.cantidad">
               {{y.nombre}} - {{y.cantidad}}%
             </div>
             <div class="progress-bar bg-transparent mx-auto" ></div>
-            <button class="btn fa-solid fa-trash-can float-end">
+            <button *ngIf="validate" class="btn fa-solid fa-trash-can float-end">
             </button>
           </div>
           </div>

@@ -1,14 +1,14 @@
 <div id="presentation-card" class="card">
   <div style="margin:-0.5em">
-    <img id="banner" src="../../assets/img/banner.jpg" alt="Banner">
+    <img id="banner" [src]="general.banner" alt="Banner">
   </div>
   <div id="info" style="padding:0px;">
     <div id="info-foto" >
       <div class="profile-image">
-        <img id="profile-image" src="../../assets/img/profile-picture.jpg" alt="Foto de perfil">
+        <img id="profile-image" [src]="general.foto" alt="Foto de perfil">
         <div class="btn">
           <a href="#" class="btn" style="margin-left: -20px;">
-            <span class="fa-solid fa-lg fa-pencil"></span>
+            <span *ngIf="validate" class="fa-solid fa-lg fa-pencil"></span>
           </a>
         </div>
       </div>
@@ -16,11 +16,15 @@
   </div>
   <div class="row ms-3">
     <div class="col-sm-8 card-body">
-      <h2>Darian A. Hiebl</h2>
-      <h4>Estudiante en Argentina Programa #YoProgramo</h4>
-      <h6>Programador Sr. de sistemas de control Siemens S7-1200</h6>
-      <h6>Futuro Devop</h6>
-      <p>Autodidacta, persistente y con muchas ganas de aprender</p>
+      <h2>{{general.nombre}}</h2>
+      <h5>Edad: {{edad()}} años</h5>
+      <h4>{{general.ocupacion}}</h4>
+      <h6>{{general.descripcion}}</h6>
+      
+
+
+    
+      
       <p><a href="" data-bs-toggle="modal" data-bs-target="#info-contacto">Informacion de contacto</a><p>
     </div>
     <div class="col-sm-4">
