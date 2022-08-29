@@ -1,0 +1,14 @@
+.progress {
+    height:2rem; 
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar{
+    height:100%;
+    border-radius: 0.7rem;
+}
+
+.progress .btn {
+    border: solid 1px grey; 
+    border-radius: 0.5rem;
+}

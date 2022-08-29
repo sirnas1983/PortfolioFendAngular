@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EncabezadoComponent } from '../encabezado/encabezado.component';
 
 @Component({
   selector: 'app-formulario-login',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormularioLoginComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+
+  constructor(private formbuilder:FormBuilder) { }
+
+  ngOnInit(){
+
+      }
 
 }

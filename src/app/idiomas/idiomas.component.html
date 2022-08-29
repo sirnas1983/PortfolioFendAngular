@@ -8,15 +8,15 @@
     </div>
   </div>
   <div id="idiomas-visible">
-  <hr>
-  <div class="row lh-1 mt-1">
+  <div class="row lh-1 mt-1" *ngFor="let idioma of idiomas.idiomas"> 
+    <hr>
     <div class="col-sm-10">
       <ul>
-      <li><div class="col-sm"><h4>Inglés</h4></div>
+      <li><div class="col-sm"><h4>{{idioma.idioma}}</h4></div>
         <ul class="no-list-style">
-          <li><p><b>Oral:</b> Nativo</p></li>
-          <li><p><b>Escrito:</b> Nativo</p></li>
-          <li><p><b>Comprension de texto:</b> Nativo</p></li>
+          <li><p><b>Oral: </b>{{idioma.oral}}</p></li>
+          <li><p><b>Escrito: </b>{{idioma.escrito}}</p></li>
+          <li><p><b>Comprension de texto: </b>{{idioma.comprension}}</p></li>
         </ul>
       </li>
       </ul>
@@ -24,27 +24,6 @@
     <div class="col-sm-2">           
       <a href="#" class="ms-3 float-end">
         <span class="fa-solid fa-lg fa-pencil"></span>
-      </a>
-      <a href="#" class="ms-5 float-end">
-        <span class="fa-solid fa-lg fa-trash-can"></span>
-      </a>        
-    </div>
-  </div>
-  <hr>
-  <div class="row lh-1 mt-1">
-    <div class="col-sm-10">
-      <ul>
-      <li><div class="col-sm"><h4>Portugués</h4></div>
-        <ul class="no-list-style">
-          <li><p><b>Oral:</b> Basico</p></li>
-          <li><p><b>Escrito:</b> Basico</p></li>
-          <li><p><b>Comprension de texto:</b> Bueno</p></li>
-        </ul>
-      </li>
-      </ul>
-    </div>
-    <div class="col-sm-2">           
-      <a href="#" class="ms-3 float-end"><span class="fa-solid fa-lg fa-pencil"></span>
       </a>
       <a href="#" class="ms-5 float-end">
         <span class="fa-solid fa-lg fa-trash-can"></span>

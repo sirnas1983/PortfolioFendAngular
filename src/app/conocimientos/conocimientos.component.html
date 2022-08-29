@@ -9,18 +9,17 @@
     </div>
   </div>
   <div id="cursos-visible">
-    <hr>
-    <div class="row lh-1 mt-4">
+    <div *ngFor="let conocimiento of conocimientos.conocimientos" class="row lh-1 mt-4">
+      <hr>
       <div class="col-sm-10">
         <ul>
         <li>
-          <div><h4>Programacion con Micro PLC</h4></div>
-          <div><p><b>Institucion:</b> UTN - Facultad Regional Resistencia</p></div>
-          <div><p><b>Área:</b> Informatica</p></div>
-          <div><p><b>Descripcion:</b> Programacion en micro PLC. Diagramas de bloque y ladder para programacion
-          de micro PLC de (gama baja).</p></div>
-          <div><p><b>Duracion:</b> 6 meses</p></div>
-          <div><p><b>Nivel:</b> Universitario</p></div>
+          <div><h4>{{conocimiento.titulo}}</h4></div>
+          <div><p><b>Institucion: </b>{{conocimiento.institucion}}</p></div>
+          <div><p><b>Área: </b>{{conocimiento.area}}</p></div>
+          <div><p><b>Descripcion: </b>{{conocimiento.descripcion}}</p></div>
+          <div><p><b>Duracion: </b>{{conocimiento.duracion}} meses</p></div>
+          <div *ngIf="conocimiento.nivel"><p><b>Nivel: </b>{{conocimiento.nivel}}</p></div>
         </li>
         </ul>
       </div>
@@ -31,55 +30,6 @@
         <a href="#" class="ms-5 float-end"><span class="fa-solid fa-lg fa-trash-can"></span>
         </a>        
       </div>
-    </div>
-    <hr>
-    <div class="row lh-1 mt-4">
-      <div class="col-sm-10">
-        <ul>
-        <li>
-          <div><h4>Programacion PLC S7-1200</h4></div>
-          <div><p><b>Institucion:</b> UTN - Facultad Regional Resistencia</p></div>
-          <div><p><b>Área:</b> Informatica</p></div>
-          <div><p><b>Descripcion:</b> Programacion de PLC S7-1200 de Siemens. Programacion avanzada en PLC marca Siemens
-          a traves del software TIA Portal (totaly integrated application). La gama S7 de Siemens representa la mas alta gama
-          reles logicos programables.</p></div>
-          <div><p><b>Duracion:</b> 6 meses</p></div>
-          <div><p><b>Nivel:</b> Universitario</p></div>
-        </li>
-        </ul>
       </div>
-      <div class="col-sm-2">           
-        <a href="#" class="ms-3 float-end">
-          <span class="fa-solid fa-lg fa-pencil"></span>
-        </a>
-        <a href="#" class="ms-5 float-end">
-          <span class="fa-solid fa-lg fa-trash-can"></span>
-        </a>        
-      </div>
-    </div>
-    <hr>
-    <div class="row lh-1 mt-4">
-    <div class="col-sm-10">
-      <ul>
-      <li>
-        <div><h4>Instalaciones Electricas Domiciliarias</h4></div>
-        <div><p><b>Institucion:</b> Universidad del Chaco Austral (UNCAUS)</p></div>
-        <div><p><b>Área:</b> Ingenieria</p></div>
-        <div><p><b>Descripcion:</b> Calculo de potencia, tableros, seccion de cables, protecciones, cañerias, etc. 
-        Elaboracion de proyecto ejecutivo en vivienda unifamiliar. </p></div>
-        <div><p><b>Duracion:</b> 6 meses</p></div>
-        <div><p><b>Nivel:</b> Universitario</p></div>
-      </li>
-      </ul>
-    </div>
-    <div class="col-sm-2">           
-      <a href="#" class="ms-3 float-end">
-        <span class="fa-solid fa-lg fa-pencil"></span>
-      </a>
-      <a href="#" class="ms-5 float-end">
-        <span class="fa-solid fa-lg fa-trash-can"></span>
-      </a>        
-    </div>
-  </div>
   </div>
 </div>

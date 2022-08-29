@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 
 @Component({
   selector: 'app-acercademi',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcercademiComponent implements OnInit {
 
-  constructor() { }
+  principales : any;
+
+  constructor(private datos:ObtenerDatosService) { }
 
   ngOnInit(): void {
+    this.datos.obtenerDatos().subscribe(data => {this.principales = data});
   }
-
 }

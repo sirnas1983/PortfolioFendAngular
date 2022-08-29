@@ -6,10 +6,11 @@
           <button type="button" id="btn-modal" class="btn fa-solid fa-lg fa-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body bg-dark">
-          <p>Direccion correo electronico: <a href="mailto: dahiebl@gmail.com">dahiebl@gmail.com</a></p>
-          <p>Whatsapp: <a href="https://api.whatsapp.com/send?phone=5493774419374" target="_blank">+54 9 3774 419374</a></p>
-          <p>GitHUB: <a href="https://github.com/sirnas1983" target="_blank">Ir a mi repositorio remoto</a></p>
+          <p>Direccion correo electronico: <a href="mailto: dahiebl@gmail.com">{{contacto.email}}</a></p>
+          <p>Whatsapp: <a href="https://api.whatsapp.com/send?phone=5493774419374" target="_blank">{{contacto.whatsapp}}</a></p>
+          <p>Repositorio: <a [href]="contacto.repositorio" target="_blank">Ir a mi repositorio remoto</a></p>
         </div>
+        <a class="bg-dark p-2"><button type="button" id="btn-editar" class="btn fa-solid fa-lg fa-pencil float-end"></button></a>
       </div>
     </div>
   </div>

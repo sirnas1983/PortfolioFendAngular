@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 
 @Component({
   selector: 'app-info-contacto',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoContactoComponent implements OnInit {
 
-  constructor() { }
+  contacto : any;
+
+  constructor(private datos:ObtenerDatosService) { }
 
   ngOnInit(): void {
+    this.datos.obtenerDatos().subscribe(data => {this.contacto = data});
   }
-
 }

@@ -3,17 +3,20 @@
     <div class="modal-content">
       <div class="modal-header bg-primary">
         <h4 class="modal-title">INTERESES</h4>
+       
         <button type="button" id="btn-modal" class="btn fa-solid fa-lg fa-close" data-bs-dismiss="modal"></button>
+        
       </div>
       <div class="modal-body bg-dark">
-      <span class="habilidad">Rock Nacional <button class="habilidad-cierre">x</button></span>
-      <span class="habilidad">Novelas negras <button class="habilidad-cierre">x</button></span>
-      <span class="habilidad">Informatica <button class="habilidad-cierre">x</button></span>
-      <span class="habilidad">Computacion <button class="habilidad-cierre">x</button></span>
-      <span class="habilidad">Noticias <button class="habilidad-cierre">x</button></span>
-      <span class="habilidad">Musica en general <button class="habilidad-cierre">x</button></span>
-      <div><a href="#" class="btn float-end fa-solid fa-pencil"></a> </div>
+        <span *ngFor="let interes of intereses.intereses">
+          <button class="disabled pt-1 rounded-pill bg-white">
+            {{interes.nombre}}
+            <button class="btn fa-solid fa-trash-can fa-sm float-end pt-2">
+            </button>
+          </button>
+        </span>
       </div>
-    </div>
-  </div>
+      <a class="bg-dark p-2"><button type="button" id="btn-agregar" class="btn fa-solid fa-lg fa-add float-end"></button></a>
+</div>
+</div>
 </div>

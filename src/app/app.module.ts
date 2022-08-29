@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TarjetaPrincipalComponent } from './tarjeta-principal/tarjeta-principal.component';
@@ -15,6 +14,10 @@ import { FormularioLoginComponent } from './formulario-login/formulario-login.co
 import { AcercademiComponent } from './acercademi/acercademi.component';
 import { IdiomasComponent } from './idiomas/idiomas.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ObtenerDatosService } from './servicios/obtener-datos.service';
 
 @NgModule({
   declarations: [
@@ -34,9 +37,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ObtenerDatosService],
+  bootstrap: [AppComponent],
+  entryComponents: [FormularioLoginComponent]
 })
 export class AppModule { }
