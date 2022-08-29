@@ -16,7 +16,7 @@
         <div><p><b>Empresa: </b>{{experiencia.empresa}}</p></div>
         <div><p><b>Área: </b>{{experiencia.area}}</p></div>
         <div><p><b>Tareas Realizadas: </b>{{experiencia.tareas}}</p></div>
-        <div><p><b>Desde: </b>{{experiencia.fechainicio}}<b>Hasta: </b>{{experiencia.fechafin}}</p></div>
+        <div><p><b>Desde: </b>{{experiencia.fechaInicio | date:"mm/yyyy"}}<b> Hasta: </b>{{experiencia.fechaFin | date:"mm/yyyy"}}</p></div>
         <div><p><b>Lugar: </b>{{experiencia.lugar}}</p></div>
         <a *ngIf="experiencia.link" [href]="experiencia.link">Link</a>
       </li>

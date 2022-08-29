@@ -3,17 +3,17 @@
 		"titulo": "Jefe de oficina tecnica",
 		"empresa": "Esuco SA - ICF SA - UTE",
 		"tareas": "Encargado de las mediciones de obra y computo metrico de la misma. Realizacion de proyectos adicionales y modificaciones de obra. Ejecucion de planos conforme a obra y medicion final de la misma. Sin personas a cargo.",
-		"fechaInicio": "2006-05",
-		"fechaFin": "2007-09",
-		"link": "www.epetrg.edu.ar",
+		"fechaInicio": "2006-05-01",
+		"fechaFin": "2007-09-01",
+		"link" : null,
 		"lugar" : "La Plata, Buenos Aires"
 	}, {
 		"titulo": "Jefe de oficina tecnica",
 		"empresa": "Esuco SA - ICF SA - UTE",
 		"tareas": "Encargado de las mediciones de obra y computo metrico de la misma. Realizacion de proyectos adicionales y modificaciones de obra. Ejecucion de planos conforme a obra y medicion final de la misma. Sin personas a cargo.",
-		"fechaInicio": "2006-05",
-		"fechaFin": "2007-09",
-		"link": "www.epetrg.edu.ar",
+		"fechaInicio": "2006-05-01",
+		"fechaFin": "2007-09-01",
+		"link" : "www.icfsa.com.ar",
 		"lugar" : "La Plata, Buenos Aires"
 }],	
 	"estudios": [{
