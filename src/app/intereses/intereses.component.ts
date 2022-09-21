@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Interes } from '../interfaces';
+import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
+
 
 @Component({
   selector: 'app-intereses',
@@ -8,12 +11,21 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class InteresesComponent implements OnInit {
   
-  intereses : any;
-  validate = false;
-  constructor(private datos:ObtenerDatosService) { }
+  intereses : Interes[] = [];
+  validate : boolean = false;
+  
+  constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.intereses = data});
+    this.datos.obtenerDatos().subscribe(data => {this.intereses = data.intereses});
+    this.validacion.login().subscribe(login => {this.validate = login.login});
+  }
+  
+  editItem(interes : Interes){
+    console.log(interes);
   }
 
+  deleteItem(interes : Interes){
+    console.log(interes.nombre);
+  }
 }

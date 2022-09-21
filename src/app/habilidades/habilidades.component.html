@@ -4,33 +4,33 @@
         <h3>Habilidades</h3>
     </div>
     <div class="col-6">
-      <button id="chevron-habilidades" onclick="desplegar('habilidades-visible','chevron-habilidades')" 
-      class="btn fa-solid float-end fa-chevron-up"></button>
+      <button (click)="desplegar()" [ngClass]="arrow"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
     </div>
   </div>
-  <div id="habilidades-visible">
-  <hr>
+
+  <div *ngIf="!isHidden">
+    <hr>
   <div class="row">
     <div class="col-sm-6">
         <div><h4><u>Soft Skills<button *ngIf="validate" class="btn float-end fa-solid fa-add"></button></u></h4></div>
-        <div *ngFor="let x of habilidades.softskills" class="progress">
-          <div class="progress-bar progress-bar-striped" [style.width.%]="x.cantidad">
-            {{x.nombre}} - {{x.cantidad}}%
+        <div *ngFor="let soft of softskills" class="progress">
+          <div class="progress-bar progress-bar-striped" [style.width.%]="soft.cantidad">
+            {{soft.nombre}} - {{soft.cantidad}}%
           </div>
           <div class="progress-bar bg-transparent mx-auto" ></div>
-          <button *ngIf="validate" class="btn fa-solid fa-trash-can float-end">
+          <button *ngIf="validate" (click)="deleteItem(soft)" class="btn fa-solid fa-trash-can float-end">
           </button>
         </div>
         </div>
         <div class="col-sm-6">
           <div><h4><u>Hard Skills<button *ngIf="validate" class="btn float-end fa-solid fa-add"></button></u></h4></div>
-          <div *ngFor="let y of habilidades.hardskills" class="progress">
-            <div class="progress-bar progress-bar-striped" [style.width.%]="y.cantidad">
-              {{y.nombre}} - {{y.cantidad}}%
+          <div *ngFor="let hard of hardskills" class="progress">
+            <div class="progress-bar progress-bar-striped" [style.width.%]="hard.cantidad">
+              {{hard.nombre}} - {{hard.cantidad}}%
             </div>
             <div class="progress-bar bg-transparent mx-auto" ></div>
-            <button *ngIf="validate" class="btn fa-solid fa-trash-can float-end">
+            <button *ngIf="validate" (click)="deleteItem(hard)" class="btn fa-solid fa-trash-can float-end">
             </button>
           </div>
           </div>

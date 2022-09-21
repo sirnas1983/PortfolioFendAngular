@@ -4,15 +4,14 @@
       <h3>Estudios</h3>
     </div>        
     <div class="col-6">
-      <button id="chevron-estudios" onClick="desplegar('estudio-visible','chevron-estudios')" 
-      class="btn fa-solid float-end fa-chevron-up">
-      </button>
+      <button (click)="desplegar()" 
+      [ngClass]="arrow"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
       <button *ngIf="validate" class="btn float-end fa-solid fa-add"></button>
     </div>
   </div>
-  <div id="estudio-visible">
-  <div *ngFor="let estudio of estudios.estudios" class="row lh-1 mt-4">
+  <div *ngIf="!isHidden">
+    <div *ngFor="let estudio of estudios" class="row lh-1 mt-4">
     <hr>
   <div class="col-sm-6">
     <ul>
@@ -35,10 +34,10 @@
   </div>
   <div class="col-sm-2">           
     <a href="#" class="float-end ms-3">
-      <span *ngIf="validate" class="fa-solid fa-lg fa-pencil"></span>
+      <span *ngIf="validate" class="fa-solid fa-lg fa-pencil" (click)="editItem(estudio)"></span>
     </a>
     <a href="#" class="ms-5 float-end">
-      <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can"></span>
+      <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(estudio)"></span>
     </a>        
   </div>
 </div>

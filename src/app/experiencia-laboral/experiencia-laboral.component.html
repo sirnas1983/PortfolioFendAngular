@@ -1,33 +1,49 @@
 <div id="expertize-card" class="card">
   <div class="row"> 
     <div class="col-6"><h3>Experiencia Laboral</h3></div>
-    <div class="col-6"><button id="chevron-experiencia" onclick="desplegar('experiencia-visible','chevron-experiencia')" 
-      class="btn fa-solid float-end fa-chevron-up"></button>
+    <div class="col-6">
+      <button (click)="desplegar()" [ngClass]="arrow"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
       <button *ngIf="validate" class="btn float-end fa-solid fa-add"></button>
     </div>
-  <div id="experiencia-visible">
-  <div class="row lh-1 mt-4"  *ngFor="let experiencia of experiencias.experiencias">
+    <div *ngIf="!isHidden">
+      <div class="row lh-1 mt-4"  *ngFor="let experiencia of experiencias">
     <hr>
     <div class="col-sm-10">
       <ul>
       <li>
-        <div><h4>{{experiencia.titulo}}</h4></div>
-        <div><p><b>Empresa: </b>{{experiencia.empresa}}</p></div>
-        <div><p><b>Área: </b>{{experiencia.area}}</p></div>
-        <div><p><b>Tareas Realizadas: </b>{{experiencia.tareas}}</p></div>
-        <div><p><b>Desde: </b>{{experiencia.fechaInicio | date:"MM/yyyy"}}<b> Hasta: </b>{{experiencia.fechaFin | date:"MM/yyyy"}}</p></div>
-        <div><p><b>Lugar: </b>{{experiencia.lugar}}</p></div>
-        <a *ngIf="experiencia.link" [href]="experiencia.link">Link</a>
+        <div>
+          <h4>{{experiencia.nombre}}</h4>
+        </div>
+        <div>
+          <p><b>Empresa: </b>{{experiencia.empresa}}</p>
+        </div>
+        <div>
+          <p><b>Tareas Realizadas: </b>{{experiencia.tareas}}</p></div>
+        <div>
+          <p>
+            <b>Desde: </b>
+            {{experiencia.fechaInicio | date:"MM/yyyy"}}
+            <b> Hasta: </b>
+            {{experiencia.fechaFin | date:"MM/yyyy"}}
+          |</p>
+        </div>
+        <div>
+          <p>
+            <b>Lugar: </b>
+            {{experiencia.lugar}}
+          </p>
+        </div>
+        <a *ngIf="experiencia.link" [href]="experiencia.link" target="_blank">Link</a>
       </li>
       </ul>
     </div>
     <div class="col-sm-2">           
       <a href="#" class="ms-3 float-end">
-        <span *ngIf="validate" class="fa-solid fa-lg fa-pencil"></span>
+        <span *ngIf="validate" (click)="editItem(experiencia)" class="fa-solid fa-lg fa-pencil"></span>
       </a>
       <a href="#" class="ms-5 float-end">
-        <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can"></span>
+        <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(experiencia)"></span>
       </a>        
     </div>
   </div>

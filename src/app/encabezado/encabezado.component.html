@@ -10,7 +10,8 @@
       </li>
       <li class="nav-item">
         <div class=" btn-group float-end">
-          <a href="" data-bs-toggle="modal" data-bs-target="#modal-login"><button type="button" class="btn btn-primary float-end">Login</button></a>
+          <a href="" data-bs-toggle="modal" data-bs-target="#modal-login"><button type="button" class="btn btn-primary float-end" *ngIf="!validate">Login</button></a>
+          <a href=""><button type="button" class="btn btn-primary float-end" *ngIf="validate">Logout</button></a>
         </div>
       </li>
   </ul>

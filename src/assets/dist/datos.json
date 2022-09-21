@@ -1,6 +1,6 @@
 {
 	"experiencias" : [{
-		"titulo": "Jefe de oficina tecnica",
+		"nombre": "Jefe de oficina tecnica",
 		"empresa": "Esuco SA - ICF SA - UTE",
 		"tareas": "Encargado de las mediciones de obra y computo metrico de la misma. Realizacion de proyectos adicionales y modificaciones de obra. Ejecucion de planos conforme a obra y medicion final de la misma. Sin personas a cargo.",
 		"fechaInicio": "2006-05-01",
@@ -8,7 +8,7 @@
 		"link" : null,
 		"lugar" : "La Plata, Buenos Aires"
 	}, {
-		"titulo": "Jefe de oficina tecnica",
+		"nombre": "Jefe de oficina tecnica",
 		"empresa": "Esuco SA - ICF SA - UTE",
 		"tareas": "Encargado de las mediciones de obra y computo metrico de la misma. Realizacion de proyectos adicionales y modificaciones de obra. Ejecucion de planos conforme a obra y medicion final de la misma. Sin personas a cargo.",
 		"fechaInicio": "2006-05-01",
@@ -21,8 +21,8 @@
 		"institucion": "EPET N°1",
 		"lugar": "Rio Grande, Tierra del Fuego",
 		"nivel": "Secundario",
-		"fechaInicio": "1970-01-01T00:00:01.996Z",
-		"fechaFin": "1970-01-01T00:00:02.002Z",
+		"fechaInicio": "1997-01-01T00:00:01.996Z",
+		"fechaFin": "2001-01-01T00:00:02.002Z",
 		"promedio": 8.34,
 		"link": "www.epetrg.edu.ar"
 	}, {
@@ -30,20 +30,20 @@
 		"institucion": "UNLP",
 		"lugar": "La Plata, Buenos Aires",
 		"nivel": "Universitario",
-		"fechaInicio": "1970-01-01T00:00:02.002Z",
+		"fechaInicio": "2002-01-01T00:00:02.002Z",
 		"fechaFin": null,
 		"promedio": 9.22,
 		"link": "www.unlp.edu.ar"
 	}],
 	"conocimientos": [{
-		"titulo": "Programacion S7-1200",
+		"nombre": "Programacion S7-1200",
 		"institucion": "UTN FR Resistencia",
 		"area": "Tecnologia",
 		"nivel": "Universitario",
 		"duracion": 6,
 		"descripcion": "Programacion con Micro PLC orientada al desarrollo de aplicaciones para la industria y el automatismo"
 	}, {
-		"titulo": "Programacion micro PLC",
+		"nombre": "Programacion micro PLC",
 		"institucion": "UTN FR Resistencia",
 		"area": "Tecnologia",
 		"nivel": "Universitario",
@@ -61,17 +61,18 @@
 		"escrito": "Pobre",
 		"comprension": "Medio"
 	}],
-	
-	"nombre": "Darian A. Hiebl",
-	"ocupacion": "Estudiante en ArgPgr #YoProgramo",
-	"descripcion": "Programador Sr. de sistemas de control Siemens S7-1200",
-	"foto": "../assets/img/profile-picture.jpg",
-	"banner": "../assets/img/banner.jpg",
-	"nacimiento": "1983-02-24",
-	"whatsapp": "+5493774419374",
-	"email": "dahiebl@gmail.com",
-	"repositorio": "https://github.com/sirnas1983",
-	"acercademi": "38 años, conservador, padre de 2. Maestro mayor de obras y estudiante avanzado de ingenieria civil. Apasionado por la electronica y el control de procesos, como ser la robotica aplicada a la industria y el IoT. Cerca de mis 28 años se desperto mi interes en estudiar electricidad industrial, automatismo y programacion avanzada. La pasion de la electronica y el saber me pusieron donde estoy hoy. Mi primer experiencia en el mundo de la programacion, y casi la unica en forma cotideana, fue el uso de VisualBasic para programar macros en Excel.",
+	"general": [{
+		"nombre": "Darian A. Hiebl",
+		"ocupacion": "Estudiante en ArgPgr #YoProgramo",
+		"descripcion": "Programador Sr. de sistemas de control Siemens S7-1200",
+		"foto": "../assets/img/profile-picture.jpg",
+		"banner": "../assets/img/banner.jpg",
+		"nacimiento": "1983-02-24",
+		"whatsapp": "+5493774419374",
+		"email": "dahiebl@gmail.com",
+		"repositorio": "https://github.com/sirnas1983",
+		"acercademi": "38 años, conservador, padre de 2. Maestro mayor de obras y estudiante avanzado de ingenieria civil. Apasionado por la electronica y el control de procesos, como ser la robotica aplicada a la industria y el IoT. Cerca de mis 28 años se desperto mi interes en estudiar electricidad industrial, automatismo y programacion avanzada. La pasion de la electronica y el saber me pusieron donde estoy hoy. Mi primer experiencia en el mundo de la programacion, y casi la unica en forma cotideana, fue el uso de VisualBasic para programar macros en Excel."
+	}],
 	"softskills": [{
 		"cantidad": 70,
 		"nombre": "Liderazgo"

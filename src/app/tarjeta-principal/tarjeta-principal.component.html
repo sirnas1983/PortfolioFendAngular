@@ -1,14 +1,14 @@
 <div id="presentation-card" class="card">
   <div style="margin:-0.5em">
-    <img id="banner" [src]="general.banner" alt="Banner">
+    <img id="banner" [src]="general[0].banner" alt="Banner">
   </div>
   <div id="info" style="padding:0px;">
     <div id="info-foto" >
       <div class="profile-image">
-        <img id="profile-image" [src]="general.foto" alt="Foto de perfil">
+        <img *ngIf="general[0].foto" id="profile-image" [src]="general[0].foto" alt="Foto de perfil">
         <div class="btn">
           <a href="#" class="btn" style="margin-left: -20px;">
-            <span *ngIf="validate" class="fa-solid fa-lg fa-pencil"></span>
+            <span *ngIf="validate" (click)="editItem(general[0])" class="fa-solid fa-lg fa-pencil"></span>
           </a>
         </div>
       </div>
@@ -16,16 +16,15 @@
   </div>
   <div class="row ms-3">
     <div class="col-sm-8 card-body">
-      <h2>{{general.nombre}}</h2>
+      <h2>{{general[0].nombre}}</h2>
       <h5>Edad: {{edad()}} años</h5>
-      <h4>{{general.ocupacion}}</h4>
-      <h6>{{general.descripcion}}</h6>
-      
-
-
-    
-      
-      <p><a href="" data-bs-toggle="modal" data-bs-target="#info-contacto">Informacion de contacto</a><p>
+      <h4>{{general[0].ocupacion}}</h4>
+      <h6>{{general[0].descripcion}}</h6>
+      <p> 
+        <a href="" data-bs-toggle="modal" data-bs-target="#info-contacto">
+        Informacion de contacto
+        </a>
+      <p>
     </div>
     <div class="col-sm-4">
       <ul class="no-list-style p-2">
@@ -36,24 +35,29 @@
           </li>
           <li>
             <a href="https://argentinaprograma.inti.gob.ar/" target="_blank">
-              <img class="img-fluid mt-2 light-icon list-icon" src="../../assets/ico/APLogo-20-21.png" alt="Argentina Programa">
+              <img class="img-fluid mt-2 light-icon list-icon" 
+              src="../../assets/ico/APLogo-20-21.png" alt="Argentina Programa">
             </a>
           </li>
           <li>
             <a href="https://www.frre.utn.edu.ar/" target="_blank">
-              <img class="img-fluid mt-2 dark-icon list-icon" src="../../assets/ico/UTN_FRRE-www.png" alt="UTN Facultad regional Resistencia">
+              <img class="img-fluid mt-2 dark-icon list-icon" 
+              src="../../assets/ico/UTN_FRRE-www.png" alt="UTN Facultad regional Resistencia">
             </a>
           </li>
           <li>
             <a href="https://github.com/" target="_blank">
-              <img class="img-fluid mt-2 dark-icon list-icon" src="../../assets/ico/GitHub ico.png" alt="GitHub">
+              <img class="img-fluid mt-2 dark-icon list-icon" 
+              src="../../assets/ico/GitHub ico.png" alt="GitHub">
             </a>
           </li>
         </ul>
     </div>
   </div>
   <div class="p-3">
-    <a href="" data-bs-toggle="modal" data-bs-target="#modal-intereses"><button class="btn btn-primary boton" >Intereses</button></a>
+    <a href="" data-bs-toggle="modal" data-bs-target="#modal-intereses">
+      <button class="btn btn-primary boton">Intereses</button>
+    </a>
   </div>
 </div>
 

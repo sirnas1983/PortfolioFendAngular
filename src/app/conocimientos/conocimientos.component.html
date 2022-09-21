@@ -2,19 +2,19 @@
   <div class="row"> 
     <div class="col-6"><h3>Cursos y conocimientos</h3></div>
     <div class="col-6">
-      <button id="chevron-cursos" onclick= "desplegar('cursos-visible','chevron-cursos')" 
-      class="btn fa-solid float-end fa-chevron-up"></button>
+      <button (click)="desplegar()" 
+      [ngClass]="arrow"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
       <button *ngIf="validate" class="btn float-end fa-solid fa-add"></button>
     </div>
   </div>
-  <div id="cursos-visible">
-    <div *ngFor="let conocimiento of conocimientos.conocimientos" class="row lh-1 mt-4">
+  <div *ngIf="!isHidden">
+    <div *ngFor="let conocimiento of conocimientos" class="row lh-1 mt-4">
       <hr>
       <div class="col-sm-10">
         <ul>
         <li>
-          <div><h4>{{conocimiento.titulo}}</h4></div>
+          <div><h4>{{conocimiento.nombre}}</h4></div>
           <div><p><b>Institucion: </b>{{conocimiento.institucion}}</p></div>
           <div><p><b>Área: </b>{{conocimiento.area}}</p></div>
           <div><p><b>Descripcion: </b>{{conocimiento.descripcion}}</p></div>
@@ -25,9 +25,10 @@
       </div>
       <div class="col-sm-2">           
         <a *ngIf="validate" href="#" class="ms-3 float-end">
-          <span class="fa-solid fa-lg fa-pencil"></span>
+          <span class="fa-solid fa-lg fa-pencil" (click)="editItem(conocimiento)"></span>
         </a>
-        <a *ngIf="validate" href="#" class="ms-5 float-end"><span class="fa-solid fa-lg fa-trash-can"></span>
+        <a *ngIf="validate" href="#" class="ms-5 float-end">
+          <span class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(conocimiento)"></span>
         </a>        
       </div>
       </div>

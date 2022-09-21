@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ObtenerDatosService {
 
     constructor(private http:HttpClient) { }
@@ -14,5 +15,5 @@ export class ObtenerDatosService {
     return this.http.get('../../assets/dist/datos.json')
     }
 
-  };
+};
   

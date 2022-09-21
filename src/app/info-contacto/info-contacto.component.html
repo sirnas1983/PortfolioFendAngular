@@ -3,14 +3,40 @@
       <div class="modal-content">
         <div class="modal-header bg-primary">
           <h4 class="modal-title">INFORMACION DE CONTACTO</h4>
-          <button type="button" id="btn-modal" class="btn fa-solid fa-lg fa-close" data-bs-dismiss="modal"></button>
+          <button type="button" id="btn-modal" class="btn fa-solid fa-lg fa-close" data-bs-dismiss="modal">
+          </button>
         </div>
         <div class="modal-body bg-dark">
-          <p>Direccion correo electronico: <a href="mailto: dahiebl@gmail.com">{{contacto.email}}</a></p>
-          <p>Whatsapp: <a href="https://api.whatsapp.com/send?phone=5493774419374" target="_blank">{{contacto.whatsapp}}</a></p>
-          <p>Repositorio: <a [href]="contacto.repositorio" target="_blank">Ir a mi repositorio remoto</a></p>
+          <p *ngIf="general[0].email">
+            Direccion correo electronico: 
+            <a [href]="'mailto:' + general[0].email" target="_blank">{{general[0].email}}</a>
+          </p>
+          <p *ngIf="general[0].whatsapp">Whatsapp: 
+            <a [href]="'https://api.whatsapp.com/send?phone=' + general[0].whatsapp.replace('+','')" target="_blank">
+              {{general[0].whatsapp}}</a>
+          </p>
+          <p *ngIf="general[0].repositorio">
+            Repositorio: 
+            <a [href]="general[0].repositorio" target="_blank">
+            IR A MI REPOSITORIO
+            </a>
+          </p>
+          <p *ngIf="general[0].facebook">
+            FACEBOOK:
+            <a [href]="general[0].facebook" target="_blank">IR A MI FACEBOOK</a>
+          </p>
+          <p *ngIf="general[0].instagram">
+            INSTAGRAM: 
+            <a [href]="general[0].instagram" target="_blank">IR A MI INSTAGRAM</a>
+          </p>
+          <p *ngIf="general[0].tweeter">TWEETER: 
+            <a [href]="general[0].tweeter" target="_blank">IR A MI TWEETER</a>
+          </p>
         </div>
-        <a *ngIF="validate" class="bg-dark p-2"><button type="button" id="btn-editar" class="btn fa-solid fa-lg fa-pencil float-end"></button></a>
+        <a *ngIf="validate" class="bg-dark p-2">
+          <button type="button" id="btn-editar" class="btn fa-solid fa-lg fa-pencil float-end" (click)="editItem(general[0])">
+          </button>
+        </a>
       </div>
     </div>
   </div>
