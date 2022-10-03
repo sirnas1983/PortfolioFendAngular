@@ -11,27 +11,46 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 
 export class ConocimientosComponent implements OnInit {
   
-  arrow : string = 'btn fa-solid float-end fa-chevron-up';
-  mostrar : string = 'block';
   isHidden : boolean = false;
   validate : boolean = false; 
   conocimientos : Conocimiento[] = [];
+  edit : boolean = false;
+  conocimiento : Conocimiento = {
+    nombre : "",
+    institucion : "",
+    area : "",
+    nivel : "",
+    duracion : 0,
+    descripcion : ""
+  };
 
   constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.conocimientos = data.conocimientos});
+    this.datos.obtenerDatos().subscribe(data => {this.conocimientos = data.persona.conocimientos});
     this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
-  
+  reset(){
+    this.conocimiento = {
+      nombre : "",
+      institucion : "",
+      area : "",
+      nivel : "",
+      duracion : 0,
+      descripcion : ""
+    };
+  }
+
   desplegar(){
+    document.querySelector("#course-card .toggle")?.classList.toggle("fa-chevron-down");
+    document.querySelector("#course-card .toggle")?.classList.toggle("fa-chevron-up");
     this.isHidden = !this.isHidden;
-    if (this.isHidden) {
-      this.arrow = "btn fa-solid float-end fa-chevron-down"
-    } else {
-      this.arrow = "btn fa-solid float-end fa-chevron-up"
-    }
+  }
+
+  addItem() {
+    this.edit = !this.edit;
+    this.reset();
   }
   
   deleteItem(conocimiento : Conocimiento){
@@ -39,6 +58,7 @@ export class ConocimientosComponent implements OnInit {
     }
 
   editItem(conocimiento : Conocimiento){
-    console.log(conocimiento);
+    this.edit = !this.edit;
+    this.conocimiento = conocimiento;
   }
 }

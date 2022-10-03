@@ -11,13 +11,28 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class InfoContactoComponent implements OnInit {
 
-  general : General[] = [];   
+  general : General = {
+    nombre : "",
+    ocupacion : "",
+    descripcion : "",
+    foto : "",
+    banner : "",
+    nacimiento : new Date('1983/02/24'),
+    whatsapp : "",
+    email : "",
+    repositorio : "",
+    acercademi : "",
+    facebook : "",
+    instagram : "",
+    tweeter : "",
+};  
+  
   validate : boolean = false;
  
   constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.general = data.general});
+    this.datos.obtenerDatos().subscribe(data => {this.general = data.persona.general});
     this.validacion.login().subscribe(login => {this.validate = login.login});
   }
   

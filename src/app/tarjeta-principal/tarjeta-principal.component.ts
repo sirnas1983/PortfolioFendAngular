@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { General } from '../interfaces';
 import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
@@ -10,24 +11,41 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class TarjetaPrincipalComponent implements OnInit {
 
-  general : General[] = [];   
+  general : General = {
+    nombre : "",
+    ocupacion : "",
+    descripcion : "",
+    foto : "",
+    banner : "",
+    nacimiento : new Date('1983/02/24'),
+    whatsapp : "",
+    email : "",
+    repositorio : "",
+    acercademi : "",
+    facebook : "",
+    instagram : "",
+    tweeter : "",
+};  
+
   validate : boolean = false;
   
   constructor(private datos:ObtenerDatosService, private validacion:LoginService) { 
   }
   
-  public edad () {
-    let hoy : Date = new Date();
-    let nacimiento : Date = new Date(this.general[0].nacimiento);
+  edad (){
+    const hoy : Date = new Date();
+    const nacimiento : Date = new Date(this.general.nacimiento);
     if ((nacimiento.getMonth() < hoy.getMonth()) || (hoy.getMonth() == nacimiento.getMonth() && nacimiento.getDate() <= hoy.getDate())) {
       return Math.floor(hoy.getFullYear() - nacimiento.getFullYear())
     } 
       return Math.floor(hoy.getFullYear() - nacimiento.getFullYear() + 1)
   }
+
   
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.general = data.general});
+    this.datos.obtenerDatos().subscribe(data => {this.general = data.persona.general});
     this.validacion.login().subscribe(login => {this.validate = login.login});
+
   }
 
   editItem(general : General){

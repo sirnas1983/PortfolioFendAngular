@@ -1,0 +1,12 @@
+<form id="acercademi-form">
+    <label for="acercademi-text">Acerca de mi</label>
+    <textarea 
+        #acercademiText 
+        id="acercademi-text" 
+        style="width:100%" 
+        rows="5" 
+        value={{textBoxValue}}>
+    </textarea>
+    <button type="button" class="btn btn-primary boton"  
+    (click)="addNewItem(acercademiText.value)">Actualizar</button>
+</form>

@@ -1,0 +1,79 @@
+<form id="estudios-form">
+    <label for="estudios-titulo">Titulo</label><br>
+    <input
+        type="string" 
+        name="estudios-titulo" 
+        id="estudios-titulo" 
+        style="width:50%" 
+        value={{editarEstudio.titulo}}
+        class="m-2"><br>
+
+    <label for="estudios-institucion">Establecimiento</label><br>
+    <input
+        type="string" 
+        name="estudios-institucion" 
+        id="estudios-institucion" 
+        style="width:50%" 
+        value={{editarEstudio.institucion}}
+        class="m-2"><br>
+
+
+    <label for="estudios-lugar">Lugar</label><br>
+    <input
+        type="string" 
+        name="estudios-lugar" 
+        id="estudios-lugar" 
+        style="width:50%" 
+        value={{editarEstudio.lugar}}
+        class="m-2"><br>
+
+    <label for="estudios-nivel">Nivel educativo</label><br>
+    <input
+        type="string" 
+        name="estudios-nivel" 
+        id="estudios-nivel" 
+        style="width:50%" 
+        value={{editarEstudio.nivel}}
+        class="m-2"><br>
+
+    <label for="estudios-fecha-inicio">Fecha de Inicio</label><br>
+    <input
+        type="date" 
+        name="estudios-fecha-inicio" 
+        id="estudios-fecha-inicio"
+        style="width:50%" 
+        value={{editarEstudio.fechaInicio}}
+        class="m-2"><br>
+
+    <label for="estudios-fecha-fin">Fecha de Finalizacion</label><br>
+    <input
+        type="date" 
+        name="estudios-fecha-fin" 
+        id="estudios-fecha-fin" 
+        style="width:50%" 
+        value={{editarEstudio.fechaFin}}
+        class="m-2"><br>
+
+    <label for="estudios-promedio">Promedio</label><br>
+    <input
+        type="number"
+        max="10"
+        min="0" 
+        style="width:50%" 
+        name="estudios-promedio" 
+        id="estudios-promedio" 
+        value={{editarEstudio.promedio}}
+        class="m-2"><br>
+
+    <label for="estudios-link">Link de institucion</label><br>
+    <input
+        type="text"
+        name="estudios-link" 
+        id="estudios-link" 
+        style="width:50%" 
+        value={{editarEstudio.link}}
+        class="m-2"><br>
+
+    
+    <input class="mt-2" type="submit" class="btn btn-primary boton" value="ACTUALIZAR">
+</form>

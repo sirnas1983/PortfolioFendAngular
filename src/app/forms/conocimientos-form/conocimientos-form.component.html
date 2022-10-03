@@ -1,0 +1,56 @@
+<form id="conocimientos-form">
+    <label for="conocimientos-nombre">Nombre</label>
+    <input
+        type="string" 
+        name="conocimientos-nombre" 
+        id="conocimientos-nombre" 
+        style="width:100%" 
+        value={{editarConocimiento.nombre}}>
+
+    <label for="conocimientos-institucion">Establecimiento</label>
+    <input
+        type="string" 
+        name="conocimientos-institucion" 
+        id="conocimientos-institucion" 
+        style="width:100%" 
+        value={{editarConocimiento.institucion}}>
+
+    <label for="conocimientos-area">Area</label>
+    <input
+        type="string" 
+        name="conocimientos-area" 
+        id="conocimientos-area" 
+        style="width:100%" 
+        value={{editarConocimiento.area}}>
+
+    <label for="conocimientos-nivel">Nivel educativo</label>
+    <input
+        type="string" 
+        name="conocimientos-nivel" 
+        id="conocimientos-nivel" 
+        style="width:100%" 
+        value={{editarConocimiento.nivel}}>
+
+    <label for="conocimientos-duracion">Duracion (meses)</label>
+    <input
+        type="number"
+        Min="1"
+        name="conocimientos-duracion" 
+        id="conocimientos-duracion" 
+        style="width:100%" 
+        value={{editarConocimiento.duracion}}
+        required>
+
+
+    <label for="conocimientos-descripcion">Descripcion</label>    
+    <textarea 
+        type="string"
+        name="conocimientos-descripcion" 
+        id="conocimientos-descripcion" 
+        style="width:100%" 
+        rows="2" 
+        value={{editarConocimiento.descripcion}}>
+    </textarea>
+
+    <input type="submit" class="btn btn-primary boton" value="ACTUALIZAR">
+</form>

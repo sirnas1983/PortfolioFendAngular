@@ -2,10 +2,11 @@
   <div class="row"> 
     <div class="col-6"><h3>Experiencia Laboral</h3></div>
     <div class="col-6">
-      <button (click)="desplegar()" [ngClass]="arrow"></button>
+      <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
       <button *ngIf="validate" class="btn float-end fa-solid fa-add"></button>
     </div>
+    <app-experiencia-laboral-form *ngIf="validate" id="experiencia-form"></app-experiencia-laboral-form>
     <div *ngIf="!isHidden">
       <div class="row lh-1 mt-4"  *ngFor="let experiencia of experiencias">
     <hr>
@@ -26,7 +27,7 @@
             {{experiencia.fechaInicio | date:"MM/yyyy"}}
             <b> Hasta: </b>
             {{experiencia.fechaFin | date:"MM/yyyy"}}
-          |</p>
+          </p>
         </div>
         <div>
           <p>
@@ -39,8 +40,8 @@
       </ul>
     </div>
     <div class="col-sm-2">           
-      <a href="#" class="ms-3 float-end">
-        <span *ngIf="validate" (click)="editItem(experiencia)" class="fa-solid fa-lg fa-pencil"></span>
+      <a href="#experiencia-form" class="ms-3 float-end">
+        <span *ngIf="validate" (click)="editItem(experiencia)" class="fa-solid fa-lg fa-pencil" ></span>
       </a>
       <a href="#" class="ms-5 float-end">
         <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(experiencia)"></span>

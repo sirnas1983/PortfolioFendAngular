@@ -10,8 +10,6 @@ import { Skill } from '../interfaces';
 })
 export class HabilidadesComponent implements OnInit {
 
-  arrow = 'btn fa-solid float-end fa-chevron-up';
-  mostrar = 'block';
   isHidden = false;
   softskills : Skill[] = [];
   hardskills : Skill[] = [];
@@ -20,17 +18,14 @@ export class HabilidadesComponent implements OnInit {
   constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.softskills = data.softskills; this.hardskills = data.hardskills});
+    this.datos.obtenerDatos().subscribe(data => {this.softskills = data.persona.softskills; this.hardskills = data.persona.hardskills});
     this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
   desplegar(){
+    document.querySelector("#skills-card .toggle")?.classList.toggle("fa-chevron-down");
+    document.querySelector("#skills-card .toggle")?.classList.toggle("fa-chevron-up");
     this.isHidden = !this.isHidden;
-    if (this.isHidden) {
-      this.arrow = "btn fa-solid float-end fa-chevron-down"
-    } else {
-      this.arrow = "btn fa-solid float-end fa-chevron-up"
-    }
   }
 
   deleteItem(habilidad : Skill){

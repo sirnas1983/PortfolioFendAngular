@@ -1,4 +1,4 @@
-{
+{"persona" : {
 	"experiencias" : [{
 		"nombre": "Jefe de oficina tecnica",
 		"empresa": "Esuco SA - ICF SA - UTE",
@@ -61,7 +61,7 @@
 		"escrito": "Pobre",
 		"comprension": "Medio"
 	}],
-	"general": [{
+	"general": {
 		"nombre": "Darian A. Hiebl",
 		"ocupacion": "Estudiante en ArgPgr #YoProgramo",
 		"descripcion": "Programador Sr. de sistemas de control Siemens S7-1200",
@@ -72,7 +72,7 @@
 		"email": "dahiebl@gmail.com",
 		"repositorio": "https://github.com/sirnas1983",
 		"acercademi": "38 años, conservador, padre de 2. Maestro mayor de obras y estudiante avanzado de ingenieria civil. Apasionado por la electronica y el control de procesos, como ser la robotica aplicada a la industria y el IoT. Cerca de mis 28 años se desperto mi interes en estudiar electricidad industrial, automatismo y programacion avanzada. La pasion de la electronica y el saber me pusieron donde estoy hoy. Mi primer experiencia en el mundo de la programacion, y casi la unica en forma cotideana, fue el uso de VisualBasic para programar macros en Excel."
-	}],
+	},
 	"softskills": [{
 		"cantidad": 70,
 		"nombre": "Liderazgo"
@@ -122,4 +122,5 @@
 	   "nombre": "Cine"
 	}
 ]
+}
 }

@@ -1,14 +1,14 @@
 <div id="presentation-card" class="card">
   <div style="margin:-0.5em">
-    <img id="banner" [src]="general[0].banner" alt="Banner">
+    <img id="banner" [src]="general.banner" alt="Banner">
   </div>
   <div id="info" style="padding:0px;">
     <div id="info-foto" >
       <div class="profile-image">
-        <img *ngIf="general[0].foto" id="profile-image" [src]="general[0].foto" alt="Foto de perfil">
+        <img *ngIf="general.foto" id="profile-image" [src]="general.foto" alt="Foto de perfil">
         <div class="btn">
           <a href="#" class="btn" style="margin-left: -20px;">
-            <span *ngIf="validate" (click)="editItem(general[0])" class="fa-solid fa-lg fa-pencil"></span>
+            <span *ngIf="validate" (click)="editItem(general)" class="fa-solid fa-lg fa-pencil"></span>
           </a>
         </div>
       </div>
@@ -16,15 +16,17 @@
   </div>
   <div class="row ms-3">
     <div class="col-sm-8 card-body">
-      <h2>{{general[0].nombre}}</h2>
+      <h2>{{general.nombre}}</h2>
       <h5>Edad: {{edad()}} años</h5>
-      <h4>{{general[0].ocupacion}}</h4>
-      <h6>{{general[0].descripcion}}</h6>
+      <h4>{{general.ocupacion}}</h4>
+      <h6>{{general.descripcion}}</h6>
       <p> 
         <a href="" data-bs-toggle="modal" data-bs-target="#info-contacto">
         Informacion de contacto
         </a>
       <p>
+    <app-tarjeta-principal-form *ngIf="validate"></app-tarjeta-principal-form>
+
     </div>
     <div class="col-sm-4">
       <ul class="no-list-style p-2">

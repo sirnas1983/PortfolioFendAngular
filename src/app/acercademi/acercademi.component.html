@@ -4,18 +4,17 @@
         <h3>Acerca de mi</h3>
     </div>
     <div class="col-6">
-      <button id="chevron-acerca" (click)="desplegar()" 
-      [ngClass]="arrow">
-      </button>
+      <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <a *ngIf="validate" href="#" (click)="editItem(general[0])" class="btn float-end fa-solid fa-pencil">
+      <a *ngIf="validate" (click)="showEditItem(general)" class="btn float-end fa-solid fa-pencil">
       </a>        
     </div>
   </div>
-  <div *ngIf="!isHidden" class="row">
+  <app-acercademi-form *ngIf="edit" [textBoxValue]="editText" (actualizarValor)="editItem($event)"></app-acercademi-form>
     <hr>
-    <div class="col-sm-12">
-      <p style="text-indent:2rem;">{{general[0].acercademi}}
+    <div *ngIf="!isHidden">    
+      <div class="col-sm-12">
+      <p style="text-indent:2rem;">{{general.acercademi}}
       </p>
     </div>
   </div>

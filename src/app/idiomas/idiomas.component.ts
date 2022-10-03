@@ -11,8 +11,6 @@ import { Idioma } from '../interfaces'
 })
 export class IdiomasComponent implements OnInit {
 
-  arrow = 'btn fa-solid float-end fa-chevron-up';
-  mostrar = 'block';
   isHidden = false;
   idiomas : Idioma[] = [];
   validate : boolean = false;
@@ -20,17 +18,15 @@ export class IdiomasComponent implements OnInit {
   constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.idiomas = data.idiomas});
+    this.datos.obtenerDatos().subscribe(data => {this.idiomas = data.persona.idiomas});
     this.validacion.login().subscribe(login => {this.validate = login.login});
  }
 
-desplegar(){
+ desplegar(){
   this.isHidden = !this.isHidden;
- if (this.isHidden) {
-    this.arrow = "btn fa-solid float-end fa-chevron-down"
-  } else {
-    this.arrow = "btn fa-solid float-end fa-chevron-up"
-  }
+  document.querySelector("#language-card .toggle")?.classList.toggle("fa-chevron-down");
+  document.querySelector("#language-card .toggle")?.classList.toggle("fa-chevron-up");
+
 }
 
 deleteItem(idioma : Idioma){

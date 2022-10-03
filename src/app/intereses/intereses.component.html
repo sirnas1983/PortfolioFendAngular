@@ -8,6 +8,7 @@
         
       </div>
       <div class="modal-body bg-dark">
+        <app-intereses-form *ngIf="validate"></app-intereses-form>
         <span *ngFor="let interes of intereses">
           <button class="disabled pt-1 rounded bg-white">
             {{interes.nombre}}

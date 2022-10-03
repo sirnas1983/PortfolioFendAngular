@@ -4,12 +4,12 @@
       <h3>Estudios</h3>
     </div>        
     <div class="col-6">
-      <button (click)="desplegar()" 
-      [ngClass]="arrow"></button>
+      <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <button *ngIf="validate" class="btn float-end fa-solid fa-add"></button>
+      <button *ngIf="validate" class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
     </div>
   </div>
+  <app-estudios-form *ngIf="edit" [editarEstudio]="estudio" id="estudios-form"></app-estudios-form>
   <div *ngIf="!isHidden">
     <div *ngFor="let estudio of estudios" class="row lh-1 mt-4">
     <hr>
@@ -33,12 +33,12 @@
     </ul>
   </div>
   <div class="col-sm-2">           
-    <a href="#" class="float-end ms-3">
+    <button class="btn float-end ms-3" href="#estudios-form">
       <span *ngIf="validate" class="fa-solid fa-lg fa-pencil" (click)="editItem(estudio)"></span>
-    </a>
-    <a href="#" class="ms-5 float-end">
+    </button>
+    <button class="btn float-end ms-3">
       <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(estudio)"></span>
-    </a>        
+    </button>
   </div>
 </div>
 </div>

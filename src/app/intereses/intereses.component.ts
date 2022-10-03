@@ -17,7 +17,7 @@ export class InteresesComponent implements OnInit {
   constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.intereses = data.intereses});
+    this.datos.obtenerDatos().subscribe(data => {this.intereses = data.persona.intereses});
     this.validacion.login().subscribe(login => {this.validate = login.login});
   }
   

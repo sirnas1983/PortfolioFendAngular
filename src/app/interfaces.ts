@@ -59,3 +59,14 @@ export interface General {
 export interface Interes {
     nombre : string;
 }
+
+export interface Persona {
+    general : General[],
+    interes : Interes[],
+    softSkill : Skill[],
+    hardSkill : Skill[],
+    conocimientos : Conocimiento[],
+    estudios : Estudio[],
+    experiencias : Experiencia[],
+    idiomas : Idioma[]
+}
