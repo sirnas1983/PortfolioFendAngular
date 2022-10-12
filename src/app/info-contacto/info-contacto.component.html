@@ -7,7 +7,6 @@
           </button>
         </div>
         <div class="modal-body bg-dark">
-          <app-info-contacto-form *ngIf="validate"></app-info-contacto-form>
           <p *ngIf="general.email">
             Direccion correo electronico: 
             <a [href]="'mailto:' + general.email" target="_blank">{{general.email}}</a>
@@ -34,10 +33,6 @@
             <a [href]="general.tweeter" target="_blank">IR A MI TWEETER</a>
           </p>
         </div>
-        <a *ngIf="validate" class="bg-dark p-2">
-          <button type="button" id="btn-editar" class="btn fa-solid fa-lg fa-pencil float-end" (click)="editItem(general)">
-          </button>
-        </a>
-      </div>
+    </div>
     </div>
   </div>

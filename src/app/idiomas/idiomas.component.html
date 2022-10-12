@@ -4,10 +4,15 @@
     <div class="col-6">
       <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <button *ngIf="validate"  class="btn float-end fa-solid fa-add"></button>
+      <button *ngIf="validate"  class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
     </div>
   </div>
-  <app-idiomas-form *ngIf="validate"></app-idiomas-form>
+  <app-idiomas-form 
+  *ngIf="showForm" 
+  [editarIdioma]="idioma"
+  (actualizarValor)="modifyComponent($event)"
+  >
+  </app-idiomas-form>
   <div *ngIf="!isHidden">
   <div class="row lh-1 mt-1" *ngFor="let idioma of idiomas"> 
     <hr>
@@ -23,12 +28,12 @@
       </ul>
     </div>
     <div class="col-sm-2">           
-      <a href="#" class="ms-3 float-end">
-        <span *ngIf="validate" class="fa-solid fa-lg fa-pencil" (click)="editItem(idioma)"></span>
-      </a>
-      <a href="#" class="ms-5 float-end">
-        <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(idioma)"></span>
-      </a>        
+      <button *ngIf="validate" class="btn ms-3 float-end" (click)="editItem(idioma)">
+        <span class="fa-solid fa-lg fa-pencil"></span>
+      </button>
+      <button *ngIf="validate" class="btn ms-5 float-end" (click)="deleteItem(idioma)">
+        <span class="fa-solid fa-lg fa-trash-can" ></span>
+      </button>        
     </div>
   </div>
   </div>

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Conocimiento } from 'src/app/interfaces';
 
 @Component({
@@ -7,18 +8,35 @@ import { Conocimiento } from 'src/app/interfaces';
   styleUrls: ['./conocimientos-form.component.css']
 })
 export class ConocimientosFormComponent implements OnInit {
-@Input() editarConocimiento : Conocimiento = {
-  nombre : "",
-  institucion : "",
-  area : "",
-  nivel : "",
-  duracion : 0,
-  descripcion : ""
+  @Output() actualizarValor = new EventEmitter<Conocimiento>();
+  @Input() editarConocimiento : Conocimiento = {
+    nombre : "",
+    institucion : "",
+    area : "",
+    nivel : "",
+    duracion : 0,
+    descripcion : ""
 };
 
-  constructor() { }
+conocimientosForm = this.fb.group({
+    nombre : [""],
+    institucion : [""],
+    area : [""],
+    nivel : [""],
+    duracion : [''],
+    descripcion : ['']
+})
+
+  constructor(private fb : FormBuilder) { }
 
   ngOnInit(): void {
+    this.conocimientosForm.setValue(JSON.parse(JSON.stringify(this.editarConocimiento)))
   }
+
+  modifyComponent() {
+    this.editarConocimiento = JSON.parse(JSON.stringify(this.conocimientosForm.value));
+    this.actualizarValor.emit(this.editarConocimiento);
+  }
+
 
 }

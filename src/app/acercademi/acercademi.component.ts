@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { General } from '../interfaces';
+import { General,  Personas } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
@@ -11,14 +11,13 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class AcercademiComponent implements OnInit {
 
-  isHidden = false;
   general : General = {
     nombre : "",
     ocupacion : "",
     descripcion : "",
     foto : "",
     banner : "",
-    nacimiento : new Date('1983/02/24'),
+    fechaNacimiento : "",
     whatsapp : "",
     email : "",
     repositorio : "",
@@ -26,8 +25,11 @@ export class AcercademiComponent implements OnInit {
     facebook : "",
     instagram : "",
     tweeter : "",
-};  
+}; 
 
+  persona = new Personas;
+
+  isHidden = false;
   editText : string = "";
   validate : boolean = false; 
   edit : boolean = false;
@@ -35,7 +37,12 @@ export class AcercademiComponent implements OnInit {
   constructor(private datos:ObtenerDatosService, private validacion:LoginService, private actualizar:ActualizarDatosService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.general = data.persona.general;console.log(this.general);});
+    this.datos.obtenerDatos().subscribe((data) => {
+      if (!data) {throw Error("Error en carga de datos")} else {
+      this.general = data.persona.general;
+      this.persona = data.persona;
+    }}, 
+    (error) => {alert("Error en servidor, sepa disculpar las molestias")});
     this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
@@ -46,15 +53,6 @@ export class AcercademiComponent implements OnInit {
     this.isHidden = !this.isHidden;
   }
 
-  showEditItem(item : General){
-    this.edit = !this.edit;
-    this.editText = item.acercademi;
   }
 
-  editItem(content : string){
-    this.general.acercademi = content;
-    this.edit = false;
-    console.log(content);
-  }
 
-}

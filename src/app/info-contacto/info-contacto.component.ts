@@ -17,7 +17,7 @@ export class InfoContactoComponent implements OnInit {
     descripcion : "",
     foto : "",
     banner : "",
-    nacimiento : new Date('1983/02/24'),
+    fechaNacimiento : "",
     whatsapp : "",
     email : "",
     repositorio : "",

@@ -9,8 +9,8 @@ export interface Experiencia {
     nombre: string;
     empresa: string;
     tareas: string;
-    fechaInicio: Date;
-    fechaFin: Date;
+    fechaInicio: string;
+    fechaFin: string;
     link : string;
     lugar : string;
 }
@@ -20,8 +20,8 @@ export interface Estudio {
     institucion : string;
     lugar : string;
     nivel : string;
-    fechaInicio : Date;
-    fechaFin : Date;
+    fechaInicio : string;
+    fechaFin : string;
     promedio : number;
     link : string;
 }
@@ -46,7 +46,7 @@ export interface General {
 	descripcion : string,
 	foto : string,
 	banner : string,
-	nacimiento : Date,
+	fechaNacimiento : string,
 	whatsapp : string,
 	email : string,
 	repositorio : string,
@@ -61,7 +61,7 @@ export interface Interes {
 }
 
 export interface Persona {
-    general : General[],
+    general : General,
     interes : Interes[],
     softSkill : Skill[],
     hardSkill : Skill[],
@@ -69,4 +69,30 @@ export interface Persona {
     estudios : Estudio[],
     experiencias : Experiencia[],
     idiomas : Idioma[]
+}
+
+export class Personas implements Persona {
+    general: General = {
+        nombre : "",
+        ocupacion : "",
+        descripcion : "",
+        foto : "",
+        banner : "",
+        fechaNacimiento : "",
+        whatsapp : "",
+        email : "",
+        repositorio : "",
+        acercademi : "",
+        facebook : "",
+        instagram : "",
+        tweeter : "",
+    };
+    interes: Interes[] = [];
+    softSkill: Skill[] = [];
+    hardSkill: Skill[] = [];
+    conocimientos: Conocimiento[] = [];
+    estudios: Estudio[] = [];
+    experiencias: Experiencia[] = [];
+    idiomas: Idioma[] = [];
+
 }

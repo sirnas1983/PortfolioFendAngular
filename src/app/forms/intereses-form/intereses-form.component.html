@@ -1,1 +1,21 @@
-<p>intereses-form works!</p>
+<form id="idiomas-form"
+[formGroup]="interesesForm"
+(ngSubmit)="modifyComponent()"
+>
+    <label for="intereses-interes">Interes:</label><br>
+    <input
+        type="string" 
+        id="intereses-interes" 
+        style="width:50%" 
+        class="m-2"
+        required
+        formControlName="nombre"><br>
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!interesesForm.valid"
+    >
+    Guardar
+    </button>
+</form>

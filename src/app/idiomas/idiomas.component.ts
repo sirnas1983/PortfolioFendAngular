@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 import { Idioma } from '../interfaces'
+import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 
 
 @Component({
@@ -14,8 +15,29 @@ export class IdiomasComponent implements OnInit {
   isHidden = false;
   idiomas : Idioma[] = [];
   validate : boolean = false;
+  showForm : boolean = false;
+  idioma : Idioma = {
+    idioma : "",
+    escrito : "",
+    oral : "",
+    comprension: ""
+  };
+
+  reset() {
+    this.idioma = {
+      idioma : "",
+      escrito : "",
+      oral : "",
+      comprension: ""
+    };
+  }
+
     
-  constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
+  constructor(
+    private datos:ObtenerDatosService, 
+    private validacion:LoginService,
+    private actualizar:ActualizarDatosService) { }
+
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.idiomas = data.persona.idiomas});
@@ -23,19 +45,42 @@ export class IdiomasComponent implements OnInit {
  }
 
  desplegar(){
-  this.isHidden = !this.isHidden;
   document.querySelector("#language-card .toggle")?.classList.toggle("fa-chevron-down");
   document.querySelector("#language-card .toggle")?.classList.toggle("fa-chevron-up");
+  this.isHidden = !this.isHidden;
+}
 
+addItem(){
+  this.showForm = !this.showForm;
+  this.reset()
 }
 
 deleteItem(idioma : Idioma){
+  this.idiomas = this.idiomas.filter(item => {return item !== idioma})
   console.log(idioma);
 }
   
   editItem(idioma : Idioma){
-    console.log(idioma);
+    this.idioma = idioma;
+    this.showForm = !this.showForm;
   }
+
+  modifyComponent(contenido : Idioma){
+  
+    this.actualizar.actualizarDatos('/idiomas/',contenido).subscribe(
+      data => {
+        if(!data.ok){
+        throw Error("Error en servidor, reintentelo mas tarde!");
+      } else {
+        console.log(data);
+        this.showForm = false;
+      }},
+      error =>  {
+        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        return;
+      }
+    )}
+
 }
 
 

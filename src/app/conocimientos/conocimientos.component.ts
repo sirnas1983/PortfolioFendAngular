@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Conocimiento } from '../interfaces';
+import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 
@@ -14,7 +15,7 @@ export class ConocimientosComponent implements OnInit {
   isHidden : boolean = false;
   validate : boolean = false; 
   conocimientos : Conocimiento[] = [];
-  edit : boolean = false;
+  showForm : boolean = false;
   conocimiento : Conocimiento = {
     nombre : "",
     institucion : "",
@@ -24,10 +25,19 @@ export class ConocimientosComponent implements OnInit {
     descripcion : ""
   };
 
-  constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
+  constructor(
+    private datos:ObtenerDatosService, 
+    private validacion:LoginService,
+    private actualizar:ActualizarDatosService
+    ) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.conocimientos = data.persona.conocimientos});
+    this.datos.obtenerDatos().subscribe((data) => {
+      if (!data) {throw Error("Error en carga de datos")} else {
+      this.conocimientos = data.persona.conocimientos;
+    }}, 
+      (error) => {alert("Error en servidor, sepa disculpar las molestias")
+  });
     this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
@@ -43,22 +53,38 @@ export class ConocimientosComponent implements OnInit {
   }
 
   desplegar(){
-    document.querySelector("#course-card .toggle")?.classList.toggle("fa-chevron-down");
     document.querySelector("#course-card .toggle")?.classList.toggle("fa-chevron-up");
+    document.querySelector("#course-card .toggle")?.classList.toggle("fa-chevron-down");
     this.isHidden = !this.isHidden;
   }
 
-  addItem() {
-    this.edit = !this.edit;
+  newItem() {
+    this.showForm = !this.showForm;
     this.reset();
   }
   
   deleteItem(conocimiento : Conocimiento){
-    console.log(conocimiento);
+    this.conocimientos = this.conocimientos.filter(item => item != conocimiento);
     }
 
   editItem(conocimiento : Conocimiento){
-    this.edit = !this.edit;
+    this.showForm = !this.showForm;
     this.conocimiento = conocimiento;
   }
+
+  modifyComponent(contenido : Conocimiento){
+    
+    this.actualizar.actualizarDatos('/conocimientos/',contenido).subscribe(
+      data => {
+        if(!data.ok){
+        throw Error("Error en servidor, reintentelo mas tarde!");
+      } else {
+        console.log(data);
+        this.showForm = false;
+      }},
+      error =>  {
+        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        return;
+      }
+    )}
 }

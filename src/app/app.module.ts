@@ -18,12 +18,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ObtenerDatosService } from './servicios/obtener-datos.service';
-import { AcercademiFormComponent } from './forms/acercademi-form/acercademi-form.component';
 import { ConocimientosFormComponent } from './forms/conocimientos-form/conocimientos-form.component';
 import { EstudiosFormComponent } from './forms/estudios-form/estudios-form.component';
 import { ExperienciaLaboralFormComponent } from './forms/experiencia-laboral-form/experiencia-laboral-form.component';
 import { IdiomasFormComponent } from './forms/idiomas-form/idiomas-form.component';
-import { InfoContactoFormComponent } from './forms/info-contacto-form/info-contacto-form.component';
 import { InteresesFormComponent } from './forms/intereses-form/intereses-form.component';
 import { TarjetaPrincipalFormComponent } from './forms/tarjeta-principal-form/tarjeta-principal-form.component';
 import { HabilidadesFormComponent } from './forms/habilidades-form/habilidades-form.component';
@@ -45,12 +43,10 @@ import { LoginService } from './servicios/login.service';
     AcercademiComponent,
     IdiomasComponent,
     SidebarComponent,
-    AcercademiFormComponent,
     ConocimientosFormComponent,
     EstudiosFormComponent,
     ExperienciaLaboralFormComponent,
     IdiomasFormComponent,
-    InfoContactoFormComponent,
     InteresesFormComponent,
     TarjetaPrincipalFormComponent,
     HabilidadesFormComponent
@@ -66,5 +62,6 @@ import { LoginService } from './servicios/login.service';
   bootstrap: [AppComponent],
   entryComponents: [FormularioLoginComponent]
 })
+
 export class AppModule { 
 }

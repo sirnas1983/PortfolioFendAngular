@@ -9,7 +9,13 @@
       <button *ngIf="validate" class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
     </div>
   </div>
-  <app-estudios-form *ngIf="edit" [editarEstudio]="estudio" id="estudios-form"></app-estudios-form>
+  <app-estudios-form 
+    *ngIf="showForm" 
+    [editarEstudio]="estudio"
+    (actualizarValor)="modifyComponent($event)"
+    id="estudios-form"
+    >
+  </app-estudios-form>
   <div *ngIf="!isHidden">
     <div *ngFor="let estudio of estudios" class="row lh-1 mt-4">
     <hr>
@@ -33,13 +39,13 @@
     </ul>
   </div>
   <div class="col-sm-2">           
-    <button class="btn float-end ms-3" href="#estudios-form">
-      <span *ngIf="validate" class="fa-solid fa-lg fa-pencil" (click)="editItem(estudio)"></span>
+    <button *ngIf="validate" class="btn ms-3 float-end" (click)="editItem(estudio)">
+      <span class="fa-solid fa-lg fa-pencil"></span>
     </button>
-    <button class="btn float-end ms-3">
-      <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(estudio)"></span>
-    </button>
-  </div>
+    <button *ngIf="validate" class="btn ms-5 float-end" (click)="deleteItem(estudio)">
+      <span class="fa-solid fa-lg fa-trash-can" ></span>
+    </button>        
+</div>
 </div>
 </div>
 </div>

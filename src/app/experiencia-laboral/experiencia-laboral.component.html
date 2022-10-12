@@ -4,9 +4,14 @@
     <div class="col-6">
       <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <button *ngIf="validate" class="btn float-end fa-solid fa-add"></button>
+      <button *ngIf="validate" class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
     </div>
-    <app-experiencia-laboral-form *ngIf="validate" id="experiencia-form"></app-experiencia-laboral-form>
+    <app-experiencia-laboral-form 
+    *ngIf="showForm" 
+    [editarExperiencia]="experiencia"
+    (actualizarValor)="modifyComponent($event)"
+      >
+    </app-experiencia-laboral-form>
     <div *ngIf="!isHidden">
       <div class="row lh-1 mt-4"  *ngFor="let experiencia of experiencias">
     <hr>
@@ -40,13 +45,13 @@
       </ul>
     </div>
     <div class="col-sm-2">           
-      <a href="#experiencia-form" class="ms-3 float-end">
-        <span *ngIf="validate" (click)="editItem(experiencia)" class="fa-solid fa-lg fa-pencil" ></span>
-      </a>
-      <a href="#" class="ms-5 float-end">
-        <span *ngIf="validate" class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(experiencia)"></span>
-      </a>        
-    </div>
+      <button *ngIf="validate" class="btn ms-3 float-end" (click)="editItem(experiencia)">
+        <span class="fa-solid fa-lg fa-pencil"></span>
+      </button>
+      <button *ngIf="validate" class="btn ms-5 float-end" (click)="deleteItem(experiencia)">
+        <span class="fa-solid fa-lg fa-trash-can" ></span>
+      </button>        
+  </div>
   </div>
 </div>
 </div>

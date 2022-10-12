@@ -10,10 +10,9 @@ import { Persona } from '../interfaces';
 export class LoginService {
 
   constructor(private http : HttpClient) {}
-    
+
   login() : Observable <any> {
-       return this.http.get('../../assets/dist/login.json')
+    return this.http.get('../../assets/dist/login.json')
   }
 
 }
-

@@ -1,1 +1,53 @@
-<p>idiomas-form works!</p>
+<form id="idiomas-form"
+[formGroup]="idiomasForm"
+(ngSubmit)="modifyComponent()"
+>
+    <label for="idiomas-idioma">Idioma</label><br>
+    <input
+        type="string" 
+        id="idiomas-idioma" 
+        style="width:50%" 
+        class="m-2"
+        required
+        formControlName="idioma"><br>
+
+    <label for="idiomas-comprension" required>Oral</label><br>
+    <select required formControlName="oral">
+        <option disabled>Elija una opcion</option>
+        <option value="Nativo">Nativo</option>
+        <option value="Avanzado">Avanzado</option>
+        <option value="Intermedio">Intermedio</option>
+        <option value="Basico">Basico</option>
+    </select>
+    <br>
+
+    <label for="idiomas-escrito" required>Escrito</label><br>
+    <select required formControlName="escrito">
+        <option disabled>Elija una opcion</option>
+        <option value="Nativo">Nativo</option>
+        <option value="Avanzado">Avanzado</option>
+        <option value="Intermedio">Intermedio</option>
+        <option value="Basico">Basico</option>
+    </select>
+    <br>
+
+    <label for="idiomas-comprension" required>Comprension</label><br>
+    <select required formControlName="comprension">
+        <option disabled>Elija una opcion</option>
+        <option value="Nativo">Nativo</option>
+        <option value="Avanzado">Avanzado</option>
+        <option value="Intermedio">Intermedio</option>
+        <option value="Basico">Basico</option>
+    </select>
+    <br>
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!idiomasForm.valid"
+    >
+    Guardar
+    </button>
+</form>
+
+

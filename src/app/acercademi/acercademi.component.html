@@ -6,15 +6,13 @@
     <div class="col-6">
       <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <a *ngIf="validate" (click)="showEditItem(general)" class="btn float-end fa-solid fa-pencil">
-      </a>        
     </div>
   </div>
-  <app-acercademi-form *ngIf="edit" [textBoxValue]="editText" (actualizarValor)="editItem($event)"></app-acercademi-form>
     <hr>
     <div *ngIf="!isHidden">    
       <div class="col-sm-12">
-      <p style="text-indent:2rem;">{{general.acercademi}}
+      <p style="text-indent:2rem;">
+        {{general.acercademi}}
       </p>
     </div>
   </div>

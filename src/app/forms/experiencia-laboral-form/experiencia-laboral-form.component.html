@@ -1,1 +1,76 @@
-<p>experiencia-laboral-form works!</p>
+<form id="experiencias-form"
+[formGroup]="experienciasForm"
+(ngSubmit)="modifyComponent()"
+>
+    <label for="experiencias-nombre">Nombre</label><br>
+    <input
+        type="string" 
+        id="experiencias-nombre" 
+        style="width:50%" 
+        class="m-2"
+        required
+        formControlName="nombre"><br>
+
+    <label for="experiencias-empresa">Empresa</label><br>
+    <input
+        type="string" 
+        id="experiencias-empresa" 
+        style="width:50%" 
+        class="m-2"
+        required
+        formControlName="empresa"><br>
+
+
+    <label for="experiencias-tareas">Tareas Realizadas</label><br>
+    <input
+        type="string" 
+        id="experiencias-tareas" 
+        style="width:50%" 
+        class="m-2"
+        required
+        formControlName="tareas"><br>
+
+    <label for="experiencias-fechaInicio">Fecha de Inicio</label><br>
+    <input
+        type="date" 
+        id="experiencias-fechaInicio" 
+        style="width:50%" 
+        class="m-2"
+        required
+        formControlName="fechaInicio"><br>
+
+    <label for="experiencias-fechaFin">Fecha de Fin</label><br>
+    <input
+        type="date" 
+        id="experiencias-fechaFin"
+        style="width:50%" 
+        class="m-2"
+        formControlName="fechaFin"><br>
+
+    <label for="experiencias-lugar">Lugar</label><br>
+    <input
+        type="text" 
+        id="experiencias-lugar" 
+        style="width:50%" 
+        class="m-2"
+        formControlName="lugar"><br>
+
+
+    <label for="experiencias-link">Link de empresa o trabajo</label><br>
+    <input
+        type="text"
+        id="experiencias-link" 
+        style="width:50%" 
+        class="m-2"
+        formControlName="link"><br>
+
+    
+    <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!experienciasForm.valid"
+    >
+    Guardar
+    </button>
+</form>
+

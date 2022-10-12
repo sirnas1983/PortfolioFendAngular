@@ -7,9 +7,14 @@
       <div class="profile-image">
         <img *ngIf="general.foto" id="profile-image" [src]="general.foto" alt="Foto de perfil">
         <div class="btn">
-          <a href="#" class="btn" style="margin-left: -20px;">
-            <span *ngIf="validate" (click)="editItem(general)" class="fa-solid fa-lg fa-pencil"></span>
-          </a>
+          <button *ngIf="validate" 
+            class="btn" 
+            style="margin-left: -20px;" 
+            (click)="showFormMethod(general)">
+              <span 
+                class="fa-solid fa-lg fa-pencil">
+              </span>
+          </button>
         </div>
       </div>
     </div>
@@ -25,7 +30,13 @@
         Informacion de contacto
         </a>
       <p>
-    <app-tarjeta-principal-form *ngIf="validate"></app-tarjeta-principal-form>
+    <app-tarjeta-principal-form  
+      id="conocimientos-form" 
+      *ngIf="showForm"
+      (actualizarValor)="modifyComponent($event)" 
+      [editarPrincipal]="general"
+      >
+    </app-tarjeta-principal-form>
 
     </div>
     <div class="col-sm-4">

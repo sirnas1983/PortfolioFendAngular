@@ -4,10 +4,17 @@
     <div class="col-6">
       <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <button *ngIf="validate" class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
+      <button *ngIf="validate" class="btn float-end fa-solid fa-add" (click)="newItem()"></button>
     </div>
   </div>
-  <app-conocimientos-form id="conocimientos-form" *ngIf="edit" [editarConocimiento]="conocimiento"></app-conocimientos-form>
+  
+  <app-conocimientos-form 
+    id="conocimientos-form" 
+    *ngIf="showForm" 
+    [editarConocimiento]="conocimiento"
+    (actualizarValor)="modifyComponent($event)">
+  </app-conocimientos-form>
+
   <div *ngIf="!isHidden">
     <div *ngFor="let conocimiento of conocimientos" class="row lh-1 mt-4">
       <hr>
@@ -24,11 +31,11 @@
         </ul>
       </div>
       <div class="col-sm-2">           
-        <button *ngIf="validate" class="btn ms-3 float-end" href="#conocimientos-form">
-          <span class="fa-solid fa-lg fa-pencil" (click)="editItem(conocimiento)"></span>
+        <button *ngIf="validate" class="btn ms-3 float-end" (click)="editItem(conocimiento)">
+          <span class="fa-solid fa-lg fa-pencil"></span>
         </button>
-        <button *ngIf="validate" class="btn ms-5 float-end">
-          <span class="fa-solid fa-lg fa-trash-can" (click)="deleteItem(conocimiento)"></span>
+        <button *ngIf="validate" class="btn ms-5 float-end" (click)="deleteItem(conocimiento)">
+          <span class="fa-solid fa-lg fa-trash-can" ></span>
         </button>        
       </div>
       </div>

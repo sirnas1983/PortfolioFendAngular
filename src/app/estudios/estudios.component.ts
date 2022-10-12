@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Estudio } from '../interfaces';
+import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 
@@ -11,7 +12,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class EstudiosComponent implements OnInit {
 
-  edit : boolean = false;
+  showForm : boolean = false;
   isHidden = false;
   estudios : Estudio[] = [];
   validate : boolean = false;
@@ -20,8 +21,8 @@ export class EstudiosComponent implements OnInit {
     institucion : "",
     lugar : "",
     nivel : "",
-    fechaInicio: new Date(""),
-    fechaFin : new Date(""),
+    fechaInicio: "",
+    fechaFin : "",
     promedio : 0,
     link : ""
   };
@@ -32,14 +33,17 @@ export class EstudiosComponent implements OnInit {
       institucion : "",
       lugar : "",
       nivel : "",
-      fechaInicio: new Date(""),
-      fechaFin : new Date(""),
+      fechaInicio: "",
+      fechaFin : "",
       promedio : 0,
       link : ""
     };
   }
 
-  constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
+  constructor(
+    private datos:ObtenerDatosService, 
+    private validacion:LoginService,
+    private actualizar:ActualizarDatosService) { }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.estudios = data.persona.estudios});
@@ -53,16 +57,33 @@ export class EstudiosComponent implements OnInit {
   }
   
   addItem(){
-    this.edit = !this.edit;
+    this.showForm = !this.showForm;
     this.reset()
   }
 
   deleteItem(estudio : Estudio){
     console.log(estudio);
+    this.estudios = this.estudios.filter(item => {return item !== estudio})
     }
 
   editItem(estudio: Estudio){
     this.estudio = estudio;
-    this.edit = !this.edit;
+    this.showForm = !this.showForm;
   }
+
+  modifyComponent(contenido : Estudio){
+    
+    this.actualizar.actualizarDatos('/conocimientos/',contenido).subscribe(
+      data => {
+        if(!data.ok){
+        throw Error("Error en servidor, reintentelo mas tarde!");
+      } else {
+        console.log(data);
+        this.showForm = false;
+      }},
+      error =>  {
+        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        return;
+      }
+    )}
 }

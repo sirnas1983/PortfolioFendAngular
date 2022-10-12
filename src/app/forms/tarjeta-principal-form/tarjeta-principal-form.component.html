@@ -1,1 +1,163 @@
-<p>tarjeta-principal-form works!</p>
+<hr>
+<form 
+    id="principal-form" 
+    class="was-validated" 
+    [formGroup]="principalForm"
+    (ngSubmit)="modifyComponent()">
+
+<div>    
+    <label for="principal-nombre" class="form-label">Nombre: </label>
+    <input
+        type="string" 
+        id="principal-nombre"
+        class="form-control" 
+        style="width:100%" 
+        required
+        formControlName="nombre"
+    >
+    <div class="invalid-feedback">Este campo es obligatorio</div>
+</div>
+
+<div>
+    <label for="principal-fechanacimiento" class="form-label">Fecha de nacimiento: </label>
+    <input
+        type="date" 
+        id="principal-fechanacimiento" 
+        class="form-control" 
+        style="width:100%" 
+        required
+        formControlName="fechaNacimiento"
+    >
+    <div class="invalid-feedback">Este campo es obligatorio</div>
+</div>
+
+<div>
+    <label for="principal-telefono" class="form-label">Numero de Whatsapp: </label>
+    <input
+        type="string" 
+        id="principal-telefono" 
+        style="width:100%" 
+        class="form-control"
+        required
+        formControlName="whatsapp"
+
+    >
+    <div class="invalid-feedback">Este campo es obligatorio</div>
+</div>
+
+<div>
+    <label for="principal-descripcion" class="form-label">Breve reseña: </label>
+    <input
+        type="string" 
+        id="principal-descripcion" 
+        style="width:100%" 
+        class="form-control"
+        required
+        formControlName="descripcion"
+    >
+    <div class="invalid-feedback">Este campo es obligatorio</div>
+</div>
+
+<div>
+    <label for="principal-email" class="form-label">E-mail: </label>
+    <input
+        type="e-mail" 
+        id="principal-email" 
+        style="width:100%" 
+        class="form-control"
+        required
+        formControlName="email"
+    >
+    <div class="invalid-feedback">Este campo es obligatorio</div>
+</div>
+
+    <label for="principal-acercademi">Acerca de mi</label>
+    <textarea 
+        type="e-mail" 
+        id="principal-acercademi" 
+        style="width:100%" 
+        class="form-control"
+        required
+        formControlName="acercademi"
+    >
+    </textarea>
+
+    <label for="principal-facebook" class="form-label">Facebook: </label>
+    <input
+        type="string"
+        id="principal-facebook" 
+        style="width:100%" 
+        class="form-control"
+        formControlName="facebook"
+    >
+
+    <label for="principal-instagram" class="form-label">Instagram: </label>    
+    <input 
+        type="string"
+        id="principal-instagram" 
+        style="width:100%" 
+        class="form-control"
+        formControlName="instagram"
+    >
+
+    <label for="principal-tweeter" class="form-label">Tweeter: </label>    
+    <input 
+        type="string"
+        id="principal-tweeter" 
+        style="width:100%" 
+        class="form-control"
+        formControlName="tweeter"
+    >
+
+<div>
+    <label for="principal-foto" class="form-label">Imagen de perfil (URL): </label>    
+    <input 
+        type="string"
+        id="principal-foto" 
+        style="width:100%" 
+        class="form-control"
+        required
+        formControlName="foto"
+    >
+    <div class="invalid-feedback">Este campo es obligatorio</div>
+</div>
+
+<div>
+    <label for="principal-banner" class="form-label">Imagen de banner (URL): </label>    
+    <input 
+        type="string"
+        id="principal-banner" 
+        style="width:100%" 
+        class="form-control"
+        required
+        formControlName="banner"
+    >
+    <div class="invalid-feedback">Este campo es obligatorio</div>
+</div>
+    
+    <label for="principal-ocupacion" class="form-label">Indique su puesto actual: </label>    
+    <input 
+        type="string"
+        id="principal-ocupacion" 
+        style="width:100%" 
+        class="form-control"
+        formControlName="ocupacion"
+    >
+
+    <label for="principal-repositorio" class="form-label">Repositorio (URL): </label>    
+    <input 
+        type="string"
+        id="principal-repositorio" 
+        style="width:100%" 
+        class="form-control"
+        formControlName="repositorio"
+    >
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!principalForm.valid"
+    >
+    Guardar
+    </button>
+</form>
