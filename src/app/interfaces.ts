@@ -38,6 +38,7 @@ export interface Conocimiento {
 export interface Skill {
     nombre : string;
     cantidad : number;
+    type : string;
 }
 
 export interface General {

@@ -1,4 +1,5 @@
 <form id="estudios-form"
+class="was-validated" 
 [formGroup]="estudiosForm"
 (ngSubmit)="modifyComponent()"
 >
@@ -7,7 +8,7 @@
         type="string" 
         id="estudios-titulo" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         required
         formControlName="titulo"><br>
 
@@ -16,7 +17,7 @@
         type="string" 
         id="estudios-institucion" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         required
         formControlName="institucion"><br>
 
@@ -26,7 +27,7 @@
         type="string" 
         id="estudios-lugar" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         formControlName="lugar"><br>
 
     <label for="estudios-nivel">Nivel educativo</label><br>
@@ -34,7 +35,7 @@
         type="string" 
         id="estudios-nivel" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         required
         formControlName="nivel"><br>
 
@@ -43,7 +44,7 @@
         type="date" 
         id="estudios-fecha-inicio"
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         required
         formControlName="fechaInicio"><br>
 
@@ -52,7 +53,7 @@
         type="date" 
         id="estudios-fecha-fin" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         formControlName="fechaFin"><br>
 
     <label for="estudios-promedio">Promedio</label><br>
@@ -62,7 +63,7 @@
         min="0" 
         style="width:50%" 
         id="estudios-promedio" 
-        class="m-2"
+        class="form-control" 
         formControlName="promedio"><br>
 
     <label for="estudios-link">Link de institucion</label><br>
@@ -70,7 +71,7 @@
         type="text"
         id="estudios-link" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         formControlName="link"><br>
 
     

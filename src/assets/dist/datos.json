@@ -75,38 +75,49 @@
 	}],
 	"softskills": [{
 		"cantidad": 70,
-		"nombre": "Liderazgo"
+		"nombre": "Liderazgo",
+		"type" : "soft"
 	}, {
 		"cantidad": 85,
-		"nombre": "Sentido del humor"
+		"nombre": "Sentido del humor",
+		"type" : "soft"
 	}, {
 		"cantidad": 70,
-		"nombre": "Responsabilidad"
+		"nombre": "Responsabilidad",
+		"type" : "soft"
 	}, {
 		"cantidad": 90,
-		"nombre": "Compañerismo"
+		"nombre": "Compañerismo",
+		"type" : "soft"
 	}, {
 		"cantidad": 48,
-		"nombre": "Autodidacta"
+		"nombre": "Autodidacta",
+		"type" : "soft"
 	}],
 	"hardskills": [{
 		"cantidad": 99,
-		"nombre": "Excel"
+		"nombre": "Excel",
+		"type" : "hard"
 	}, {
 		"cantidad": 68,
-		"nombre": "Access"
+		"nombre": "Access",
+		"type" : "hard"
 	}, {
 		"cantidad": 75,
-		"nombre": "AutoCAD"
+		"nombre": "AutoCAD",
+		"type" : "hard"
 	}, {
 		"cantidad": 72,
-		"nombre": "Base de datos"
+		"nombre": "Base de datos",
+		"type" : "hard"
 	}, {
 		"cantidad": 95,
-		"nombre": "Automatismo"
+		"nombre": "Automatismo",
+		"type" : "hard"
 	}, {
 		"cantidad": 92,
-		"nombre": "Electricidad industrial"
+		"nombre": "Electricidad industrial",
+		"type" : "hard"
 	}],
 	"intereses": [{
 		"nombre": "Informatica"

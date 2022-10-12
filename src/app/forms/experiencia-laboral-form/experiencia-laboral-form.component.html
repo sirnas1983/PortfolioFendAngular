@@ -1,4 +1,5 @@
 <form id="experiencias-form"
+class="was-validated" 
 [formGroup]="experienciasForm"
 (ngSubmit)="modifyComponent()"
 >
@@ -7,7 +8,7 @@
         type="string" 
         id="experiencias-nombre" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         required
         formControlName="nombre"><br>
 
@@ -16,7 +17,7 @@
         type="string" 
         id="experiencias-empresa" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         required
         formControlName="empresa"><br>
 
@@ -26,7 +27,7 @@
         type="string" 
         id="experiencias-tareas" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         required
         formControlName="tareas"><br>
 
@@ -35,7 +36,7 @@
         type="date" 
         id="experiencias-fechaInicio" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         required
         formControlName="fechaInicio"><br>
 
@@ -44,7 +45,7 @@
         type="date" 
         id="experiencias-fechaFin"
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         formControlName="fechaFin"><br>
 
     <label for="experiencias-lugar">Lugar</label><br>
@@ -52,7 +53,7 @@
         type="text" 
         id="experiencias-lugar" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         formControlName="lugar"><br>
 
 
@@ -61,7 +62,7 @@
         type="text"
         id="experiencias-link" 
         style="width:50%" 
-        class="m-2"
+        class="form-control" 
         formControlName="link"><br>
 
     

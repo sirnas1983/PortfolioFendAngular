@@ -6,14 +6,18 @@
     <div class="col-6">
       <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="#info-foto" class="btn float-end fa-solid fa-home"></a>
+      <button *ngIf="validate" class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
     </div>
   </div>
-  <app-habilidades-form *ngIf="validate"></app-habilidades-form>
+  <app-habilidades-form 
+    *ngIf="showForm" 
+    (actualizarValor)="modifyComponent($event)">
+  </app-habilidades-form>
   <div *ngIf="!isHidden">
     <hr>
   <div class="row">
     <div class="col-sm-6">
-        <div><h4><u>Soft Skills<button *ngIf="validate" class="btn float-end fa-solid fa-add"></button></u></h4></div>
+        <div><h4><u>Soft Skills</u></h4></div>
         <div *ngFor="let soft of softskills" class="progress">
           <div class="progress-bar progress-bar-striped" [style.width.%]="soft.cantidad">
             {{soft.nombre}} - {{soft.cantidad}}%
@@ -24,7 +28,7 @@
         </div>
         </div>
         <div class="col-sm-6">
-          <div><h4><u>Hard Skills<button *ngIf="validate" class="btn float-end fa-solid fa-add"></button></u></h4></div>
+          <div><h4><u>Hard Skills</u></h4></div>
           <div *ngFor="let hard of hardskills" class="progress">
             <div class="progress-bar progress-bar-striped" [style.width.%]="hard.cantidad">
               {{hard.nombre}} - {{hard.cantidad}}%

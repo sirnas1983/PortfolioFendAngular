@@ -1,1 +1,47 @@
-<p>habilidades-form works!</p>
+<form id="idiomas-form"
+class="was-validated" 
+[formGroup]="habilidadesForm"
+(ngSubmit)="modifyComponent()"
+>
+    <label for="nombre-habilidades">Nombre de habilidad:</label><br>
+    <input
+        type="string" 
+        id="nombre-habilidades" 
+        style="width:50%" 
+        class="form-control" 
+        required
+        formControlName="nombre"><br>
+
+    <label for="cantidad-habilidades" required>Cantidad:</label><br>
+    <input
+    type="number"
+    min="0"
+    max="100"
+    id="cantidad-habilidades" 
+    style="width:50%" 
+    class="form-control" 
+    required
+    formControlName="cantidad"><br>
+
+    <label for="tipo-habilidades" required>Elija el tipo de habilidad:</label>
+    <br>
+    <select required formControlName="type"
+    class="form-control"
+    style="width:50%" 
+    >
+        <option disabled>Elija una opcion</option>
+        <option value="soft">Soft Skill</option>
+        <option value="hard">Hard Skill</option>
+    </select>
+    <br>
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!habilidadesForm.valid"
+    >
+    Guardar
+    </button>
+</form>
+
+
