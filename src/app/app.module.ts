@@ -27,6 +27,8 @@ import { TarjetaPrincipalFormComponent } from './forms/tarjeta-principal-form/ta
 import { HabilidadesFormComponent } from './forms/habilidades-form/habilidades-form.component';
 import { ActualizarDatosService } from './servicios/actualizar-datos.service';
 import { LoginService } from './servicios/login.service';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { InterceptorService } from './servicios/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { LoginService } from './servicios/login.service';
     IdiomasFormComponent,
     InteresesFormComponent,
     TarjetaPrincipalFormComponent,
-    HabilidadesFormComponent
+    HabilidadesFormComponent,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,7 @@ import { LoginService } from './servicios/login.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ObtenerDatosService, ActualizarDatosService, LoginService],
+  providers: [ObtenerDatosService, ActualizarDatosService, LoginService, InterceptorService],
   bootstrap: [AppComponent],
   entryComponents: [FormularioLoginComponent]
 })

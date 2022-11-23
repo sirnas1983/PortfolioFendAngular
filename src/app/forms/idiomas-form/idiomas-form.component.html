@@ -7,13 +7,14 @@ class="was-validated"
     <input
         type="string" 
         id="idiomas-idioma" 
-        style="width:50%" 
+        style="width:100%" 
         class="form-control" 
         required
         formControlName="idioma"><br>
 
     <label for="idiomas-comprension" required>Oral</label><br>
     <select required formControlName="oral"
+    style="width:100%" 
     class="form-control" 
     >
         <option disabled>Elija una opcion</option>
@@ -26,6 +27,7 @@ class="was-validated"
 
     <label for="idiomas-escrito" required>Escrito</label><br>
     <select required formControlName="escrito"
+    style="width:100%" 
     class="form-control" 
     >
         <option disabled>Elija una opcion</option>
@@ -38,6 +40,7 @@ class="was-validated"
 
     <label for="idiomas-comprension" required>Comprension</label><br>
     <select required formControlName="comprension"
+    style="width:100%" 
     class="form-control" 
     >
         <option disabled>Elija una opcion</option>
@@ -53,6 +56,8 @@ class="was-validated"
         class="btn btn-primary"
         [disabled]="!idiomasForm.valid"
     >
+    <div class="invalid-feedback">Los campos resaltados son obligatorios</div>
+
     Guardar
     </button>
 </form>

@@ -1,30 +1,38 @@
-<div class="modal fade" id="modal-login">
-    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
-      <div class="modal-content">
-        <div class="modal-header bg-primary">
-          <h4 class="modal-title">INCIO DE SESION</h4>
-          <button type="button" id="btn-modal" class="btn fa-solid fa-lg fa-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body bg-dark">
-            <form action="#">
-              <div class="mb-3 mt-3">
-                <label for="email" class="form-label">Nombre de usuario:</label>
-                <input type="email" class="form-control" id="email" placeholder="Ingrese email" name="email">
-              </div>
-              <div class="mb-3">
-                <label for="pwd" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Ingrese contraseña" name="pswd">
-              </div>
-              <div class="form-check mb-3">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" name="remember"> Recordar
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary">ENVIAR</button>
-            </form>
-        </div>
-  </div>
-  </div>
-  </div>
 
+<div class="col-m-4" style="margin: auto;">
+    <form [formGroup]="form" class="m-5" (ngSubmit)="onEnviar($event)">
+        
+        <h1>Iniciar Sesión</h1>
 
+        <div class="mb-3 ">
+            <label for="email" class="form-label">Dirección de correo electronico:</label>
+            <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp"
+            [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched}">
+            <div *ngIf="Email?.errors && Email?.touched">
+                <p *ngIf="Email?.hasError('required')" class="text-danger">El email es requerido</p>
+                <p *ngIf="Email?.hasError('email')" class="text-danger">El formato debe ser valido</p>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña:</label>
+            <input type="password" formControlName="password" class="form-control" id="password"
+            [ngClass]="{'is-invalid': Password?.errors && Password?.touched, 'is-valid': !Password?.errors && Password?.touched}">
+            <div *ngIf="Password?.errors && Password?.touched">
+                <p *ngIf="Password?.hasError('required')" class="text-danger">La contraseña es requerida</p>
+                <p *ngIf="Password?.errors?.['minlength']" class="text-danger">La contraseña debe poseer 8 o mas caracteres</p>
+            </div>
+        </div>
+        
+        <div class="row">
+        <div class="col-sm-6 mb-2">
+        <button type="submit" class="btn btn-primary" style="width: 100%;" [ngClass]="{'disabled': Password?.errors || Email?.errors }">Iniciar Sesión</button>
+        </div>
+        <div class="col-sm-6 mb-2" >
+        <a routerLink="/portfolio">
+            <button class="btn btn-danger" style="width: 100%;">Cancelar</button>
+        </a>
+        </div>
+        </div>
+    </form>
+</div>

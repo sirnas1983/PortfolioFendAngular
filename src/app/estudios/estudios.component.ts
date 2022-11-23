@@ -15,8 +15,9 @@ export class EstudiosComponent implements OnInit {
   showForm : boolean = false;
   isHidden = false;
   estudios : Estudio[] = [];
-  validate : boolean = false;
+  validate : boolean = this.loginService.validacion;
   estudio : Estudio = {
+    id : 0,
     titulo : "",
     institucion : "",
     lugar : "",
@@ -29,6 +30,7 @@ export class EstudiosComponent implements OnInit {
 
   reset() {
     this.estudio = {
+      id : 0,
       titulo : "",
       institucion : "",
       lugar : "",
@@ -42,12 +44,11 @@ export class EstudiosComponent implements OnInit {
 
   constructor(
     private datos:ObtenerDatosService, 
-    private validacion:LoginService,
+    private loginService:LoginService,
     private actualizar:ActualizarDatosService) { }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.estudios = data.persona.estudios});
-    this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
   desplegar(){

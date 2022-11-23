@@ -1,7 +1,7 @@
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { General } from 'src/app/interfaces';
+import { Persona } from 'src/app/interfaces';
 
 
 @Component({
@@ -12,8 +12,9 @@ import { General } from 'src/app/interfaces';
 
 export class TarjetaPrincipalFormComponent implements OnInit {
   
-  @Output() actualizarValor = new EventEmitter<General>();
-  @Input() editarPrincipal : General = {
+  @Output() actualizarValor = new EventEmitter<Persona>();
+  @Input() editarPrincipal : Persona = {
+    id:0,
     nombre : "",
     ocupacion : "",
     descripcion : "",
@@ -27,6 +28,13 @@ export class TarjetaPrincipalFormComponent implements OnInit {
     facebook : "",
     instagram : "",
     tweeter : "",
+    interes : [],
+    hardSkill : [],
+    softSkill : [],
+    experiencias : [],
+    estudios : [],
+    idiomas : [],
+    conocimientos: [],
 };
 
 principalForm = this.fb.group({

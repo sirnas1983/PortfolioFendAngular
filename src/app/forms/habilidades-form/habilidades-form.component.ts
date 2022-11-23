@@ -12,6 +12,7 @@ export class HabilidadesFormComponent implements OnInit {
   @Output() actualizarValor = new EventEmitter<Skill>();
 
   editarHabilidad : Skill = {
+    id:0,
     nombre : "",
     cantidad : 0,
     type :""
@@ -19,13 +20,16 @@ export class HabilidadesFormComponent implements OnInit {
 
   habilidadesForm = this.fb.group({
     nombre : [""],
-    cantidad : [""],
+    cantidad : [0],
     type : [""]
 })
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.habilidadesForm.setValue(JSON.parse(JSON.stringify(this.editarHabilidad)))
+    this.habilidadesForm.controls.nombre.setValue(this.editarHabilidad.nombre);
+    this.habilidadesForm.controls.cantidad.setValue(this.editarHabilidad.cantidad);
+    this.habilidadesForm.controls.type.setValue(this.editarHabilidad.type);
+    
   }
 
   modifyComponent() {

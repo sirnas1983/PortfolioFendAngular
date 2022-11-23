@@ -13,20 +13,21 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 export class InteresesComponent implements OnInit {
   
   intereses : Interes[] = [];
-  validate : boolean = false;
+  validate : boolean = this.loginService.validacion;
   showForm : boolean = false;
   interes : Interes = {
+    id : 0,
     nombre : ""
   }
   
   constructor(
     private datos:ObtenerDatosService, 
-    private validacion:LoginService,
+    private loginService:LoginService,
     private actualizar:ActualizarDatosService) { }
+
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.intereses = data.persona.intereses});
-    this.validacion.login().subscribe(login => {this.validate = login.login});
   }
   
   editItem(interes : Interes){

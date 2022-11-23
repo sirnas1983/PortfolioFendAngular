@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EMPTY } from 'rxjs';
-import { General } from '../interfaces';
+import { Persona } from '../interfaces';
 import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 
@@ -11,32 +11,16 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class InfoContactoComponent implements OnInit {
 
-  general : General = {
-    nombre : "",
-    ocupacion : "",
-    descripcion : "",
-    foto : "",
-    banner : "",
-    fechaNacimiento : "",
-    whatsapp : "",
-    email : "",
-    repositorio : "",
-    acercademi : "",
-    facebook : "",
-    instagram : "",
-    tweeter : "",
-};  
-  
-  validate : boolean = false;
+  persona : Persona = new Persona();
+  validate : boolean = this.loginService.validacion;
  
-  constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
+  constructor(private datos:ObtenerDatosService, private loginService:LoginService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.general = data.persona.general});
-    this.validacion.login().subscribe(login => {this.validate = login.login});
+    this.datos.obtenerDatos().subscribe(data => {this.persona = data.persona});
   }
   
-  editItem(general : General){
-    console.log(general);
+  editItem(persona : Persona){
+    console.log(persona);
   }
 }

@@ -1,4 +1,5 @@
 export interface Idioma {
+    id : number;
     idioma : string;
     escrito: string;
     oral: string;
@@ -6,6 +7,7 @@ export interface Idioma {
 }
 
 export interface Experiencia {
+    id : number;
     nombre: string;
     empresa: string;
     tareas: string;
@@ -16,6 +18,7 @@ export interface Experiencia {
 }
 
 export interface Estudio {
+    id : number;
     titulo: string;
     institucion : string;
     lugar : string;
@@ -27,6 +30,7 @@ export interface Estudio {
 }
 
 export interface Conocimiento {
+    id : number;
     nombre : string;
     institucion : string;
     area : string;
@@ -36,12 +40,20 @@ export interface Conocimiento {
 }
 
 export interface Skill {
+    id : number;
     nombre : string;
     cantidad : number;
     type : string;
 }
 
-export interface General {
+
+export interface Interes {
+    id : number;
+    nombre : string;
+}
+
+export interface Persona {
+    id : number;
     nombre : string,
 	ocupacion : string,
 	descripcion : string,
@@ -55,14 +67,6 @@ export interface General {
     facebook : string,
     instagram : string,
     tweeter : string,
-}
-
-export interface Interes {
-    nombre : string;
-}
-
-export interface Persona {
-    general : General,
     interes : Interes[],
     softSkill : Skill[],
     hardSkill : Skill[],
@@ -72,22 +76,21 @@ export interface Persona {
     idiomas : Idioma[]
 }
 
-export class Personas implements Persona {
-    general: General = {
-        nombre : "",
-        ocupacion : "",
-        descripcion : "",
-        foto : "",
-        banner : "",
-        fechaNacimiento : "",
-        whatsapp : "",
-        email : "",
-        repositorio : "",
-        acercademi : "",
-        facebook : "",
-        instagram : "",
-        tweeter : "",
-    };
+export class Persona implements Persona {
+    id = 0;
+    nombre =  "";
+    ocupacion = "";
+    descripcion = "";
+    foto = "";
+    banner = "";
+    fechaNacimiento = "";
+    whatsapp = "";
+    email = "";
+    repositorio = "";
+    acercademi = "";
+    facebook = "";
+    instagram = "";
+    tweeter = "";
     interes: Interes[] = [];
     softSkill: Skill[] = [];
     hardSkill: Skill[] = [];
@@ -95,5 +98,4 @@ export class Personas implements Persona {
     estudios: Estudio[] = [];
     experiencias: Experiencia[] = [];
     idiomas: Idioma[] = [];
-
 }

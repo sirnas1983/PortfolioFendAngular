@@ -11,6 +11,7 @@ export class IdiomasFormComponent implements OnInit {
 
   @Output() actualizarValor = new EventEmitter<Idioma>();
   @Input() editarIdioma : Idioma = {
+    id:0,
     idioma : "",
     oral : "",
     escrito : "",
@@ -26,7 +27,11 @@ export class IdiomasFormComponent implements OnInit {
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.idiomasForm.setValue(JSON.parse(JSON.stringify(this.editarIdioma)))
+    this.idiomasForm.controls.idioma.setValue(this.editarIdioma.idioma);
+    this.idiomasForm.controls.oral.setValue(this.editarIdioma.oral);
+    this.idiomasForm.controls.escrito.setValue(this.editarIdioma.escrito);
+    this.idiomasForm.controls.comprension.setValue(this.editarIdioma.comprension);
+
   }
 
   modifyComponent() {

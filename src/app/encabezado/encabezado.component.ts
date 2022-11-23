@@ -12,17 +12,19 @@ export class EncabezadoComponent implements OnInit {
 
 
   datosPrincipales : any;
-  validate : boolean = false;
+  validate : boolean = this.loginService.validacion;
 
-  constructor(private datos:ObtenerDatosService, private validacion:LoginService) { }
+  constructor(private datos:ObtenerDatosService, 
+              private loginService:LoginService
+              ) 
+  { }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.datosPrincipales = data});
-    this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
   cerrarSesion() {
-    this.validate = !this.validate;
+    sessionStorage.setItem('currentUser','');
   }
 
 }

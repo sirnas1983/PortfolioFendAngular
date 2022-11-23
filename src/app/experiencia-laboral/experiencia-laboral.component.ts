@@ -14,9 +14,10 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   isHidden = false;
   experiencias : Experiencia[] = [];
-  validate: boolean = false;
+  validate : boolean = this.loginService.validacion;
   showForm : boolean = false;
   experiencia : Experiencia = {
+    id : 0,
     nombre : "",
     empresa : "",
     tareas : "",
@@ -28,6 +29,7 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   reset() {
     this.experiencia = {
+      id : 0,
       nombre : "",
       empresa : "",
       tareas : "",
@@ -40,12 +42,11 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   constructor(
     private datos:ObtenerDatosService, 
-    private validacion : LoginService,
+    private loginService : LoginService,
     private actualizar:ActualizarDatosService) { }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.experiencias = data.persona.experiencias});
-    this.validacion.login().subscribe(login => {this.validate = login.login});
   
   }
 

@@ -11,6 +11,7 @@ export class ExperienciaLaboralFormComponent implements OnInit {
 
   @Output() actualizarValor = new EventEmitter<Experiencia>();
   @Input() editarExperiencia : Experiencia = {
+    id:0,
     nombre : "",
     empresa : "",
     tareas : "",
@@ -25,14 +26,20 @@ export class ExperienciaLaboralFormComponent implements OnInit {
     empresa : [""],
     tareas : [""],
     fechaInicio : [""],
-    fechaFin : [''],
-    link : [''],
-    lugar : ['']
+    fechaFin : [""],
+    link : [""],
+    lugar : [""]
 })
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
-    this.experienciasForm.setValue(JSON.parse(JSON.stringify(this.editarExperiencia)))
+    this.experienciasForm.controls.nombre.setValue(this.editarExperiencia.nombre);
+    this.experienciasForm.controls.empresa.setValue(this.editarExperiencia.empresa);
+    this.experienciasForm.controls.tareas.setValue(this.editarExperiencia.tareas);
+    this.experienciasForm.controls.link.setValue(this.editarExperiencia.link);
+    this.experienciasForm.controls.fechaInicio.setValue(this.editarExperiencia.fechaInicio);
+    this.experienciasForm.controls.fechaFin.setValue(this.editarExperiencia.fechaFin);
+    this.experienciasForm.controls.lugar.setValue(this.editarExperiencia.lugar);
   }
 
   modifyComponent() {

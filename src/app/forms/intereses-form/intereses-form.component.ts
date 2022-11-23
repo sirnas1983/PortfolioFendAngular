@@ -13,6 +13,7 @@ export class InteresesFormComponent implements OnInit {
   @Output() actualizarValor = new EventEmitter<Interes>();
   
   editarInteres : Interes = {
+    id:0,
     nombre : ""
   };
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { General, Personas } from '../interfaces';
+import { Persona } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
@@ -12,62 +12,42 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 
 export class TarjetaPrincipalComponent implements OnInit {
 
-  general : General = {
-    nombre : "",
-    ocupacion : "",
-    descripcion : "",
-    foto : "",
-    banner : "",
-    fechaNacimiento : "",
-    whatsapp : "",
-    email : "",
-    repositorio : "",
-    acercademi : "",
-    facebook : "",
-    instagram : "",
-    tweeter : "",
-}; 
-
-persona = new Personas();
-
+  persona = new Persona();
   showForm  = false;
-  validate  = false;
+  validate : boolean = this.loginService.validacion;
   
   constructor(
     private datos:ObtenerDatosService, 
-    private validacion:LoginService, 
+    private loginService:LoginService, 
     private actualizar : ActualizarDatosService) { 
   }
   
    
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {
-      this.general = data.persona.general;
       this.persona = data.persona;
     });
-    this.validacion.login().subscribe(login => {
-      this.validate = login.login
-    });
+   
   }
 
   edad (){
     const hoy : Date = new Date();
-    const nacimiento : Date = new Date(this.general.fechaNacimiento);
+    const nacimiento : Date = new Date(this.persona.fechaNacimiento);
     if ((nacimiento.getMonth() < hoy.getMonth()) || (hoy.getMonth() == nacimiento.getMonth() && nacimiento.getDate() <= hoy.getDate())) {
       return Math.floor(hoy.getFullYear() - nacimiento.getFullYear())
     } 
       return Math.floor(hoy.getFullYear() - nacimiento.getFullYear() + 1)
   }
 
-  showFormMethod(item : General){
+  showFormMethod(item : Persona){
     this.showForm = !this.showForm;
     console.log(item);
   }
 
-  modifyComponent(contenido : General){
+  modifyComponent(contenido : Persona){
     
-    this.persona.general = contenido;
-    this.actualizar.actualizarDatos('/general',this.persona.general).subscribe(
+    this.persona = contenido;
+    this.actualizar.actualizarDatos('/persona',this.persona).subscribe(
             data => {
               if(!data.ok){
               throw Error("Error en servidor, reintentelo mas tarde!");

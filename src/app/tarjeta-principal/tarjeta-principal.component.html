@@ -1,16 +1,16 @@
 <div id="presentation-card" class="card">
   <div style="margin:-0.5em">
-    <img id="banner" [src]="general.banner" alt="Banner">
+    <img id="banner" [src]="persona.banner" alt="Banner">
   </div>
   <div id="info" style="padding:0px;">
     <div id="info-foto" >
       <div class="profile-image">
-        <img *ngIf="general.foto" id="profile-image" [src]="general.foto" alt="Foto de perfil">
+        <img *ngIf="persona.foto" id="profile-image" [src]="persona.foto" alt="Foto de perfil">
         <div class="btn">
           <button *ngIf="validate" 
             class="btn" 
             style="margin-left: -20px;" 
-            (click)="showFormMethod(general)">
+            (click)="showFormMethod(persona)">
               <span 
                 class="fa-solid fa-lg fa-pencil">
               </span>
@@ -21,10 +21,10 @@
   </div>
   <div class="row ms-3">
     <div class="col-sm-8 card-body">
-      <h2>{{general.nombre}}</h2>
+      <h2>{{persona.nombre}}</h2>
       <h5>Edad: {{edad()}} años</h5>
-      <h4>{{general.ocupacion}}</h4>
-      <h6>{{general.descripcion}}</h6>
+      <h4>{{persona.ocupacion}}</h4>
+      <h6>{{persona.descripcion}}</h6>
       <p> 
         <a href="" data-bs-toggle="modal" data-bs-target="#info-contacto">
         Informacion de contacto
@@ -34,7 +34,7 @@
       id="conocimientos-form" 
       *ngIf="showForm"
       (actualizarValor)="modifyComponent($event)" 
-      [editarPrincipal]="general"
+      [editarPrincipal]="persona"
       >
     </app-tarjeta-principal-form>
 

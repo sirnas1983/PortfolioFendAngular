@@ -13,10 +13,11 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 export class ConocimientosComponent implements OnInit {
   
   isHidden : boolean = false;
-  validate : boolean = false; 
+  validate : boolean = this.loginService.validacion;
   conocimientos : Conocimiento[] = [];
   showForm : boolean = false;
   conocimiento : Conocimiento = {
+    id : 0,
     nombre : "",
     institucion : "",
     area : "",
@@ -27,7 +28,7 @@ export class ConocimientosComponent implements OnInit {
 
   constructor(
     private datos:ObtenerDatosService, 
-    private validacion:LoginService,
+    private loginService:LoginService,
     private actualizar:ActualizarDatosService
     ) { }
 
@@ -38,11 +39,11 @@ export class ConocimientosComponent implements OnInit {
     }}, 
       (error) => {alert("Error en servidor, sepa disculpar las molestias")
   });
-    this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
   reset(){
     this.conocimiento = {
+      id : 0,
       nombre : "",
       institucion : "",
       area : "",
@@ -67,9 +68,9 @@ export class ConocimientosComponent implements OnInit {
     this.conocimientos = this.conocimientos.filter(item => item != conocimiento);
     }
 
-  editItem(conocimiento : Conocimiento){
+  editItem(editarConocimiento : Conocimiento){
     this.showForm = !this.showForm;
-    this.conocimiento = conocimiento;
+    this.conocimiento = editarConocimiento;
   }
 
   modifyComponent(contenido : Conocimiento){

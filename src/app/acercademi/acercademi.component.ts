@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { General,  Personas } from '../interfaces';
+import { Persona } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
@@ -11,39 +11,21 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class AcercademiComponent implements OnInit {
 
-  general : General = {
-    nombre : "",
-    ocupacion : "",
-    descripcion : "",
-    foto : "",
-    banner : "",
-    fechaNacimiento : "",
-    whatsapp : "",
-    email : "",
-    repositorio : "",
-    acercademi : "",
-    facebook : "",
-    instagram : "",
-    tweeter : "",
-}; 
-
-  persona = new Personas;
+  persona = new Persona();
 
   isHidden = false;
   editText : string = "";
-  validate : boolean = false; 
+  validate : boolean = this.loginService.validacion;
   edit : boolean = false;
 
-  constructor(private datos:ObtenerDatosService, private validacion:LoginService, private actualizar:ActualizarDatosService) { }
+  constructor(private datos:ObtenerDatosService, private loginService:LoginService, private actualizar:ActualizarDatosService) { }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe((data) => {
       if (!data) {throw Error("Error en carga de datos")} else {
-      this.general = data.persona.general;
       this.persona = data.persona;
     }}, 
     (error) => {alert("Error en servidor, sepa disculpar las molestias")});
-    this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
   desplegar(){

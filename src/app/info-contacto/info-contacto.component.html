@@ -7,30 +7,30 @@
           </button>
         </div>
         <div class="modal-body bg-dark">
-          <p *ngIf="general.email">
+          <p *ngIf="persona.email">
             Direccion correo electronico: 
-            <a [href]="'mailto:' + general.email" target="_blank">{{general.email}}</a>
+            <a [href]="'mailto:' + persona.email" target="_blank">{{persona.email}}</a>
           </p>
-          <p *ngIf="general.whatsapp">Whatsapp: 
-            <a [href]="'https://api.whatsapp.com/send?phone=' + general.whatsapp.replace('+','')" target="_blank">
-              {{general.whatsapp}}</a>
+          <p *ngIf="persona.whatsapp">Whatsapp: 
+            <a [href]="'https://api.whatsapp.com/send?phone=' + persona.whatsapp.replace('+','')" target="_blank">
+              {{persona.whatsapp}}</a>
           </p>
-          <p *ngIf="general.repositorio">
+          <p *ngIf="persona.repositorio">
             Repositorio: 
-            <a [href]="general.repositorio" target="_blank">
+            <a [href]="persona.repositorio" target="_blank">
             IR A MI REPOSITORIO
             </a>
           </p>
-          <p *ngIf="general.facebook">
+          <p *ngIf="persona.facebook">
             FACEBOOK:
-            <a [href]="general.facebook" target="_blank">IR A MI FACEBOOK</a>
+            <a [href]="persona.facebook" target="_blank">IR A MI FACEBOOK</a>
           </p>
-          <p *ngIf="general.instagram">
+          <p *ngIf="persona.instagram">
             INSTAGRAM: 
-            <a [href]="general.instagram" target="_blank">IR A MI INSTAGRAM</a>
+            <a [href]="persona.instagram" target="_blank">IR A MI INSTAGRAM</a>
           </p>
-          <p *ngIf="general.tweeter">TWEETER: 
-            <a [href]="general.tweeter" target="_blank">IR A MI TWEETER</a>
+          <p *ngIf="persona.tweeter">TWEETER: 
+            <a [href]="persona.tweeter" target="_blank">IR A MI TWEETER</a>
           </p>
         </div>
     </div>

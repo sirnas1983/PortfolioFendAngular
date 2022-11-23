@@ -10,6 +10,7 @@ import { Conocimiento } from 'src/app/interfaces';
 export class ConocimientosFormComponent implements OnInit {
   @Output() actualizarValor = new EventEmitter<Conocimiento>();
   @Input() editarConocimiento : Conocimiento = {
+    id:0,
     nombre : "",
     institucion : "",
     area : "",
@@ -23,20 +24,23 @@ conocimientosForm = this.fb.group({
     institucion : [""],
     area : [""],
     nivel : [""],
-    duracion : [''],
-    descripcion : ['']
+    duracion : [0],
+    descripcion : [""]
 })
 
   constructor(private fb : FormBuilder) { }
 
   ngOnInit(): void {
-    this.conocimientosForm.setValue(JSON.parse(JSON.stringify(this.editarConocimiento)))
+    this.conocimientosForm.controls.nombre.setValue(this.editarConocimiento.nombre);
+    this.conocimientosForm.controls.institucion.setValue(this.editarConocimiento.institucion);
+    this.conocimientosForm.controls.area.setValue(this.editarConocimiento.area);
+    this.conocimientosForm.controls.nivel.setValue(this.editarConocimiento.nivel);
+    this.conocimientosForm.controls.duracion.setValue(this.editarConocimiento.duracion);
+    this.conocimientosForm.controls.descripcion.setValue(this.editarConocimiento.descripcion);
   }
 
   modifyComponent() {
     this.editarConocimiento = JSON.parse(JSON.stringify(this.conocimientosForm.value));
     this.actualizarValor.emit(this.editarConocimiento);
   }
-
-
 }

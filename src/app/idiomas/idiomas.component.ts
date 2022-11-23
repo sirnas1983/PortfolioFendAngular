@@ -14,9 +14,10 @@ export class IdiomasComponent implements OnInit {
 
   isHidden = false;
   idiomas : Idioma[] = [];
-  validate : boolean = false;
+  validate : boolean = this.loginService.validacion;
   showForm : boolean = false;
   idioma : Idioma = {
+    id : 0,
     idioma : "",
     escrito : "",
     oral : "",
@@ -25,6 +26,7 @@ export class IdiomasComponent implements OnInit {
 
   reset() {
     this.idioma = {
+      id : 0,
       idioma : "",
       escrito : "",
       oral : "",
@@ -35,13 +37,12 @@ export class IdiomasComponent implements OnInit {
     
   constructor(
     private datos:ObtenerDatosService, 
-    private validacion:LoginService,
+    private loginService:LoginService,
     private actualizar:ActualizarDatosService) { }
 
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.idiomas = data.persona.idiomas});
-    this.validacion.login().subscribe(login => {this.validate = login.login});
  }
 
  desplegar(){
@@ -66,7 +67,6 @@ deleteItem(idioma : Idioma){
   }
 
   modifyComponent(contenido : Idioma){
-  
     this.actualizar.actualizarDatos('/idiomas/',contenido).subscribe(
       data => {
         if(!data.ok){
@@ -76,8 +76,7 @@ deleteItem(idioma : Idioma){
         this.showForm = false;
       }},
       error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
-        return;
+        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!");
       }
     )}
 

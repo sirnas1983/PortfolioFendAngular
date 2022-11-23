@@ -14,18 +14,17 @@ export class HabilidadesComponent implements OnInit {
   isHidden = false;
   softskills : Skill[] = [];
   hardskills : Skill[] = [];
-  validate: boolean = false;
+  validate : boolean = this.loginService.validacion;
   showForm : boolean = false;
 
   constructor(
     private datos:ObtenerDatosService, 
-    private validacion:LoginService,
+    private loginService:LoginService,
     private actualizar:ActualizarDatosService
     ) { }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.softskills = data.persona.softskills; this.hardskills = data.persona.hardskills});
-    this.validacion.login().subscribe(login => {this.validate = login.login});
   }
 
   desplegar(){
