@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EMPTY } from 'rxjs';
 import { Persona } from '../interfaces';
-import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
+import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
   selector: 'app-info-contacto',
@@ -12,12 +11,14 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 export class InfoContactoComponent implements OnInit {
 
   persona : Persona = new Persona();
-  validate : boolean = this.loginService.validacion;
+  validate : boolean = this.tokenService.isLogged();
  
-  constructor(private datos:ObtenerDatosService, private loginService:LoginService) { }
+  constructor(
+    private datos:ObtenerDatosService,
+    private tokenService : TokenStorageService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.persona = data.persona});
+    this.datos.obtenerDatos().subscribe(data => {this.persona = data});
   }
   
   editItem(persona : Persona){

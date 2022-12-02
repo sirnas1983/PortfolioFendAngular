@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Conocimiento } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
-import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
+import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
   selector: 'app-conocimientos',
@@ -11,9 +11,9 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 
 export class ConocimientosComponent implements OnInit {
-  
+
+  validate : boolean = this.tokenService.isLogged();
   isHidden : boolean = false;
-  validate : boolean = this.loginService.validacion;
   conocimientos : Conocimiento[] = [];
   showForm : boolean = false;
   conocimiento : Conocimiento = {
@@ -28,14 +28,14 @@ export class ConocimientosComponent implements OnInit {
 
   constructor(
     private datos:ObtenerDatosService, 
-    private loginService:LoginService,
-    private actualizar:ActualizarDatosService
+    private actualizar:ActualizarDatosService,
+    private tokenService:TokenStorageService
     ) { }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe((data) => {
       if (!data) {throw Error("Error en carga de datos")} else {
-      this.conocimientos = data.persona.conocimientos;
+      this.conocimientos = data.conocimientos;
     }}, 
       (error) => {alert("Error en servidor, sepa disculpar las molestias")
   });

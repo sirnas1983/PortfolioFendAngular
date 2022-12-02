@@ -68,8 +68,7 @@ export interface Persona {
     instagram : string,
     tweeter : string,
     interes : Interes[],
-    softSkill : Skill[],
-    hardSkill : Skill[],
+    skills : Skill [];
     conocimientos : Conocimiento[],
     estudios : Estudio[],
     experiencias : Experiencia[],
@@ -92,8 +91,7 @@ export class Persona implements Persona {
     instagram = "";
     tweeter = "";
     interes: Interes[] = [];
-    softSkill: Skill[] = [];
-    hardSkill: Skill[] = [];
+    skills : Skill [] = [];
     conocimientos: Conocimiento[] = [];
     estudios: Estudio[] = [];
     experiencias: Experiencia[] = [];

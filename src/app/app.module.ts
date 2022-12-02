@@ -26,9 +26,11 @@ import { InteresesFormComponent } from './forms/intereses-form/intereses-form.co
 import { TarjetaPrincipalFormComponent } from './forms/tarjeta-principal-form/tarjeta-principal-form.component';
 import { HabilidadesFormComponent } from './forms/habilidades-form/habilidades-form.component';
 import { ActualizarDatosService } from './servicios/actualizar-datos.service';
-import { LoginService } from './servicios/login.service';
 import { PortfolioComponent } from './portfolio/portfolio.component';
-import { InterceptorService } from './servicios/interceptor.service';
+import { AuthService } from './servicios/auth.service';
+import { TokenStorageService } from './servicios/token-storage.service';
+import { MatSnackBarModule } from "@angular/material";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -53,15 +55,22 @@ import { InterceptorService } from './servicios/interceptor.service';
     TarjetaPrincipalFormComponent,
     HabilidadesFormComponent,
     PortfolioComponent
-  ],
+    ],
+    
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule
+    MatSnackBarModule,
+    HttpClientModule,
+    BrowserAnimationsModule       
   ],
-  providers: [ObtenerDatosService, ActualizarDatosService, LoginService, InterceptorService],
+  providers: [ObtenerDatosService, 
+    ActualizarDatosService, 
+    AuthService, 
+    TokenStorageService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [FormularioLoginComponent]
 })

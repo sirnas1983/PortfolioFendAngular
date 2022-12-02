@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Interes } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
-import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
+import { TokenStorageService } from '../servicios/token-storage.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 export class InteresesComponent implements OnInit {
   
   intereses : Interes[] = [];
-  validate : boolean = this.loginService.validacion;
+  validate : boolean = this.tokenService.isLogged();
   showForm : boolean = false;
   interes : Interes = {
     id : 0,
@@ -22,12 +22,12 @@ export class InteresesComponent implements OnInit {
   
   constructor(
     private datos:ObtenerDatosService, 
-    private loginService:LoginService,
-    private actualizar:ActualizarDatosService) { }
+    private actualizar:ActualizarDatosService,
+    private tokenService : TokenStorageService) { }
 
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.intereses = data.persona.intereses});
+    this.datos.obtenerDatos().subscribe(data => {this.intereses = data.intereses});
   }
   
   editItem(interes : Interes){

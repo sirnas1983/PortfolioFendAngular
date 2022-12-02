@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 import { Idioma } from '../interfaces'
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
+import { TokenStorageService } from '../servicios/token-storage.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class IdiomasComponent implements OnInit {
 
   isHidden = false;
   idiomas : Idioma[] = [];
-  validate : boolean = this.loginService.validacion;
+  validate : boolean = this.tokenService.isLogged();
   showForm : boolean = false;
   idioma : Idioma = {
     id : 0,
@@ -37,12 +37,12 @@ export class IdiomasComponent implements OnInit {
     
   constructor(
     private datos:ObtenerDatosService, 
-    private loginService:LoginService,
-    private actualizar:ActualizarDatosService) { }
+    private actualizar:ActualizarDatosService,
+    private tokenService : TokenStorageService) { }
 
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.idiomas = data.persona.idiomas});
+    this.datos.obtenerDatos().subscribe(data => {this.idiomas = data.idiomas});
  }
 
  desplegar(){

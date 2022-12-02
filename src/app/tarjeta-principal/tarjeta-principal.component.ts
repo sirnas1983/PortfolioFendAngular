@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
-import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
+import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
   selector: 'app-tarjeta-principal',
@@ -14,20 +14,19 @@ export class TarjetaPrincipalComponent implements OnInit {
 
   persona = new Persona();
   showForm  = false;
-  validate : boolean = this.loginService.validacion;
+  validate : boolean = this.tokenService.isLogged();
   
   constructor(
     private datos:ObtenerDatosService, 
-    private loginService:LoginService, 
-    private actualizar : ActualizarDatosService) { 
+    private actualizar : ActualizarDatosService,
+    private tokenService : TokenStorageService) { 
   }
   
    
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {
-      this.persona = data.persona;
+      this.persona = data;
     });
-   
   }
 
   edad (){

@@ -1,4 +1,5 @@
-{"persona" : {
+{
+	"persona":{
 	"id" : 1,
 	"nombre": "Darian A. Hiebl",
 	"ocupacion": "Estudiante en ArgPgr #YoProgramo",
@@ -80,7 +81,7 @@
 		"escrito": "Pobre",
 		"comprension": "Medio"
 	}],
-	"softskills": [{
+	"skills": [{
 		"id" : 1,
 		"cantidad": 70,
 		"nombre": "Liderazgo",
@@ -105,8 +106,7 @@
 		"cantidad": 48,
 		"nombre": "Autodidacta",
 		"type" : "soft"
-	}],
-	"hardskills": [{
+	}, {
 		"id" : 1,
 		"cantidad": 99,
 		"nombre": "Excel",

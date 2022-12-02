@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Conocimiento } from 'src/app/interfaces';
 
 @Component({
@@ -20,7 +20,7 @@ export class ConocimientosFormComponent implements OnInit {
 };
 
 conocimientosForm = this.fb.group({
-    nombre : [""],
+    nombre : ["", Validators.required],
     institucion : [""],
     area : [""],
     nivel : [""],

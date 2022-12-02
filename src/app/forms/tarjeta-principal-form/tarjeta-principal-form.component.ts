@@ -13,7 +13,7 @@ import { Persona } from 'src/app/interfaces';
 export class TarjetaPrincipalFormComponent implements OnInit {
   
   @Output() actualizarValor = new EventEmitter<Persona>();
-  @Input() editarPrincipal : Persona = {
+  @Input() editarPersona : Persona = {
     id:0,
     nombre : "",
     ocupacion : "",
@@ -29,8 +29,7 @@ export class TarjetaPrincipalFormComponent implements OnInit {
     instagram : "",
     tweeter : "",
     interes : [],
-    hardSkill : [],
-    softSkill : [],
+    skills : [],
     experiencias : [],
     estudios : [],
     idiomas : [],
@@ -57,25 +56,25 @@ principalForm = this.fb.group({
     }
   
     ngOnInit(): void {
-    this.principalForm.controls.nombre.setValue(this.editarPrincipal.nombre);
-    this.principalForm.controls.ocupacion.setValue(this.editarPrincipal.ocupacion);
-    this.principalForm.controls.descripcion.setValue(this.editarPrincipal.descripcion);
-    this.principalForm.controls.foto.setValue(this.editarPrincipal.foto);
-    this.principalForm.controls.banner.setValue(this.editarPrincipal.banner);
-    this.principalForm.controls.acercademi.setValue(this.editarPrincipal.acercademi);
-    this.principalForm.controls.fechaNacimiento.setValue(this.editarPrincipal.fechaNacimiento);
-    this.principalForm.controls.whatsapp.setValue(this.editarPrincipal.whatsapp);
-    this.principalForm.controls.email.setValue(this.editarPrincipal.email);
-    this.principalForm.controls.repositorio.setValue(this.editarPrincipal.repositorio);
-    this.principalForm.controls.facebook.setValue(this.editarPrincipal.facebook);
-    this.principalForm.controls.instagram.setValue(this.editarPrincipal.instagram);
-    this.principalForm.controls.tweeter.setValue(this.editarPrincipal.tweeter);
+    this.principalForm.controls.nombre.setValue(this.editarPersona.nombre);
+    this.principalForm.controls.ocupacion.setValue(this.editarPersona.ocupacion);
+    this.principalForm.controls.descripcion.setValue(this.editarPersona.descripcion);
+    this.principalForm.controls.foto.setValue(this.editarPersona.foto);
+    this.principalForm.controls.banner.setValue(this.editarPersona.banner);
+    this.principalForm.controls.acercademi.setValue(this.editarPersona.acercademi);
+    this.principalForm.controls.fechaNacimiento.setValue(this.editarPersona.fechaNacimiento);
+    this.principalForm.controls.whatsapp.setValue(this.editarPersona.whatsapp);
+    this.principalForm.controls.email.setValue(this.editarPersona.email);
+    this.principalForm.controls.repositorio.setValue(this.editarPersona.repositorio);
+    this.principalForm.controls.facebook.setValue(this.editarPersona.facebook);
+    this.principalForm.controls.instagram.setValue(this.editarPersona.instagram);
+    this.principalForm.controls.tweeter.setValue(this.editarPersona.tweeter);
 
   }
 
     modifyComponent() {
-      this.editarPrincipal = JSON.parse(JSON.stringify(this.principalForm.value));
-      this.actualizarValor.emit(this.editarPrincipal);
+      this.editarPersona = JSON.parse(JSON.stringify(this.principalForm.value));
+      this.actualizarValor.emit(this.editarPersona);
     }
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Estudio } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
-import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
+import { TokenStorageService } from '../servicios/token-storage.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class EstudiosComponent implements OnInit {
   showForm : boolean = false;
   isHidden = false;
   estudios : Estudio[] = [];
-  validate : boolean = this.loginService.validacion;
+  validate : boolean = this.tokenService.isLogged();
   estudio : Estudio = {
     id : 0,
     titulo : "",
@@ -44,11 +44,11 @@ export class EstudiosComponent implements OnInit {
 
   constructor(
     private datos:ObtenerDatosService, 
-    private loginService:LoginService,
-    private actualizar:ActualizarDatosService) { }
+    private actualizar:ActualizarDatosService,
+    private tokenService : TokenStorageService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.estudios = data.persona.estudios});
+    this.datos.obtenerDatos().subscribe(data => {this.estudios = data.listaEstudios});
   }
 
   desplegar(){

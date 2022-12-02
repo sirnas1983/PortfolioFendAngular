@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Experiencia } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
-import { LoginService } from '../servicios/login.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
+import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
   selector: 'app-experiencia-laboral',
@@ -14,7 +14,7 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   isHidden = false;
   experiencias : Experiencia[] = [];
-  validate : boolean = this.loginService.validacion;
+  validate : boolean = this.tokenService.isLogged();
   showForm : boolean = false;
   experiencia : Experiencia = {
     id : 0,
@@ -42,11 +42,11 @@ export class ExperienciaLaboralComponent implements OnInit {
 
   constructor(
     private datos:ObtenerDatosService, 
-    private loginService : LoginService,
-    private actualizar:ActualizarDatosService) { }
+    private actualizar:ActualizarDatosService,
+    private tokenService : TokenStorageService) { }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.experiencias = data.persona.experiencias});
+    this.datos.obtenerDatos().subscribe(data => {this.experiencias = data.experiencias});
   
   }
 

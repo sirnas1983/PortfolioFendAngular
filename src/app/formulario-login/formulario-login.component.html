@@ -1,12 +1,13 @@
 
-<div class="col-m-4" style="margin: auto;">
-    <form [formGroup]="form" class="m-5" (ngSubmit)="onEnviar($event)">
+<div class="col-m-4" style="margin: auto; max-width: 550px;">
+    
+    <form [formGroup]="form" class="m-5" (ngSubmit)="login($event)">
         
         <h1>Iniciar Sesión</h1>
 
         <div class="mb-3 ">
             <label for="email" class="form-label">Dirección de correo electronico:</label>
-            <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp"
+            <input type="email" autocomplete="email" formControlName="username" class="form-control" id="email" aria-describedby="emailHelp"
             [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched}">
             <div *ngIf="Email?.errors && Email?.touched">
                 <p *ngIf="Email?.hasError('required')" class="text-danger">El email es requerido</p>
@@ -16,7 +17,7 @@
 
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña:</label>
-            <input type="password" formControlName="password" class="form-control" id="password"
+            <input type="password" autocomplete="current-password" formControlName="password" class="form-control" id="password"
             [ngClass]="{'is-invalid': Password?.errors && Password?.touched, 'is-valid': !Password?.errors && Password?.touched}">
             <div *ngIf="Password?.errors && Password?.touched">
                 <p *ngIf="Password?.hasError('required')" class="text-danger">La contraseña es requerida</p>
@@ -25,14 +26,15 @@
         </div>
         
         <div class="row">
-        <div class="col-sm-6 mb-2">
-        <button type="submit" class="btn btn-primary" style="width: 100%;" [ngClass]="{'disabled': Password?.errors || Email?.errors }">Iniciar Sesión</button>
-        </div>
-        <div class="col-sm-6 mb-2" >
-        <a routerLink="/portfolio">
-            <button class="btn btn-danger" style="width: 100%;">Cancelar</button>
-        </a>
-        </div>
+            <div class="col-sm-6 mb-2">
+                <button type="submit" class="btn btn-primary" style="width: 100%;" [ngClass]="{'disabled': Password?.errors || Email?.errors }">Iniciar Sesión</button>
+            </div>
+            <div class="col-sm-6 mb-2" >
+                <a routerLink="/portfolio">
+                    <button class="btn btn-danger" style="width: 100%;">Cancelar</button>
+                </a>
+            </div>
         </div>
     </form>
+
 </div>

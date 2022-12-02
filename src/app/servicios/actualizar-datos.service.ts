@@ -8,10 +8,14 @@ import { Observable } from 'rxjs';
 
 export class ActualizarDatosService {
 
+  private url : String = "http://localhost:8080";
+   
+
   constructor(private http:HttpClient) { }
 
   actualizarDatos(ruta : string, data : any):Observable<any>{
-    return this.http.post('../../assets/dist/datos.json' + ruta, data)
+    console.log(this.url + ruta);
+    return this.http.post(this.url + ruta, data)
   }
 }
 
