@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
 import { TokenStorageService } from '../servicios/token-storage.service';
@@ -17,18 +16,18 @@ export class FormularioLoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  show = false;
 
   constructor(private formBuilder:FormBuilder,  
     private ruta:Router, 
     private tokenStorage: TokenStorageService, 
     private authService : AuthService,
-    private matSnkBar : MatSnackBar
     ) 
     { 
         this.form = this.formBuilder.group(
           {
           username:['',[Validators.required, Validators.email]],
-          password:['',[Validators.required, Validators.minLength(8),]]
+          password:['',[Validators.required,]]
           }
       )
     }
@@ -54,8 +53,8 @@ export class FormularioLoginComponent implements OnInit {
           this.ruta.navigateByUrl('/portfolio');
         },
         error => {
-          this.openSnackBar();
           this.isLoginFailed = true;
+          this.clearForm();
         }
       );
   }
@@ -68,8 +67,13 @@ export class FormularioLoginComponent implements OnInit {
     return this.form.get('password');
   }
 
-  openSnackBar():void{
-    let myMatSnackBar = this.matSnkBar.open('Datos incorrectos, intente nuevamente');
-   }
+  clearForm(){
+    this.form.setValue({"username":[this.Email?.value], "password":['']});
+  }
+
+  showPassword(event : Event) {
+    event.preventDefault();
+    this.show = !this.show;
+  }
 }
 

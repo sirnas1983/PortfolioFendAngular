@@ -29,8 +29,6 @@ import { ActualizarDatosService } from './servicios/actualizar-datos.service';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { AuthService } from './servicios/auth.service';
 import { TokenStorageService } from './servicios/token-storage.service';
-import { MatSnackBarModule } from "@angular/material";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -62,9 +60,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
     HttpClientModule,
-    BrowserAnimationsModule       
   ],
   providers: [ObtenerDatosService, 
     ActualizarDatosService, 

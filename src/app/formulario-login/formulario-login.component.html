@@ -7,8 +7,13 @@
 
         <div class="mb-3 ">
             <label for="email" class="form-label">Dirección de correo electronico:</label>
-            <input type="email" autocomplete="email" formControlName="username" class="form-control" id="email" aria-describedby="emailHelp"
-            [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched}">
+            <input type="email" 
+                autocomplete="email" 
+                formControlName="username" 
+                class="form-control" id="email" 
+                aria-describedby="emailHelp"
+                [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched}"
+            >
             <div *ngIf="Email?.errors && Email?.touched">
                 <p *ngIf="Email?.hasError('required')" class="text-danger">El email es requerido</p>
                 <p *ngIf="Email?.hasError('email')" class="text-danger">El formato debe ser valido</p>
@@ -17,21 +22,38 @@
 
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña:</label>
-            <input type="password" autocomplete="current-password" formControlName="password" class="form-control" id="password"
-            [ngClass]="{'is-invalid': Password?.errors && Password?.touched, 'is-valid': !Password?.errors && Password?.touched}">
-            <div *ngIf="Password?.errors && Password?.touched">
+        <div class="input-group mb-3">
+            <input [type]="show ? 'text' : 'password'" 
+                autocomplete="current-password" 
+                formControlName="password" 
+                class="form-control" 
+                id="password"
+                [ngClass]="{'is-invalid': Password?.errors && Password?.touched, 'is-valid': !Password?.errors && Password?.touched}"
+            >
+            <span class="input-group-text" id="basic-addon1">
+                <button (click)="showPassword($event)" 
+                    [class]="{'fa-eye': !show, 'fa-eye-slash': show}" class="btn fa-solid"
+                >
+                </button>
+            </span>
+        </div>
+            <div *ngIf="Password?.errors && Password?.touched || isLoginFailed">
                 <p *ngIf="Password?.hasError('required')" class="text-danger">La contraseña es requerida</p>
-                <p *ngIf="Password?.errors?.['minlength']" class="text-danger">La contraseña debe poseer 8 o mas caracteres</p>
+                <p *ngIf="isLoginFailed" class="text-danger">La contraseña o el usuario son incorrectos, intente nuevamente</p>
             </div>
         </div>
         
         <div class="row">
             <div class="col-sm-6 mb-2">
-                <button type="submit" class="btn btn-primary" style="width: 100%;" [ngClass]="{'disabled': Password?.errors || Email?.errors }">Iniciar Sesión</button>
+                <button type="submit" 
+                    class="btn btn-primary" 
+                    style="width: 100%;" 
+                    [ngClass]="{'disabled': Password?.errors || Email?.errors }"
+                >Iniciar Sesión</button>
             </div>
             <div class="col-sm-6 mb-2" >
                 <a routerLink="/portfolio">
-                    <button class="btn btn-danger" style="width: 100%;">Cancelar</button>
+                    <button class="btn btn-danger" style="width: 100%;">Volver</button>
                 </a>
             </div>
         </div>
