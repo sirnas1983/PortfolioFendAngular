@@ -33,7 +33,7 @@
   <div class="col-sm-4">           
     <ul class="no-list-style">  
       <li><p><b>Año de ingreso: </b>{{estudio.fechaInicio | date:"yyyy"}}</p></li>
-      <li *ngIf="estudio.fechaFin; else elseBlock"><p><b>Año de egreso: </b>{{estudio.fechaFin | date:"yyyy"}}</p></li>
+      <li *ngIf="estudio.fechaFin !== ''; else elseBlock"><p><b>Año de egreso: </b>{{estudio.fechaFin | date:"yyyy"}}</p></li>
       <ng-template #elseBlock><li><p><b>Año de egreso: </b>incompleto</p></li></ng-template>
       <li><p><b>Promedio: </b>{{estudio.promedio}}</p></li>
       <li *ngIf="estudio.link"><p><b>Link: </b> <a [href]="estudio.link" target="_blank">{{estudio.link}}</a></p></li>

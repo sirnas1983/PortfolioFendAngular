@@ -44,6 +44,7 @@ export class ConocimientosComponent implements OnInit {
           this.validate = true;
         } else {
           this.validate = false;
+          this.showForm = false;
         }
       })
     }

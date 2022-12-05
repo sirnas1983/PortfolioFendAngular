@@ -40,7 +40,7 @@ export class EstudiosFormComponent implements OnInit {
     this.estudiosForm.controls.lugar.setValue(this.editarEstudio.lugar);
     this.estudiosForm.controls.nivel.setValue(this.editarEstudio.nivel);
     this.estudiosForm.controls.fechaInicio.setValue(this.editarEstudio.fechaInicio);
-    this.estudiosForm.controls.fechaFin.setValue(this.editarEstudio.fechaFin);
+      this.estudiosForm.controls.fechaFin.setValue(this.editarEstudio.fechaFin);
     this.estudiosForm.controls.promedio.setValue(this.editarEstudio.promedio);
     this.estudiosForm.controls.link.setValue(this.editarEstudio.link);
   }

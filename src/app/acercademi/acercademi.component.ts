@@ -17,19 +17,21 @@ export class AcercademiComponent implements OnInit {
   editText : string = "";
   edit : boolean = false;
 
-  constructor(private datos:ObtenerDatosService, 
-              private authService:AuthService) { 
-                this.datos.datos.subscribe(data=>{
-                  this.persona = data; 
-                })
-                this.authService.currentUser.subscribe(data=>{
-                  if (data && data.accessToken){
-                    this.validate = true;
-                  } else {
-                    this.validate = false;
-                  }
-                })
-              }
+  constructor(
+    private datos:ObtenerDatosService, 
+    private authService:AuthService) 
+      { 
+        this.datos.datos.subscribe(data=>{
+          this.persona = data; 
+        })
+        this.authService.currentUser.subscribe(data=>{
+          if (data && data.accessToken){
+            this.validate = true;
+          } else {
+            this.validate = false;
+          }
+        })
+      }
 
   ngOnInit(): void {
   }

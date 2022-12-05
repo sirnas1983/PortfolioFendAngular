@@ -60,6 +60,7 @@ export class EstudiosComponent implements OnInit {
           this.validate = true;
         } else {
           this.validate = false;
+          this.showForm = false;
         }
       })
     }

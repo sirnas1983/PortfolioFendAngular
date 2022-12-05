@@ -31,8 +31,8 @@
           <p>
             <b>Desde: </b>
             {{experiencia.fechaInicio | date:"MM/yyyy"}}
-            <b> Hasta: </b>
-            {{experiencia.fechaFin | date:"MM/yyyy"}}
+            <span *ngIf="experiencia.fechaFin !== ''; else elseBlock"><b>Hasta: </b>{{experiencia.fechaFin | date:"MM/yyyy"}}</span>
+            <ng-template #elseBlock><span><b>Hasta: </b>actualidad</span></ng-template>
           </p>
         </div>
         <div>
