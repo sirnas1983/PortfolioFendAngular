@@ -65,6 +65,7 @@ export class TarjetaPrincipalComponent implements OnInit {
         this.datos.actualizarLista(this.apiLista).subscribe(data=>{
           this.persona = data;
         });
+        this.showForm = false;
       },
       error =>  {
         alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")

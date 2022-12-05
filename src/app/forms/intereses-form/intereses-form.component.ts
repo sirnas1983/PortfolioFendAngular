@@ -27,10 +27,8 @@ export class InteresesFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  modifyComponent(event : Event) {
-    event.preventDefault();
+  modifyComponent() {
     this.editarInteres = JSON.parse(JSON.stringify(this.interesesForm.value));
-    this.agregarInteres.actualizarDatos(this.url, this.interesesForm.value);
     this.interesesForm.reset();
     this.actualizarValor.emit(this.editarInteres);
   }

@@ -88,6 +88,7 @@ export class ConocimientosComponent implements OnInit {
         this.datos.actualizarLista(this.apiLista).subscribe(data=>{
           this.conocimientos = data;
         });
+        this.showForm = false;
         this.id = 0;
       },
       error =>  {

@@ -7,6 +7,7 @@
       <button *ngIf="validate" class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
     </div>
     <app-experiencia-laboral-form 
+    class="mb-5"
     *ngIf="showForm" 
     [editarExperiencia]="experiencia"
     (actualizarValor)="modifyComponent($event)"

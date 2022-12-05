@@ -87,7 +87,6 @@ principalForm = this.fb.group({
       this.editarPersona.repositorio = String(this.principalForm.value.repositorio).toString();
       this.editarPersona.tweeter = String(this.principalForm.value.tweeter).toString();
       this.editarPersona.whatsapp = String(this.principalForm.value.whatsapp).toString();
-      this.modificarPersona.actualizarDatos(this.url, this.principalForm.value);
       this.actualizarValor.emit(this.editarPersona);
     }
 }

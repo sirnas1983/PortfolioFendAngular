@@ -69,6 +69,7 @@ export class InteresesComponent implements OnInit {
         this.datos.actualizarLista(this.apiLista).subscribe(data=>{
           this.intereses = data;
         });
+        this.showForm = false;
       },
       error =>  {
         alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")

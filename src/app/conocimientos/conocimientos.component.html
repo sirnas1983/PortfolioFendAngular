@@ -9,11 +9,12 @@
   </div>
   
   <app-conocimientos-form 
+    class="mb-5"
     id="conocimientos-form" 
     *ngIf="showForm" 
     [editarConocimiento]="conocimiento"
     (actualizarValor)="modifyComponent($event)">
-  </app-conocimientos-form>
+  </app-conocimientos-form >
 
   <div *ngIf="!isHidden">
     <div *ngFor="let conocimiento of conocimientos" class="row lh-1 mt-4">

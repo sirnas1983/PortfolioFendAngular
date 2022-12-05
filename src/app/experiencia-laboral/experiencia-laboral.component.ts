@@ -90,6 +90,7 @@ export class ExperienciaLaboralComponent implements OnInit {
         this.datos.actualizarLista(this.apiLista).subscribe(data=>{
           this.experiencias = data;
         });
+        this.showForm = false;
         this.id = 0;
       },
       error =>  {

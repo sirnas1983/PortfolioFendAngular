@@ -72,6 +72,7 @@ export class HabilidadesComponent implements OnInit {
             this.softskills = this.skills.filter((skill : Skill) => skill.type === 'soft'); 
             this.hardskills = this.skills.filter((skill : Skill) => skill.type === 'hard'); 
           });
+          this.showForm = false;
           this.id = 0;
         },
         error =>  {

@@ -92,6 +92,7 @@ export class EstudiosComponent implements OnInit {
         this.datos.actualizarLista(this.apiLista).subscribe(data=>{
           this.estudios = data;
         });
+        this.showForm = false;
         this.id = 0;
       },
       error =>  {
