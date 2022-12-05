@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from '../interfaces';
+import { Persona, PersonaDTO } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
+import { AuthService } from '../servicios/auth.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
-import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
   selector: 'app-tarjeta-principal',
@@ -13,20 +13,32 @@ import { TokenStorageService } from '../servicios/token-storage.service';
 export class TarjetaPrincipalComponent implements OnInit {
 
   persona = new Persona();
+  id = 1;
   showForm  = false;
-  validate : boolean = this.tokenService.isLogged();
+  validate : boolean = false;
+  
+  apiLista='/ver/persona/1';
+  apiAgregar='/agregar/persona';
   
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar : ActualizarDatosService,
-    private tokenService : TokenStorageService) { 
+    private authService : AuthService) {
+      this.datos.datos.subscribe(data=>{
+        this.persona = data;
+      })
+      this.authService.currentUser.subscribe(data=>{
+        if (data && data.accessToken){
+          this.validate = true;
+        } else {
+          this.validate = false;
+          this.showForm = false;
+        }
+      }) 
   }
   
    
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {
-      this.persona = data;
-    });
   }
 
   edad (){
@@ -44,20 +56,21 @@ export class TarjetaPrincipalComponent implements OnInit {
   }
 
   modifyComponent(contenido : Persona){
-    
-    this.persona = contenido;
-    this.actualizar.actualizarDatos('/persona',this.persona).subscribe(
-            data => {
-              if(!data.ok){
-              throw Error("Error en servidor, reintentelo mas tarde!");
-            } else {
-              console.log(data);
-              this.showForm = false;
-            }
-            },
-            error =>  {
-              alert(error/*error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!"*/)
-              return;
-            }
-    )}
+    contenido.id = this.id;
+    console.log(contenido);
+    this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
+      data => {
+        console.log(contenido);
+        console.log(data);
+        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
+          this.persona = data;
+        });
+      },
+      error =>  {
+        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        return;
+      }
+    )
+  }
+
 }

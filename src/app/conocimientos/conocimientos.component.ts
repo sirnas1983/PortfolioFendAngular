@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Conocimiento } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
+import { AuthService } from '../servicios/auth.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
-import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
   selector: 'app-conocimientos',
@@ -12,7 +12,12 @@ import { TokenStorageService } from '../servicios/token-storage.service';
 
 export class ConocimientosComponent implements OnInit {
 
-  validate : boolean = this.tokenService.isLogged();
+  apiLista='/ver/conocimientos/persona/1';
+  apiBorrar='/borrar/conocimiento/';
+  apiAgregar='/agregar/conocimiento/1';
+
+  id = 0;
+  validate : boolean = false;
   isHidden : boolean = false;
   conocimientos : Conocimiento[] = [];
   showForm : boolean = false;
@@ -29,16 +34,21 @@ export class ConocimientosComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private tokenService:TokenStorageService
-    ) { }
+    private authService : AuthService
+    ) { 
+      this.datos.datos.subscribe(data=>{
+        this.conocimientos = data.listaConocimientos; 
+      })
+      this.authService.currentUser.subscribe(data=>{
+        if (data && data.accessToken){
+          this.validate = true;
+        } else {
+          this.validate = false;
+        }
+      })
+    }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe((data) => {
-      if (!data) {throw Error("Error en carga de datos")} else {
-      this.conocimientos = data.conocimientos;
-    }}, 
-      (error) => {alert("Error en servidor, sepa disculpar las molestias")
-  });
   }
 
   reset(){
@@ -64,28 +74,34 @@ export class ConocimientosComponent implements OnInit {
     this.reset();
   }
   
-  deleteItem(conocimiento : Conocimiento){
-    this.conocimientos = this.conocimientos.filter(item => item != conocimiento);
-    }
-
   editItem(editarConocimiento : Conocimiento){
     this.showForm = !this.showForm;
+    this.id = editarConocimiento.id;
     this.conocimiento = editarConocimiento;
   }
 
   modifyComponent(contenido : Conocimiento){
-    
-    this.actualizar.actualizarDatos('/conocimientos/',contenido).subscribe(
+    contenido.id = this.id;
+    this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        if(!data.ok){
-        throw Error("Error en servidor, reintentelo mas tarde!");
-      } else {
-        console.log(data);
-        this.showForm = false;
-      }},
+        console.log(contenido);
+        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
+          this.conocimientos = data;
+        });
+        this.id = 0;
+      },
       error =>  {
         alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
         return;
       }
-    )}
+    )
+  }
+
+  deleteItem(contenido : Conocimiento){
+    this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
+      data=>{
+        this.conocimientos = this.conocimientos.filter(item => item != contenido);
+      }
+    )
+  }
 }

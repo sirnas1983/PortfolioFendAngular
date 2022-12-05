@@ -47,6 +47,7 @@ export class EstudiosFormComponent implements OnInit {
 
   modifyComponent() {
     this.editarEstudio = JSON.parse(JSON.stringify(this.estudiosForm.value));
+    this.estudiosForm.reset();
     this.actualizarValor.emit(this.editarEstudio);
   }
 

@@ -14,8 +14,13 @@ export class ActualizarDatosService {
   constructor(private http:HttpClient) { }
 
   actualizarDatos(ruta : string, data : any):Observable<any>{
-    console.log(this.url + ruta);
+    console.log(data);
     return this.http.post(this.url + ruta, data)
   }
+
+  borrarDatos(ruta: string):Observable<any>{
+    return this.http.post(this.url + ruta, null);
+  }
+
 }
 

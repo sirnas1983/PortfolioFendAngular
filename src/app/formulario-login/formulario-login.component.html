@@ -6,7 +6,7 @@
         <h1>Iniciar Sesión</h1>
 
         <div class="mb-3 ">
-            <label for="email" class="form-label">Dirección de correo electronico:</label>
+            <label for="email" class="form-label">Dirección de correo electrónico:</label>
             <input type="email" 
                 autocomplete="email" 
                 formControlName="username" 
@@ -16,7 +16,7 @@
             >
             <div *ngIf="Email?.errors && Email?.touched">
                 <p *ngIf="Email?.hasError('required')" class="text-danger">El email es requerido</p>
-                <p *ngIf="Email?.hasError('email')" class="text-danger">El formato debe ser valido</p>
+                <p *ngIf="Email?.hasError('email')" class="text-danger">El formato debe ser válido</p>
             </div>
         </div>
 

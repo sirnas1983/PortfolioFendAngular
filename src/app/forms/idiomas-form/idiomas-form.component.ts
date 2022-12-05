@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Idioma } from 'src/app/interfaces';
+import { ActualizarDatosService } from 'src/app/servicios/actualizar-datos.service';
 
 @Component({
   selector: 'app-idiomas-form',
@@ -9,7 +10,7 @@ import { Idioma } from 'src/app/interfaces';
 })
 export class IdiomasFormComponent implements OnInit {
 
-  @Output() actualizarValor = new EventEmitter<Idioma>();
+  @Output() actualizarValor = new EventEmitter<any>();
   @Input() editarIdioma : Idioma = {
     id:0,
     idioma : "",
@@ -18,6 +19,7 @@ export class IdiomasFormComponent implements OnInit {
     comprension: ""
   };
 
+  url : string = "/agregar/idioma/1";
   idiomasForm = this.fb.group({
     idioma : [""],
     oral : [""],
@@ -35,8 +37,9 @@ export class IdiomasFormComponent implements OnInit {
   }
 
   modifyComponent() {
-    this.editarIdioma = JSON.parse(JSON.stringify(this.idiomasForm.value));
-    this.actualizarValor.emit(this.editarIdioma);
+    let idioma = JSON.parse(JSON.stringify(this.idiomasForm.value));
+    this.actualizarValor.emit(idioma);
+    this.idiomasForm.reset();
   }
 
 }

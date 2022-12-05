@@ -12,7 +12,8 @@ export class TokenStorageService {
   constructor() { }
 
   signOut(): void {
-    window.sessionStorage.clear();
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(USER_KEY);
   }
 
   public saveToken(token: string): void {
@@ -35,13 +36,5 @@ export class TokenStorageService {
       return JSON.parse(user);
     }
     return {};
-  }
-
-  public isLogged() : boolean{
-    if(this.getToken() && this.getUser()){
-      return true;
-    } else {
-      return false;
-    }
   }
 }

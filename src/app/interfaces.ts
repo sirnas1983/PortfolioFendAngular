@@ -97,3 +97,20 @@ export class Persona implements Persona {
     experiencias: Experiencia[] = [];
     idiomas: Idioma[] = [];
 }
+
+export interface PersonaDTO {
+    id : number;
+    nombre : string,
+	ocupacion : string,
+	descripcion : string,
+	foto : string,
+	banner : string,
+	fechaNacimiento : string,
+	whatsapp : string,
+	email : string,
+	repositorio : string,
+	acercademi : string,
+    facebook : string,
+    instagram : string,
+    tweeter : string
+}

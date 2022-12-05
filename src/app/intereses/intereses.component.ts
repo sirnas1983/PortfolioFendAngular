@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Interes } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
+import { AuthService } from '../servicios/auth.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
-import { TokenStorageService } from '../servicios/token-storage.service';
 
 
 @Component({
@@ -13,21 +13,35 @@ import { TokenStorageService } from '../servicios/token-storage.service';
 export class InteresesComponent implements OnInit {
   
   intereses : Interes[] = [];
-  validate : boolean = this.tokenService.isLogged();
+  validate : boolean = false;
   showForm : boolean = false;
   interes : Interes = {
     id : 0,
     nombre : ""
   }
+
+  apiLista='/ver/intereses/persona/1';
+  apiBorrar='/borrar/interes/';
+  apiAgregar='/agregar/interes/1';
   
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private tokenService : TokenStorageService) { }
-
+    private authService : AuthService) { 
+      this.datos.datos.subscribe(data=>{
+        this.intereses = data.listaIntereses;
+      })
+      this.authService.currentUser.subscribe(data=>{
+        if (data && data.accessToken){
+          this.validate = true;
+        } else {
+          this.validate = false;
+          this.showForm = false;
+        }
+      })
+    }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.intereses = data.intereses});
   }
   
   editItem(interes : Interes){
@@ -35,7 +49,11 @@ export class InteresesComponent implements OnInit {
   }
 
   deleteItem(interes : Interes){
-    this.intereses = this.intereses.filter(item => item != interes);
+    this.actualizar.borrarDatos(this.apiBorrar + `${interes.id}`).subscribe(
+      data=>{
+        this.intereses = this.intereses.filter(item => item != interes);
+      }
+    )
   }
 
   addItem(){
@@ -44,17 +62,19 @@ export class InteresesComponent implements OnInit {
 
   modifyComponent(contenido : Interes){
     
-    this.actualizar.actualizarDatos('/intereses/',contenido).subscribe(
+    this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        if(!data.ok){
-        throw Error("Error en servidor, reintentelo mas tarde!");
-      } else {
-        console.log(data);
-        this.showForm = false;
-      }},
+        console.log(this.intereses);
+        console.log(contenido);
+        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
+          this.intereses = data;
+        });
+      },
       error =>  {
         alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
         return;
       }
-    )}
+    )
+  }
+
 }

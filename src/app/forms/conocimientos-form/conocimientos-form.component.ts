@@ -41,6 +41,7 @@ conocimientosForm = this.fb.group({
 
   modifyComponent() {
     this.editarConocimiento = JSON.parse(JSON.stringify(this.conocimientosForm.value));
+    this.conocimientosForm.reset();
     this.actualizarValor.emit(this.editarConocimiento);
   }
 }

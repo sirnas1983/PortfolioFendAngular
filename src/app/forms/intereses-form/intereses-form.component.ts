@@ -30,8 +30,8 @@ export class InteresesFormComponent implements OnInit {
   modifyComponent(event : Event) {
     event.preventDefault();
     this.editarInteres = JSON.parse(JSON.stringify(this.interesesForm.value));
-    console.log(this.editarInteres);
     this.agregarInteres.actualizarDatos(this.url, this.interesesForm.value);
+    this.interesesForm.reset();
     this.actualizarValor.emit(this.editarInteres);
   }
 

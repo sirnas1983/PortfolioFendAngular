@@ -44,6 +44,7 @@ export class ExperienciaLaboralFormComponent implements OnInit {
 
   modifyComponent() {
     this.editarExperiencia = JSON.parse(JSON.stringify(this.experienciasForm.value));
+    this.experienciasForm.reset();
     this.actualizarValor.emit(this.editarExperiencia);
   }
 

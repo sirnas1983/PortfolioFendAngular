@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Experiencia } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
+import { AuthService } from '../servicios/auth.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
-import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
   selector: 'app-experiencia-laboral',
@@ -12,9 +12,15 @@ import { TokenStorageService } from '../servicios/token-storage.service';
 
 export class ExperienciaLaboralComponent implements OnInit {
 
+  id = 0;
+
+  apiLista='/ver/experiencias/persona/1';
+  apiBorrar='/borrar/experiencia/';
+  apiAgregar='/agregar/experiencia/1';
+
   isHidden = false;
   experiencias : Experiencia[] = [];
-  validate : boolean = this.tokenService.isLogged();
+  validate : boolean = false;
   showForm : boolean = false;
   experiencia : Experiencia = {
     id : 0,
@@ -43,11 +49,20 @@ export class ExperienciaLaboralComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private tokenService : TokenStorageService) { }
+    private authService : AuthService) { 
+      this.datos.datos.subscribe(data=>{
+        this.experiencias = data.listaExperiencias; 
+      })
+      this.authService.currentUser.subscribe(data=>{
+        if (data && data.accessToken){
+          this.validate = true;
+        } else {
+          this.validate = false;
+        }
+      })
+    }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.experiencias = data.experiencias});
-  
   }
 
   desplegar(){
@@ -60,31 +75,35 @@ export class ExperienciaLaboralComponent implements OnInit {
     this.showForm = !this.showForm;
     this.reset()
   }
-  
-  deleteItem(experiencia : Experiencia){
-    this.experiencias = this.experiencias.filter(item => {return item !== experiencia})
-    console.log(experiencia);
-    }
 
-  editItem(experiencia: Experiencia){
-    this.experiencia = experiencia;
+  editItem(contenido : Experiencia){
+    this.experiencia = contenido;
+    this.id = contenido.id;
     this.showForm = !this.showForm;
-    }
-
-  modifyComponent(contenido : Experiencia){
+  }
   
-    this.actualizar.actualizarDatos('/experiencias/',contenido).subscribe(
+  modifyComponent(contenido : Experiencia){
+    contenido.id = this.id;
+    this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        if(!data.ok){
-        throw Error("Error en servidor, reintentelo mas tarde!");
-      } else {
-        console.log(data);
-        this.showForm = false;
-      }},
+        console.log(contenido);
+        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
+          this.experiencias = data;
+        });
+        this.id = 0;
+      },
       error =>  {
         alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
         return;
       }
-    )}
+    )
+  }
 
+  deleteItem(contenido : Experiencia){
+    this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
+      data=>{
+        this.experiencias = this.experiencias.filter(item => item != contenido);
+      }
+    )
+  }
 }

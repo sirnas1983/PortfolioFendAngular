@@ -44,9 +44,8 @@ export class FormularioLoginComponent implements OnInit {
       
       this.authService.login(this.form.value).subscribe(
         data => {
-          console.log(data);
           this.tokenStorage.saveToken(data.accessToken);
-          this.tokenStorage.saveUser(data);
+          this.tokenStorage.saveUser(data.username);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.tokenStorage.getUser().roles;

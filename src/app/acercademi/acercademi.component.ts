@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from '../interfaces';
-import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
+import { AuthService } from '../servicios/auth.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
-import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
   selector: 'app-acercademi',
@@ -12,21 +11,27 @@ import { TokenStorageService } from '../servicios/token-storage.service';
 export class AcercademiComponent implements OnInit {
 
   persona = new Persona();
-  validate : boolean = this.tokenService.isLogged();
+  id = 1;
+  validate : boolean = false;
   isHidden = false;
   editText : string = "";
   edit : boolean = false;
 
   constructor(private datos:ObtenerDatosService, 
-              private actualizar:ActualizarDatosService,
-              private tokenService:TokenStorageService) { }
+              private authService:AuthService) { 
+                this.datos.datos.subscribe(data=>{
+                  this.persona = data; 
+                })
+                this.authService.currentUser.subscribe(data=>{
+                  if (data && data.accessToken){
+                    this.validate = true;
+                  } else {
+                    this.validate = false;
+                  }
+                })
+              }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe((data) => {
-      if (!data) {throw Error("Error en carga de datos")} else {
-      this.persona = data;
-    }}, 
-    (error) => {alert("Error en servidor, sepa disculpar las molestias")});
   }
 
   desplegar(){

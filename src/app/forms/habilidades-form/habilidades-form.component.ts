@@ -34,7 +34,7 @@ export class HabilidadesFormComponent implements OnInit {
 
   modifyComponent() {
     this.editarHabilidad = JSON.parse(JSON.stringify(this.habilidadesForm.value));
-    console.log(JSON.parse(JSON.stringify(this.habilidadesForm.value)));
+    this.habilidadesForm.reset();
     this.actualizarValor.emit(this.editarHabilidad);
   }
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
-import { Skill } from '../interfaces';
+import { Persona, Skill } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
-import { TokenStorageService } from '../servicios/token-storage.service';
+import { AuthService } from '../servicios/auth.service';
 
 @Component({
   selector: 'app-habilidades',
@@ -11,24 +11,45 @@ import { TokenStorageService } from '../servicios/token-storage.service';
 })
 export class HabilidadesComponent implements OnInit {
 
+  apiLista='/ver/skills/persona/1';
+  apiBorrar='/borrar/skill/';
+  apiAgregar='/agregar/skill/1';
+
+  id = 0;
   isHidden = false;
-  softskills : Skill[] = [];
-  hardskills : Skill[] = [];
-  validate : boolean = this.tokenService.isLogged();
+  validate : boolean = false;
   showForm : boolean = false;
+  skills : Skill[] = [];
+  softskills : Skill[] = [];
+  hardskills : Skill[] = []; 
+
+  skill : Skill = {
+    id : 0,
+    nombre: "",
+    cantidad: 0,
+    type: ''
+  }
 
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private tokenService : TokenStorageService
-    ) { }
+    private authService : AuthService
+    ) { 
+      this.datos.datos.subscribe((data)=>{
+        this.skills = data.listaSkills;
+        this.softskills = this.skills.filter((skill : Skill) => skill.type === 'soft'); 
+        this.hardskills = this.skills.filter((skill : Skill) => skill.type === 'hard'); 
+      })        
+      this.authService.currentUser.subscribe(data=>{
+        if (data && data.accessToken){
+          this.validate = true;
+        } else {
+          this.validate = false;
+        }
+      })
+    }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {
-      console.log(data);
-      this.softskills = data.listaSkills.filter((skill : Skill) => skill.type === 'soft'); 
-      this.hardskills = data.listaSkills.filter((skill : Skill) => skill.type === 'hard');
-    });
   }
 
   desplegar(){
@@ -41,39 +62,35 @@ export class HabilidadesComponent implements OnInit {
     this.showForm = !this.showForm;
   }
 
-  deleteItem(habilidad : Skill){
-    console.log(habilidad);
-    if (this.softskills.includes(habilidad)) {
-      this.softskills = this.softskills.filter(item => item != habilidad);
-    } else {
-      this.hardskills = this.hardskills.filter(item => item != habilidad);
+    modifyComponent(contenido : Skill){
+      contenido.id = this.id;
+      this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
+        data => {
+          console.log(contenido);
+          this.datos.actualizarLista(this.apiLista).subscribe(data=>{
+            this.skills = data;
+            this.softskills = this.skills.filter((skill : Skill) => skill.type === 'soft'); 
+            this.hardskills = this.skills.filter((skill : Skill) => skill.type === 'hard'); 
+          });
+          this.id = 0;
+        },
+        error =>  {
+          alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+          return;
+        }
+      )
     }
-  }
-
-  modifyComponent(contenido : Skill){
-  let urlString : string;
-    if (contenido.type === "soft") {
-      this.softskills.push(contenido);
-      urlString = '/agregar/skill/1';
-      this.showForm = false;
-    } else {
-      this.hardskills.push(contenido);
-      urlString = '/hardSkills/';
-      this.showForm = false;
+  
+    deleteItem(contenido : Skill){
+      this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
+        data=>{
+          this.skills = this.skills.filter(item => item != contenido);
+          this.softskills = this.skills.filter((skill : Skill) => skill.type === 'soft'); 
+          this.hardskills = this.skills.filter((skill : Skill) => skill.type === 'hard');
+        },
+        error =>{
+          alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!");
+        }
+      )
     }
-    
-    this.actualizar.actualizarDatos(urlString,contenido).subscribe(
-      data => {
-      if(!data.ok){
-        throw Error("Error en servidor, reintentelo mas tarde!");
-      } else {
-        console.log(data);
-        this.showForm = false;
-      }},
-      error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
-        return;
-      }
-    )}
-
 }

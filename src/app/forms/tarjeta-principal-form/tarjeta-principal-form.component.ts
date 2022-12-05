@@ -2,6 +2,7 @@ import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Persona } from 'src/app/interfaces';
+import { ActualizarDatosService } from 'src/app/servicios/actualizar-datos.service';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class TarjetaPrincipalFormComponent implements OnInit {
     conocimientos: [],
 };
 
+url : string = "/agregar/persona/1";
 principalForm = this.fb.group({
   nombre : [''],
   ocupacion : [''], 
@@ -52,7 +54,7 @@ principalForm = this.fb.group({
   tweeter : ['']
 });
 
-    constructor(private fb : FormBuilder) { 
+    constructor(private fb : FormBuilder, private modificarPersona : ActualizarDatosService) { 
     }
   
     ngOnInit(): void {
@@ -69,12 +71,23 @@ principalForm = this.fb.group({
     this.principalForm.controls.facebook.setValue(this.editarPersona.facebook);
     this.principalForm.controls.instagram.setValue(this.editarPersona.instagram);
     this.principalForm.controls.tweeter.setValue(this.editarPersona.tweeter);
-
   }
 
     modifyComponent() {
-      this.editarPersona = JSON.parse(JSON.stringify(this.principalForm.value));
+      this.editarPersona.acercademi = String(this.principalForm.value.acercademi).toString();
+      this.editarPersona.banner = String(this.principalForm.value.banner).toString();
+      this.editarPersona.descripcion = String(this.principalForm.value.descripcion).toString();
+      this.editarPersona.email = String(this.principalForm.value.email).toString();
+      this.editarPersona.facebook = String(this.principalForm.value.facebook).toString();
+      this.editarPersona.fechaNacimiento = String(this.principalForm.value.fechaNacimiento).toString();
+      this.editarPersona.foto = String(this.principalForm.value.foto).toString();
+      this.editarPersona.instagram = String(this.principalForm.value.instagram).toString();
+      this.editarPersona.nombre = String(this.principalForm.value.nombre).toString();
+      this.editarPersona.ocupacion = String(this.principalForm.value.ocupacion).toString();
+      this.editarPersona.repositorio = String(this.principalForm.value.repositorio).toString();
+      this.editarPersona.tweeter = String(this.principalForm.value.tweeter).toString();
+      this.editarPersona.whatsapp = String(this.principalForm.value.whatsapp).toString();
+      this.modificarPersona.actualizarDatos(this.url, this.principalForm.value);
       this.actualizarValor.emit(this.editarPersona);
     }
-
 }

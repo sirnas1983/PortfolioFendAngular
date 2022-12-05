@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 const AUTH_API = 'http://localhost:8080/login';
 
@@ -14,11 +14,20 @@ const httpOptions = {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  currentUser : BehaviorSubject<any>;
 
-  login(usuario : string): Observable<any> {
-    console.log(usuario);
-    return this.http.post(AUTH_API, usuario, httpOptions);
+  constructor(private http: HttpClient) { 
+    this.currentUser = new BehaviorSubject<any>("{}");
   }
 
+  login(usuario : string): Observable<any> {
+    return this.http.post(AUTH_API, usuario, httpOptions).pipe(map(data=>{
+      this.currentUser.next(data);
+      return data;
+    }));
+  }
+
+  updateCurrentUser(newValue : String){
+    this.currentUser.next(newValue);
+  }
 }

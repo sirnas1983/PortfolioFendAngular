@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from '../servicios/auth.service';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 import { TokenStorageService } from '../servicios/token-storage.service';
 
@@ -13,19 +13,30 @@ export class EncabezadoComponent implements OnInit {
 
 
   datosPrincipales : any;
-  validate : boolean = this.tokenService.isLogged();
+  validate : boolean = false;
 
   constructor(private datos:ObtenerDatosService, 
-              private ruta : Router,
-              private tokenService : TokenStorageService){ }
+              private authService : AuthService,
+              private tokenStorage : TokenStorageService){ 
+                this.authService.currentUser.subscribe(data=>{
+                  if (data && data.accessToken){
+                    this.validate = true;
+                  } else {
+                    this.validate = false;
+                  }
+                })
+              }
 
   ngOnInit(): void {
     this.datos.obtenerDatos().subscribe(data => {this.datosPrincipales = data});
   }
 
+ 
+
   cerrarSesion(event : Event) {
-    sessionStorage.clear();
-    window.location.reload();
+    event.preventDefault();
+    this.tokenStorage.signOut();
+    this.authService.currentUser.next(null);    
   }
 
 }

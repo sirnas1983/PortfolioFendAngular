@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 import { Idioma } from '../interfaces'
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
-import { TokenStorageService } from '../servicios/token-storage.service';
+import { AuthService } from '../servicios/auth.service';
 
 
 @Component({
@@ -11,10 +11,16 @@ import { TokenStorageService } from '../servicios/token-storage.service';
   styleUrls: ['./idiomas.component.css']
 })
 export class IdiomasComponent implements OnInit {
-
+  
+  apiLista='/ver/idiomas/persona/1';
+  apiBorrar='/borrar/idioma/';
+  apiAgregar='/agregar/idioma/1';
   isHidden = false;
+
+  id = 0;
+
   idiomas : Idioma[] = [];
-  validate : boolean = this.tokenService.isLogged();
+  validate : boolean = false;
   showForm : boolean = false;
   idioma : Idioma = {
     id : 0,
@@ -38,48 +44,67 @@ export class IdiomasComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private tokenService : TokenStorageService) { }
+    private authService : AuthService) { 
+      this.datos.datos.subscribe(data=>{
+        this.idiomas = data.listaIdiomas;
+      })
+      this.authService.currentUser.subscribe(data=>{
+        if (data && data.accessToken){
+          this.validate = true;
+        } else {
+          this.validate = false;
+          this.showForm = false;
+        }
+      })
+    }
 
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.idiomas = data.idiomas});
- }
+  }
 
- desplegar(){
-  document.querySelector("#language-card .toggle")?.classList.toggle("fa-chevron-down");
-  document.querySelector("#language-card .toggle")?.classList.toggle("fa-chevron-up");
-  this.isHidden = !this.isHidden;
-}
+  desplegar(){
+    document.querySelector("#language-card .toggle")?.classList.toggle("fa-chevron-down");
+    document.querySelector("#language-card .toggle")?.classList.toggle("fa-chevron-up");
+    this.isHidden = !this.isHidden;
+  }
 
-addItem(){
-  this.showForm = !this.showForm;
-  this.reset()
-}
+  addItem(){
+    this.showForm = !this.showForm;
+    this.reset()
+  }
 
-deleteItem(idioma : Idioma){
-  this.idiomas = this.idiomas.filter(item => {return item !== idioma})
-  console.log(idioma);
-}
-  
   editItem(idioma : Idioma){
     this.idioma = idioma;
+    this.id = idioma.id;
     this.showForm = !this.showForm;
   }
 
   modifyComponent(contenido : Idioma){
-    this.actualizar.actualizarDatos('/idiomas/',contenido).subscribe(
+    contenido.id = this.id;
+    this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        if(!data.ok){
-        throw Error("Error en servidor, reintentelo mas tarde!");
-      } else {
-        console.log(data);
+        console.log(this.idiomas);
+        console.log(contenido);
+        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
+          this.idiomas = data;
+        });
+        this.id = 0;
         this.showForm = false;
-      }},
+      },
       error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!");
+        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        return;
       }
-    )}
+    )
+  }
 
+  deleteItem(contenido : Idioma){
+    this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
+      data=>{
+        this.idiomas = this.idiomas.filter(item => item != contenido);
+      }
+    )
+  }
 }
 
 

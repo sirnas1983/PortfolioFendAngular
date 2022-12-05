@@ -29,6 +29,7 @@ import { ActualizarDatosService } from './servicios/actualizar-datos.service';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { AuthService } from './servicios/auth.service';
 import { TokenStorageService } from './servicios/token-storage.service';
+import { authInterceptorProviders } from './servicios/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { TokenStorageService } from './servicios/token-storage.service';
   providers: [ObtenerDatosService, 
     ActualizarDatosService, 
     AuthService, 
-    TokenStorageService
+    TokenStorageService,
+    authInterceptorProviders
   ],
   bootstrap: [AppComponent],
   entryComponents: [FormularioLoginComponent]
