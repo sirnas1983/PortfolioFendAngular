@@ -30,6 +30,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { AuthService } from './servicios/auth.service';
 import { TokenStorageService } from './servicios/token-storage.service';
 import { authInterceptorProviders } from './servicios/interceptor.service';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { authInterceptorProviders } from './servicios/interceptor.service';
     InteresesFormComponent,
     TarjetaPrincipalFormComponent,
     HabilidadesFormComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    LoadingComponent
     ],
     
   imports: [

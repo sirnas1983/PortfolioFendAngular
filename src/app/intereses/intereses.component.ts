@@ -12,6 +12,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class InteresesComponent implements OnInit {
   
+  loading : boolean;
   intereses : Interes[] = [];
   validate : boolean = false;
   showForm : boolean = false;
@@ -27,7 +28,8 @@ export class InteresesComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private authService : AuthService) { 
+    private authService : AuthService) {
+      this.loading = false; 
       this.datos.datos.subscribe(data=>{
         this.intereses = data.listaIntereses;
       })
@@ -49,9 +51,14 @@ export class InteresesComponent implements OnInit {
   }
 
   deleteItem(interes : Interes){
+    this.loading = true;
     this.actualizar.borrarDatos(this.apiBorrar + `${interes.id}`).subscribe(
       data=>{
         this.intereses = this.intereses.filter(item => item != interes);
+        this.loading = false;
+      },
+      error => {
+        this.loading = false;
       }
     )
   }
@@ -62,17 +69,19 @@ export class InteresesComponent implements OnInit {
 
   modifyComponent(contenido : Interes){
     
+    this.loading = true;
+    this.showForm = false;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        console.log(this.intereses);
-        console.log(contenido);
-        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
-          this.intereses = data;
-        });
-        this.showForm = false;
+        this.datos.obtenerDatos().subscribe(data=>{
+          
+        })
+        this.loading = false;
       },
       error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        this.showForm = true;
+        this.loading = false;
+        alert("Error en servidor, reintentelo mas tarde!");
         return;
       }
     )

@@ -17,7 +17,7 @@ export class EstudiosComponent implements OnInit {
   apiAgregar='/agregar/estudio/1';
 
   id = 0;
-
+  loading :boolean;
   showForm : boolean = false;
   isHidden = false;
   estudios : Estudio[] = [];
@@ -52,6 +52,7 @@ export class EstudiosComponent implements OnInit {
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
     private authService : AuthService) { 
+      this.loading = false;
       this.datos.datos.subscribe(data=>{
         this.estudios = data.listaEstudios; 
       })
@@ -87,26 +88,33 @@ export class EstudiosComponent implements OnInit {
 
   modifyComponent(contenido : Estudio){
     contenido.id = this.id;
+    this.showForm = false;
+    this.loading = true;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        console.log(contenido);
-        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
-          this.estudios = data;
-        });
-        this.showForm = false;
+        this.datos.obtenerDatos().subscribe(data=>{
+        this.loading = false;
+        })
         this.id = 0;
       },
       error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        this.showForm = true;
+        this.loading = false;
+        alert("Error en servidor, reintentelo mas tarde!")
         return;
       }
     )
   }
 
   deleteItem(contenido : Estudio){
+    this.loading = true;
     this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
       data=>{
         this.estudios = this.estudios.filter(item => item != contenido);
+        this.loading = false;
+      },
+      error => {
+        this.loading = false;
       }
     )
   }

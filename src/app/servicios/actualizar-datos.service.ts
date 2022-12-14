@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class ActualizarDatosService {
 
-  private url : String = "http://localhost:8080";
+  private url : String = "https://backendportfolio.fly.dev";
    
 
   constructor(private http:HttpClient) { }

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
-const URL_API_VER = 'http://localhost:8080/ver/persona/1';
-const URL_API = 'http://localhost:8080';
+const URL_API_VER = 'https://backendportfolio.fly.dev/ver/persona/1';
+const URL_API = "https://backendportfolio.fly.dev";
 @Injectable({
   providedIn: 'root'
 })

@@ -11,8 +11,10 @@
     *ngIf="showForm" 
     [editarExperiencia]="experiencia"
     (actualizarValor)="modifyComponent($event)"
-      >
+    >
     </app-experiencia-laboral-form>
+    <app-loading *ngIf="loading">
+    </app-loading>
     <div *ngIf="!isHidden">
       <div class="row lh-1 mt-4"  *ngFor="let experiencia of experiencias">
     <hr>
@@ -41,7 +43,7 @@
             {{experiencia.lugar}}
           </p>
         </div>
-        <a *ngIf="experiencia.link" [href]="experiencia.link" target="_blank">Link</a>
+        <a *ngIf="experiencia.link" [href]="'https://' + experiencia.link" target="_blank">Link</a>
       </li>
       </ul>
     </div>

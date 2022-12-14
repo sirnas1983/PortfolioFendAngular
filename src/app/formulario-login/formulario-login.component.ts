@@ -17,18 +17,21 @@ export class FormularioLoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   show = false;
+  loading : boolean;
 
-  constructor(private formBuilder:FormBuilder,  
+  constructor(
+    private formBuilder:FormBuilder,  
     private ruta:Router, 
     private tokenStorage: TokenStorageService, 
     private authService : AuthService,
     ) 
-    { 
-        this.form = this.formBuilder.group(
-          {
-          username:['',[Validators.required, Validators.email]],
-          password:['',[Validators.required,]]
-          }
+    {
+      this.loading=false; 
+      this.form = this.formBuilder.group(
+        {
+        username:['',[Validators.required, Validators.email]],
+        password:['',[Validators.required,]]
+        }
       )
     }
 
@@ -41,7 +44,7 @@ export class FormularioLoginComponent implements OnInit {
 
   login(event: Event) : void{
       event.preventDefault();
-      
+      this.loading = true;
       this.authService.login(this.form.value).subscribe(
         data => {
           this.tokenStorage.saveToken(data.accessToken);
@@ -49,10 +52,12 @@ export class FormularioLoginComponent implements OnInit {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.tokenStorage.getUser().roles;
-          this.ruta.navigateByUrl('/portfolio');
+          this.loading = false;
+          this.ruta.navigate(["/portfolio"]);
         },
         error => {
           this.isLoginFailed = true;
+          this.loading = false;
           this.clearForm();
         }
       );
@@ -67,12 +72,16 @@ export class FormularioLoginComponent implements OnInit {
   }
 
   clearForm(){
-    this.form.setValue({"username":[this.Email?.value], "password":['']});
+    this.form.setValue({"username":this.Email?.value.toString(), "password":['']});
   }
 
   showPassword(event : Event) {
     event.preventDefault();
     this.show = !this.show;
+  }
+
+  cancel(){
+    this.ruta.navigate(["/portfolio"]);
   }
 }
 

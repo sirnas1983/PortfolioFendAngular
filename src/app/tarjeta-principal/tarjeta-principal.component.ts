@@ -13,6 +13,24 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 export class TarjetaPrincipalComponent implements OnInit {
 
   persona = new Persona();
+  personaDto : PersonaDTO = {
+    id : 0,
+    nombre : "",
+	  ocupacion : "",
+	  descripcion : "",
+	  foto : "",
+	  banner : "",
+	  fechaNacimiento : "",
+	  whatsapp : "",
+	  email : "",
+	  repositorio : "",
+	  acercademi : "",
+    facebook : "",
+    instagram : "",
+    tweeter : ""
+  }
+
+  loading : boolean;
   id = 1;
   showForm  = false;
   validate : boolean = false;
@@ -24,6 +42,7 @@ export class TarjetaPrincipalComponent implements OnInit {
     private datos:ObtenerDatosService, 
     private actualizar : ActualizarDatosService,
     private authService : AuthService) {
+      this.loading = false;
       this.datos.datos.subscribe(data=>{
         this.persona = data;
       })
@@ -52,23 +71,23 @@ export class TarjetaPrincipalComponent implements OnInit {
 
   showFormMethod(item : Persona){
     this.showForm = !this.showForm;
-    console.log(item);
   }
 
-  modifyComponent(contenido : Persona){
-    contenido.id = this.id;
-    console.log(contenido);
+  modifyComponent(contenido : PersonaDTO){
+    contenido.id = 1;
+    this.loading = true;
+    this.showForm = false;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        console.log(contenido);
-        console.log(data);
-        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
-          this.persona = data;
-        });
-        this.showForm = false;
+        this.datos.obtenerDatos().subscribe(data=>{
+          
+        })
+        this.loading = false;
       },
       error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        this.showForm = true;
+        this.loading = false;
+        alert("Error en servidor, reintentelo mas tarde!");
         return;
       }
     )

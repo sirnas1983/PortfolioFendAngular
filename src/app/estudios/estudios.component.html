@@ -17,6 +17,8 @@
     id="estudios-form"
     >
   </app-estudios-form>
+  <app-loading *ngIf="loading">
+  </app-loading>
   <div *ngIf="!isHidden">
     <div *ngFor="let estudio of estudios" class="row lh-1 mt-4">
     <hr>

@@ -17,7 +17,7 @@ export class ExperienciaLaboralComponent implements OnInit {
   apiLista='/ver/experiencias/persona/1';
   apiBorrar='/borrar/experiencia/';
   apiAgregar='/agregar/experiencia/1';
-
+  loading : boolean;
   isHidden = false;
   experiencias : Experiencia[] = [];
   validate : boolean = false;
@@ -49,7 +49,8 @@ export class ExperienciaLaboralComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private authService : AuthService) { 
+    private authService : AuthService) {
+      this.loading = false; 
       this.datos.datos.subscribe(data=>{
         this.experiencias = data.listaExperiencias; 
       })
@@ -85,26 +86,34 @@ export class ExperienciaLaboralComponent implements OnInit {
   
   modifyComponent(contenido : Experiencia){
     contenido.id = this.id;
+    this.showForm = false;
+    this.loading = true;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        console.log(contenido);
-        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
-          this.experiencias = data;
-        });
-        this.showForm = false;
+        this.datos.obtenerDatos().subscribe(data=>{
+        this.loading = false;
+        })
         this.id = 0;
       },
       error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        this.showForm = true;
+        this.loading = false;
+        alert("Error en servidor, reintentelo mas tarde!")
         return;
       }
     )
   }
 
   deleteItem(contenido : Experiencia){
+    this.loading = true;
+
     this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
       data=>{
+        this.loading = false;
         this.experiencias = this.experiencias.filter(item => item != contenido);
+      },
+      error =>{
+        this.loading = false;
       }
     )
   }

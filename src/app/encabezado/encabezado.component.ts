@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
-import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
@@ -11,27 +11,29 @@ import { TokenStorageService } from '../servicios/token-storage.service';
 
 export class EncabezadoComponent implements OnInit {
 
-
-  datosPrincipales : any;
   validate : boolean = false;
 
-  constructor(private datos:ObtenerDatosService, 
+  constructor( 
               private authService : AuthService,
-              private tokenStorage : TokenStorageService){ 
+              private tokenStorage : TokenStorageService,
+              private ruta : Router)
+              { 
                 this.authService.currentUser.subscribe(data=>{
                   if (data && data.accessToken){
                     this.validate = true;
                   } else {
                     this.validate = false;
                   }
-                })
+                });
+
               }
 
   ngOnInit(): void {
-    this.datos.obtenerDatos().subscribe(data => {this.datosPrincipales = data});
   }
 
- 
+ login(){
+  this.ruta.navigate(['/login']);
+ }
 
   cerrarSesion(event : Event) {
     event.preventDefault();

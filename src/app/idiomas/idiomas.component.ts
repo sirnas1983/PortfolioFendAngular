@@ -18,7 +18,7 @@ export class IdiomasComponent implements OnInit {
   isHidden = false;
 
   id = 0;
-
+  loading : boolean;
   idiomas : Idioma[] = [];
   validate : boolean = false;
   showForm : boolean = false;
@@ -44,10 +44,11 @@ export class IdiomasComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private authService : AuthService) { 
+    private authService : AuthService) {
+      this.loading=false; 
       this.datos.datos.subscribe(data=>{
         this.idiomas = data.listaIdiomas;
-      })
+      });
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
           this.validate = true;
@@ -55,7 +56,7 @@ export class IdiomasComponent implements OnInit {
           this.validate = false;
           this.showForm = false;
         }
-      })
+      });
     }
 
 
@@ -81,27 +82,35 @@ export class IdiomasComponent implements OnInit {
 
   modifyComponent(contenido : Idioma){
     contenido.id = this.id;
+    this.loading = true;
+    this.showForm = false;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        console.log(this.idiomas);
-        console.log(contenido);
-        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
-          this.idiomas = data;
-        });
+        this.datos.obtenerDatos().subscribe(data=>{
+          
+        })
+        this.loading = false;
         this.id = 0;
-        this.showForm = false;
       },
       error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        this.showForm = true;
+        this.loading = false;
+        alert("Error en servidor, reintentelo mas tarde!");
         return;
       }
     )
-  }
+}
 
   deleteItem(contenido : Idioma){
+    this.loading = true;
     this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
       data=>{
         this.idiomas = this.idiomas.filter(item => item != contenido);
+        this.loading = false;
+      },
+      error => {
+        this.loading = false;
+        alert("Error en servidor, reintentelo mas tarde!");
       }
     )
   }

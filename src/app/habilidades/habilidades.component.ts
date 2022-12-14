@@ -3,6 +3,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 import { Persona, Skill } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { AuthService } from '../servicios/auth.service';
+import { resetFakeAsyncZone } from '@angular/core/testing';
 
 @Component({
   selector: 'app-habilidades',
@@ -15,6 +16,7 @@ export class HabilidadesComponent implements OnInit {
   apiBorrar='/borrar/skill/';
   apiAgregar='/agregar/skill/1';
 
+  loading : boolean;
   id = 0;
   isHidden = false;
   validate : boolean = false;
@@ -35,11 +37,12 @@ export class HabilidadesComponent implements OnInit {
     private actualizar:ActualizarDatosService,
     private authService : AuthService
     ) { 
+      this.loading = false;
       this.datos.datos.subscribe((data)=>{
         this.skills = data.listaSkills;
         this.softskills = this.skills.filter((skill : Skill) => skill.type === 'soft'); 
         this.hardskills = this.skills.filter((skill : Skill) => skill.type === 'hard'); 
-      })        
+      });
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
           this.validate = true;
@@ -47,7 +50,7 @@ export class HabilidadesComponent implements OnInit {
           this.validate = false;
           this.showForm = false;
         }
-      })
+      });
     }
 
   ngOnInit(): void {
@@ -59,39 +62,53 @@ export class HabilidadesComponent implements OnInit {
     this.isHidden = !this.isHidden;
   }
 
+  reset(){
+    this.skill = {
+      id : 0,
+      nombre: "",
+      cantidad: 0,
+      type: ''
+    }
+  }
+
   addItem(){
+    this.reset();
     this.showForm = !this.showForm;
   }
 
     modifyComponent(contenido : Skill){
-      contenido.id = this.id;
+      this.loading = true;
+      this.showForm = false;
       this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
         data => {
-          console.log(contenido);
-          this.datos.actualizarLista(this.apiLista).subscribe(data=>{
-            this.skills = data;
-            this.softskills = this.skills.filter((skill : Skill) => skill.type === 'soft'); 
-            this.hardskills = this.skills.filter((skill : Skill) => skill.type === 'hard'); 
-          });
-          this.showForm = false;
+          this.datos.obtenerDatos().subscribe(data=>{
+            
+          })
+          this.loading = false;
           this.id = 0;
         },
         error =>  {
-          alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+          this.showForm = true;
+          this.loading = false;
+          alert("Error en servidor, reintentelo mas tarde!")
           return;
         }
       )
     }
   
     deleteItem(contenido : Skill){
+      this.loading = true;
       this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
         data=>{
           this.skills = this.skills.filter(item => item != contenido);
           this.softskills = this.skills.filter((skill : Skill) => skill.type === 'soft'); 
           this.hardskills = this.skills.filter((skill : Skill) => skill.type === 'hard');
+          this.loading = false;
         },
         error =>{
-          alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!");
+          this.loading = false;
+          this.showForm = true;
+          alert("Error en servidor, reintentelo mas tarde!");
         }
       )
     }

@@ -22,7 +22,7 @@ export class InteresesFormComponent implements OnInit {
   interesesForm = this.fb.group({
     nombre : [""]
 })
-  constructor(private fb:FormBuilder, private agregarInteres : ActualizarDatosService) { }
+  constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }

@@ -13,6 +13,8 @@
         *ngIf="showForm" 
         (actualizarValor)="modifyComponent($event)"
         ></app-intereses-form>
+        <app-loading *ngIf="loading">
+        </app-loading>
         <span *ngFor="let interes of intereses">
           <button class="pt-1 rounded bg-white" clickable="none">
             {{interes.nombre}}

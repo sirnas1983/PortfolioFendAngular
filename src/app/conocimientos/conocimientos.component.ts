@@ -16,6 +16,7 @@ export class ConocimientosComponent implements OnInit {
   apiBorrar='/borrar/conocimiento/';
   apiAgregar='/agregar/conocimiento/1';
 
+  loading : boolean;
   id = 0;
   validate : boolean = false;
   isHidden : boolean = false;
@@ -36,6 +37,7 @@ export class ConocimientosComponent implements OnInit {
     private actualizar:ActualizarDatosService,
     private authService : AuthService
     ) { 
+      this.loading = false;
       this.datos.datos.subscribe(data=>{
         this.conocimientos = data.listaConocimientos; 
       })
@@ -75,34 +77,41 @@ export class ConocimientosComponent implements OnInit {
     this.reset();
   }
   
-  editItem(editarConocimiento : Conocimiento){
+  editItem(conocimiento : Conocimiento){
     this.showForm = !this.showForm;
-    this.id = editarConocimiento.id;
-    this.conocimiento = editarConocimiento;
+    this.id = conocimiento.id;
+    this.conocimiento = conocimiento;
   }
 
   modifyComponent(contenido : Conocimiento){
     contenido.id = this.id;
+    this.showForm = false;
+    this.loading = true;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
-        console.log(contenido);
-        this.datos.actualizarLista(this.apiLista).subscribe(data=>{
-          this.conocimientos = data;
-        });
-        this.showForm = false;
+        this.datos.obtenerDatos().subscribe(data=>{
+          this.loading = false;
+        })
         this.id = 0;
       },
       error =>  {
-        alert(error.status + "-" + error.statusText + "- Error en servidor, reintentelo mas tarde!")
+        this.showForm = true;
+        this.loading = false;
+        alert("Error en servidor, reintentelo mas tarde!")
         return;
       }
     )
   }
 
   deleteItem(contenido : Conocimiento){
+    this.loading = true;
     this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
       data=>{
+        this.loading = false;
         this.conocimientos = this.conocimientos.filter(item => item != contenido);
+      },
+      error => {
+        this.loading = false;
       }
     )
   }

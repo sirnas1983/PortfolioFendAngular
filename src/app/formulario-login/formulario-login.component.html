@@ -23,6 +23,7 @@
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña:</label>
         <div class="input-group mb-3">
+            
             <input [type]="show ? 'text' : 'password'" 
                 autocomplete="current-password" 
                 formControlName="password" 
@@ -52,11 +53,12 @@
                 >Iniciar Sesión</button>
             </div>
             <div class="col-sm-6 mb-2" >
-                <a routerLink="/portfolio">
-                    <button class="btn btn-danger" style="width: 100%;">Volver</button>
+                <a>
+                    <button class="btn btn-danger" style="width: 100%;" (click)="cancel()">Volver</button>
                 </a>
             </div>
         </div>
+        <app-loading style="color:aliceblue;" *ngIf="loading">
+        </app-loading>
     </form>
-
 </div>

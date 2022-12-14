@@ -1,8 +1,8 @@
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Persona } from 'src/app/interfaces';
-import { ActualizarDatosService } from 'src/app/servicios/actualizar-datos.service';
+import { Persona, PersonaDTO } from 'src/app/interfaces';
+import { ObtenerDatosService } from 'src/app/servicios/obtener-datos.service';
 
 
 @Component({
@@ -13,31 +13,27 @@ import { ActualizarDatosService } from 'src/app/servicios/actualizar-datos.servi
 
 export class TarjetaPrincipalFormComponent implements OnInit {
   
-  @Output() actualizarValor = new EventEmitter<Persona>();
-  @Input() editarPersona : Persona = {
-    id:0,
-    nombre : "",
+  @Output() actualizarValor = new EventEmitter<PersonaDTO>();
+  @Input() editarPersona : Persona = new Persona();
+
+
+  personaDTO : PersonaDTO = {
+    id : 0,
+    nombre :  "",
     ocupacion : "",
     descripcion : "",
     foto : "",
     banner : "",
-    fechaNacimiento :"",
+    fechaNacimiento : "",
     whatsapp : "",
     email : "",
     repositorio : "",
     acercademi : "",
     facebook : "",
     instagram : "",
-    tweeter : "",
-    interes : [],
-    skills : [],
-    experiencias : [],
-    estudios : [],
-    idiomas : [],
-    conocimientos: [],
-};
+    tweeter : ""
+  }
 
-url : string = "/agregar/persona/1";
 principalForm = this.fb.group({
   nombre : [''],
   ocupacion : [''], 
@@ -54,8 +50,13 @@ principalForm = this.fb.group({
   tweeter : ['']
 });
 
-    constructor(private fb : FormBuilder, private modificarPersona : ActualizarDatosService) { 
-    }
+    constructor(private fb : FormBuilder, private datos:ObtenerDatosService, 
+     ) {
+        this.datos.datos.subscribe(data=>{
+          this.editarPersona = data;
+          console.log(this.editarPersona.id);
+        })
+      }
   
     ngOnInit(): void {
     this.principalForm.controls.nombre.setValue(this.editarPersona.nombre);
@@ -74,19 +75,20 @@ principalForm = this.fb.group({
   }
 
     modifyComponent() {
-      this.editarPersona.acercademi = String(this.principalForm.value.acercademi).toString();
-      this.editarPersona.banner = String(this.principalForm.value.banner).toString();
-      this.editarPersona.descripcion = String(this.principalForm.value.descripcion).toString();
-      this.editarPersona.email = String(this.principalForm.value.email).toString();
-      this.editarPersona.facebook = String(this.principalForm.value.facebook).toString();
-      this.editarPersona.fechaNacimiento = String(this.principalForm.value.fechaNacimiento).toString();
-      this.editarPersona.foto = String(this.principalForm.value.foto).toString();
-      this.editarPersona.instagram = String(this.principalForm.value.instagram).toString();
-      this.editarPersona.nombre = String(this.principalForm.value.nombre).toString();
-      this.editarPersona.ocupacion = String(this.principalForm.value.ocupacion).toString();
-      this.editarPersona.repositorio = String(this.principalForm.value.repositorio).toString();
-      this.editarPersona.tweeter = String(this.principalForm.value.tweeter).toString();
-      this.editarPersona.whatsapp = String(this.principalForm.value.whatsapp).toString();
-      this.actualizarValor.emit(this.editarPersona);
+      this.personaDTO.acercademi = String(this.principalForm.value.acercademi).toString();
+      this.personaDTO.banner = String(this.principalForm.value.banner).toString();
+      this.personaDTO.descripcion = String(this.principalForm.value.descripcion).toString();
+      this.personaDTO.email = String(this.principalForm.value.email).toString();
+      this.personaDTO.facebook = String(this.principalForm.value.facebook).toString() || '';
+      this.personaDTO.fechaNacimiento = String(this.principalForm.value.fechaNacimiento).toString();
+      this.personaDTO.foto = String(this.principalForm.value.foto).toString();
+      this.personaDTO.instagram = String(this.principalForm.value.instagram).toString() || '';
+      this.personaDTO.nombre = String(this.principalForm.value.nombre).toString();
+      this.personaDTO.ocupacion = String(this.principalForm.value.ocupacion).toString();
+      this.personaDTO.repositorio = String(this.principalForm.value.repositorio).toString();
+      this.personaDTO.tweeter = String(this.principalForm.value.tweeter).toString() || '';
+      this.personaDTO.whatsapp = String(this.principalForm.value.whatsapp).toString();
+      console.log(this.personaDTO);
+      this.actualizarValor.emit(this.personaDTO);
     }
 }
