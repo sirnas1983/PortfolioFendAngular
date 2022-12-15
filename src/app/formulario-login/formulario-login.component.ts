@@ -19,6 +19,7 @@ export class FormularioLoginComponent implements OnInit {
   show = false;
   loading : boolean;
 
+
   constructor(
     private formBuilder:FormBuilder,  
     private ruta:Router, 
@@ -32,7 +33,14 @@ export class FormularioLoginComponent implements OnInit {
         username:['',[Validators.required, Validators.email]],
         password:['',[Validators.required,]]
         }
-      )
+      );
+      this.authService.currentUser.subscribe(data =>{
+        if(data && data.accessToken){
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+      })
     }
 
   ngOnInit(): void {

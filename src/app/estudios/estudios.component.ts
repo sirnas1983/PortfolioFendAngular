@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Estudio } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
@@ -51,7 +52,9 @@ export class EstudiosComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private authService : AuthService) { 
+    private authService : AuthService,
+    private scroller : ViewportScroller
+    ) { 
       this.loading = false;
       this.datos.datos.subscribe(data=>{
         this.estudios = data.listaEstudios; 
@@ -87,6 +90,7 @@ export class EstudiosComponent implements OnInit {
   }
 
   modifyComponent(contenido : Estudio){
+    this.scroller.scrollToAnchor('knowledge-card');
     contenido.id = this.id;
     this.showForm = false;
     this.loading = true;

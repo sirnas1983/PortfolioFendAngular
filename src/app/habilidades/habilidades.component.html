@@ -14,8 +14,8 @@
     *ngIf="showForm" 
     (actualizarValor)="modifyComponent($event)">
   </app-habilidades-form>
-  <app-loading *ngIf="loading">
-  </app-loading>
+  <app-loader *ngIf="loading">
+  </app-loader>
   <div *ngIf="!isHidden">
     <hr>
   <div class="row">

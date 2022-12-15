@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Persona, PersonaDTO } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
@@ -41,7 +42,10 @@ export class TarjetaPrincipalComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar : ActualizarDatosService,
-    private authService : AuthService) {
+    private authService : AuthService,
+    private scroller : ViewportScroller
+   ) 
+    {
       this.loading = false;
       this.datos.datos.subscribe(data=>{
         this.persona = data;
@@ -74,13 +78,13 @@ export class TarjetaPrincipalComponent implements OnInit {
   }
 
   modifyComponent(contenido : PersonaDTO){
+    this.scroller.scrollToAnchor('info-foto');
     contenido.id = 1;
     this.loading = true;
     this.showForm = false;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
         this.datos.obtenerDatos().subscribe(data=>{
-          
         })
         this.loading = false;
       },

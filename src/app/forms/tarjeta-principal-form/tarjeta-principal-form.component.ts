@@ -1,6 +1,7 @@
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Persona, PersonaDTO } from 'src/app/interfaces';
 import { ObtenerDatosService } from 'src/app/servicios/obtener-datos.service';
 
@@ -50,7 +51,9 @@ principalForm = this.fb.group({
   tweeter : ['']
 });
 
-    constructor(private fb : FormBuilder, private datos:ObtenerDatosService, 
+    constructor(
+      private fb : FormBuilder, 
+      private datos:ObtenerDatosService
      ) {
         this.datos.datos.subscribe(data=>{
           this.editarPersona = data;
@@ -88,7 +91,6 @@ principalForm = this.fb.group({
       this.personaDTO.repositorio = String(this.principalForm.value.repositorio).toString();
       this.personaDTO.tweeter = String(this.principalForm.value.tweeter).toString() || '';
       this.personaDTO.whatsapp = String(this.principalForm.value.whatsapp).toString();
-      console.log(this.personaDTO);
       this.actualizarValor.emit(this.personaDTO);
     }
 }

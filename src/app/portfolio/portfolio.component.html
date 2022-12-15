@@ -1,3 +1,11 @@
+<div style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%); color:aliceblue;" *ngIf="loading">
+    <div class="d-flex justify-content-center mb-2">
+        <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status">
+        </div>
+    </div>
+    <span style="text-align: center; vertical-align: middle;"><strong>Recopilando información...</strong></span>
+</div>
+<div *ngIf="!loading">
 <app-encabezado></app-encabezado>
 <app-sidebar></app-sidebar>
 <app-info-contacto></app-info-contacto>
@@ -9,4 +17,4 @@
 <app-conocimientos></app-conocimientos>
 <app-idiomas></app-idiomas>
 <app-experiencia-laboral></app-experiencia-laboral>
-
+</div>

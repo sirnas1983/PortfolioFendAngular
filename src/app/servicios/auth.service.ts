@@ -8,16 +8,16 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   currentUser : BehaviorSubject<any>;
 
   constructor(private http: HttpClient) { 
-    this.currentUser = new BehaviorSubject<any>("{}");
+    this.currentUser = new BehaviorSubject<any>('');
   }
 
   login(usuario : string): Observable<any> {
@@ -25,9 +25,5 @@ export class AuthService {
       this.currentUser.next(data);
       return data;
     }));
-  }
-
-  updateCurrentUser(newValue : String){
-    this.currentUser.next(newValue);
   }
 }

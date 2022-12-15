@@ -3,6 +3,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 import { Idioma } from '../interfaces'
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { AuthService } from '../servicios/auth.service';
+import { ViewportScroller } from '@angular/common';
 
 
 @Component({
@@ -44,7 +45,9 @@ export class IdiomasComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private authService : AuthService) {
+    private authService : AuthService,
+    private scroller : ViewportScroller
+    ) {
       this.loading=false; 
       this.datos.datos.subscribe(data=>{
         this.idiomas = data.listaIdiomas;
@@ -81,6 +84,7 @@ export class IdiomasComponent implements OnInit {
   }
 
   modifyComponent(contenido : Idioma){
+    this.scroller.scrollToAnchor('language-card');
     contenido.id = this.id;
     this.loading = true;
     this.showForm = false;

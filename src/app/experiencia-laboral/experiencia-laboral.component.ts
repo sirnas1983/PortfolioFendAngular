@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Experiencia } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
@@ -49,7 +50,9 @@ export class ExperienciaLaboralComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private authService : AuthService) {
+    private authService : AuthService,
+    private scroller : ViewportScroller
+    ) {
       this.loading = false; 
       this.datos.datos.subscribe(data=>{
         this.experiencias = data.listaExperiencias; 
@@ -85,6 +88,7 @@ export class ExperienciaLaboralComponent implements OnInit {
   }
   
   modifyComponent(contenido : Experiencia){
+    this.scroller.scrollToAnchor('expertize-card');
     contenido.id = this.id;
     this.showForm = false;
     this.loading = true;
