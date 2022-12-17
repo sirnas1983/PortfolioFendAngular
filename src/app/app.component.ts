@@ -21,8 +21,10 @@ export class AppComponent {
   
   ngOnInit(): void {
     this.loading = true;
+    this.authService.isLoggin.next(true);
     this.datos.obtenerDatos().subscribe(data => {
       this.datos.datos.next(data);
+      this.authService.isLoggin.next(false);
       this.loading = false;
     },
     error =>{
