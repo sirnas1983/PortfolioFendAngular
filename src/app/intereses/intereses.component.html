@@ -18,12 +18,12 @@
         <span *ngFor="let interes of intereses">
           <button class="pt-1 rounded bg-white" clickable="none">
             {{interes.nombre}}
-            <button class="btn fa-solid fa-trash-can fa-sm float-end pt-2" (click)="deleteItem(interes)" *ngIf="validate">
+            <button class="btn fa-solid fa-trash-can fa-sm float-end pt-2" (click)="deleteItem(interes)" *ngIf="usuarioAutenticado">
             </button>
           </button>
         </span>
       </div>
-      <a *ngIf="validate" class="bg-dark p-2">
+      <a *ngIf="usuarioAutenticado" class="bg-dark p-2">
         <button type="button" id="btn-agregar" class="btn fa-solid fa-lg fa-add float-end" (click)="addItem()">
         </button>
       </a>

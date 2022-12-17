@@ -11,7 +11,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 export class InfoContactoComponent implements OnInit {
 
   persona : Persona = new Persona();
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
  
   constructor(
     private datos:ObtenerDatosService,
@@ -21,9 +21,9 @@ export class InfoContactoComponent implements OnInit {
       })
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
-          this.validate = true;
+          this.usuarioAutenticado = true;
         } else {
-          this.validate = false;
+          this.usuarioAutenticado = false;
         }
       })
     }

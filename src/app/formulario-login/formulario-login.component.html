@@ -24,7 +24,7 @@
             <label for="password" class="form-label">Contraseña:</label>
         <div class="input-group mb-3">
             
-            <input [type]="show ? 'text' : 'password'" 
+            <input [type]="showPass ? 'text' : 'password'" 
                 autocomplete="current-password" 
                 formControlName="password" 
                 class="form-control" 
@@ -33,7 +33,7 @@
             >
             <span class="input-group-text" id="basic-addon1">
                 <button (click)="showPassword($event)" 
-                    [class]="{'fa-eye': !show, 'fa-eye-slash': show}" class="btn fa-solid"
+                    [class]="{'fa-eye': !showPass, 'fa-eye-slash': showPass}" class="btn fa-solid"
                 >
                 </button>
             </span>
@@ -44,22 +44,22 @@
             </div>
         </div>
         
-        <div class="row">
-            <div class="col-sm-6 mb-2">
-                <button type="submit" 
-                    class="btn btn-primary" 
-                    style="width: 100%;" 
-                    [ngClass]="{'disabled': Password?.errors || Email?.errors || isLoggedIn }"
-                >Iniciar Sesión</button>
-            </div>
-            <div class="col-sm-6 mb-2" >
-                <a>
-                    <button class="btn btn-danger" style="width: 100%;" (click)="cancel()">Volver</button>
-                </a>
-            </div>
+        <div *ngIf="!isLoggedIn">
+            <button type="submit" 
+                class="col-sm-6 mb-2 btn btn-primary" 
+                style="width: 100%;"
+                [ngClass]="{'disabled': Password?.errors || Email?.errors || isLoggedIn }">
+                Iniciar Sesión
+            </button>
         </div>
-        <div *ngIf="isLoggedIn">
-            <p class="text-danger">Usted ya se encuentra logueado</p>
+        <div>
+            <button type="button" 
+                class="col-sm-6 mb-2 btn btn-secondary"
+                style="width: 100%;" 
+                (click)="volver()">
+                Volver
+            </button>
+            <p class="text-danger" *ngIf="isLoggedIn">Usted ya se encuentra logueado</p>
         </div>
         <app-loader style="color:aliceblue;" *ngIf="loading">
         </app-loader>

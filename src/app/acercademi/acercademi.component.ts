@@ -12,10 +12,8 @@ export class AcercademiComponent implements OnInit {
 
   persona = new Persona();
   id = 1;
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
   isHidden = false;
-  editText : string = "";
-  edit : boolean = false;
 
   constructor(
     private datos:ObtenerDatosService, 
@@ -26,9 +24,9 @@ export class AcercademiComponent implements OnInit {
         })
         this.authService.currentUser.subscribe(data=>{
           if (data && data.accessToken){
-            this.validate = true;
+            this.usuarioAutenticado = true;
           } else {
-            this.validate = false;
+            this.usuarioAutenticado = false;
           }
         })
       }

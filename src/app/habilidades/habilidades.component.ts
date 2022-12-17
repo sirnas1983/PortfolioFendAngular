@@ -19,7 +19,7 @@ export class HabilidadesComponent implements OnInit {
   loading : boolean;
   id = 0;
   isHidden = false;
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
   showForm : boolean = false;
   skills : Skill[] = [];
   softskills : Skill[] = [];
@@ -45,9 +45,9 @@ export class HabilidadesComponent implements OnInit {
       });
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
-          this.validate = true;
+          this.usuarioAutenticado = true;
         } else {
-          this.validate = false;
+          this.usuarioAutenticado = false;
           this.showForm = false;
         }
       });

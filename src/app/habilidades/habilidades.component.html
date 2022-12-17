@@ -6,7 +6,7 @@
     <div class="col-6">
       <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="portfolio#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <button *ngIf="validate" class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
+      <button *ngIf="usuarioAutenticado" class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
     </div>
   </div>
   <app-habilidades-form 
@@ -26,7 +26,7 @@
             {{soft.nombre}} - {{soft.cantidad}}%
           </div>
           <div class="progress-bar bg-transparent mx-auto" ></div>
-          <button *ngIf="validate" (click)="deleteItem(soft)" class="btn fa-solid fa-trash-can float-end">
+          <button *ngIf="usuarioAutenticado" (click)="deleteItem(soft)" class="btn fa-solid fa-trash-can float-end">
           </button>
         </div>
         </div>
@@ -37,7 +37,7 @@
               {{hard.nombre}} - {{hard.cantidad}}%
             </div>
             <div class="progress-bar bg-transparent mx-auto" ></div>
-            <button *ngIf="validate" (click)="deleteItem(hard)" class="btn fa-solid fa-trash-can float-end">
+            <button *ngIf="usuarioAutenticado" (click)="deleteItem(hard)" class="btn fa-solid fa-trash-can float-end">
             </button>
           </div>
           </div>

@@ -34,7 +34,7 @@ export class TarjetaPrincipalComponent implements OnInit {
   loading : boolean;
   id = 1;
   showForm  = false;
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
   
   apiLista='/ver/persona/1';
   apiAgregar='/agregar/persona';
@@ -52,9 +52,9 @@ export class TarjetaPrincipalComponent implements OnInit {
       })
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
-          this.validate = true;
+          this.usuarioAutenticado = true;
         } else {
-          this.validate = false;
+          this.usuarioAutenticado = false;
           this.showForm = false;
         }
       }) 

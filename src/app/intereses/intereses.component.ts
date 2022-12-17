@@ -14,7 +14,7 @@ export class InteresesComponent implements OnInit {
   
   loading : boolean;
   intereses : Interes[] = [];
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
   showForm : boolean = false;
   interes : Interes = {
     id : 0,
@@ -35,9 +35,9 @@ export class InteresesComponent implements OnInit {
       })
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
-          this.validate = true;
+          this.usuarioAutenticado = true;
         } else {
-          this.validate = false;
+          this.usuarioAutenticado = false;
           this.showForm = false;
         }
       })

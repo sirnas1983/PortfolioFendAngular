@@ -1,4 +1,5 @@
 <div id="navbar" class="navbar navbar-expand-sm bg-dark">
+
   <ul class="container-fluid ms-2" id="navbar-links-list">
       <li class="nav-item navbar-brand">
         <a href="https://argentinaprograma.inti.gob.ar/" target="_blank">
@@ -15,18 +16,33 @@
         <div class="btn-group float-end">
           <a>
             <button type="button" 
-            (click)="login()"
+            (click)="iniciarSesion()"
             class="btn btn-primary float-end" 
-            *ngIf="!validate">
+            *ngIf="!usuarioAutenticado && !isLoggin"
+            style="width: 80px;">
             Login
             </button>
           </a>
           <a>
-            <button type="button" class="btn btn-primary float-end" *ngIf="validate" (click)="cerrarSesion($event)">
+            <button type="button" 
+              class="ms-3 btn btn-danger float-end" 
+              *ngIf="usuarioAutenticado" 
+              (click)="cerrarSesion($event)"
+              style="width: 80px;">
             Logout
             </button>
           </a>
+          <!--<a>
+            <button type="button" 
+              class="ms-3 btn btn-warning float-end" 
+              *ngIf="logginIn" 
+              (click)="volver()"
+              style="width: 100px;">
+            Volver
+            </button>
+          </a>-->
         </div>
       </li>
   </ul>
 </div> 
+

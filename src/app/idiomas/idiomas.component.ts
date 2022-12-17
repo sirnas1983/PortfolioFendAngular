@@ -21,7 +21,7 @@ export class IdiomasComponent implements OnInit {
   id = 0;
   loading : boolean;
   idiomas : Idioma[] = [];
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
   showForm : boolean = false;
   idioma : Idioma = {
     id : 0,
@@ -54,9 +54,9 @@ export class IdiomasComponent implements OnInit {
       });
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
-          this.validate = true;
+          this.usuarioAutenticado = true;
         } else {
-          this.validate = false;
+          this.usuarioAutenticado = false;
           this.showForm = false;
         }
       });

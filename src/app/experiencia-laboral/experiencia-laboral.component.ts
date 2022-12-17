@@ -18,10 +18,11 @@ export class ExperienciaLaboralComponent implements OnInit {
   apiLista='/ver/experiencias/persona/1';
   apiBorrar='/borrar/experiencia/';
   apiAgregar='/agregar/experiencia/1';
+  
   loading : boolean;
   isHidden = false;
   experiencias : Experiencia[] = [];
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
   showForm : boolean = false;
   experiencia : Experiencia = {
     id : 0,
@@ -59,9 +60,9 @@ export class ExperienciaLaboralComponent implements OnInit {
       })
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
-          this.validate = true;
+          this.usuarioAutenticado = true;
         } else {
-          this.validate = false;
+          this.usuarioAutenticado = false;
           this.showForm = false;
         }
       })

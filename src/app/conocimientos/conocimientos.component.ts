@@ -19,7 +19,7 @@ export class ConocimientosComponent implements OnInit {
 
   loading : boolean;
   id = 0;
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
   isHidden : boolean = false;
   conocimientos : Conocimiento[] = [];
   showForm : boolean = false;
@@ -45,9 +45,9 @@ export class ConocimientosComponent implements OnInit {
       })
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
-          this.validate = true;
+          this.usuarioAutenticado = true;
         } else {
-          this.validate = false;
+          this.usuarioAutenticado = false;
           this.showForm = false;
         }
       })

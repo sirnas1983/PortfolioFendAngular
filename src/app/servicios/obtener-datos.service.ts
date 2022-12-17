@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 const URL_API_VER = 'https://backendportfolio.fly.dev/ver/persona/1';
 const URL_API = "https://backendportfolio.fly.dev";
+
 @Injectable({
   providedIn: 'root'
 })

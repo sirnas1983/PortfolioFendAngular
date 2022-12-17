@@ -22,7 +22,7 @@ export class EstudiosComponent implements OnInit {
   showForm : boolean = false;
   isHidden = false;
   estudios : Estudio[] = [];
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
   estudio : Estudio = {
     id : 0,
     titulo : "",
@@ -61,9 +61,9 @@ export class EstudiosComponent implements OnInit {
       })
       this.authService.currentUser.subscribe(data=>{
         if (data && data.accessToken){
-          this.validate = true;
+          this.usuarioAutenticado = true;
         } else {
-          this.validate = false;
+          this.usuarioAutenticado = false;
           this.showForm = false;
         }
       })

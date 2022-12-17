@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -9,9 +10,13 @@ const USER_KEY = 'auth-user';
 })
 export class TokenStorageService {
 
-  constructor() { }
+  isLoggedIn : BehaviorSubject<boolean>;
+  constructor() {
+    this.isLoggedIn = new BehaviorSubject<boolean>(false);
+   }
 
   signOut(): void {
+    this.isLoggedIn.next(false);
     sessionStorage.removeItem(TOKEN_KEY);
     sessionStorage.removeItem(USER_KEY);
   }
@@ -31,7 +36,7 @@ export class TokenStorageService {
   }
 
   public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
+    const user = sessionStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);
     }

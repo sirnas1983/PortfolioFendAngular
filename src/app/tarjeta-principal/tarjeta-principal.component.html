@@ -7,7 +7,7 @@
       <div class="profile-image">
         <img *ngIf="persona.foto" id="profile-image" [src]="persona.foto" alt="Foto de perfil">
         <div class="btn">
-          <button *ngIf="validate" 
+          <button *ngIf="usuarioAutenticado" 
             class="btn" 
             style="margin-left: -20px;" 
             (click)="showFormMethod(persona)">

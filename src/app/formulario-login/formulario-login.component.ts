@@ -16,7 +16,7 @@ export class FormularioLoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-  show = false;
+  showPass = false;
   loading : boolean;
 
 
@@ -27,6 +27,7 @@ export class FormularioLoginComponent implements OnInit {
     private authService : AuthService,
     ) 
     {
+      this.authService.isLoggin.next(true);
       this.loading=false; 
       this.form = this.formBuilder.group(
         {
@@ -61,6 +62,7 @@ export class FormularioLoginComponent implements OnInit {
           this.isLoggedIn = true;
           this.roles = this.tokenStorage.getUser().roles;
           this.loading = false;
+          this.authService.isLoggin.next(false);
           this.ruta.navigate(["/portfolio"]);
         },
         error => {
@@ -85,10 +87,11 @@ export class FormularioLoginComponent implements OnInit {
 
   showPassword(event : Event) {
     event.preventDefault();
-    this.show = !this.show;
+    this.showPass = !this.showPass;
   }
 
-  cancel(){
+  volver(){
+    this.authService.isLoggin.next(false);
     this.ruta.navigate(["/portfolio"]);
   }
 }

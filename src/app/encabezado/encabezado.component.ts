@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, SimpleChange } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
 import { TokenStorageService } from '../servicios/token-storage.service';
@@ -11,18 +11,24 @@ import { TokenStorageService } from '../servicios/token-storage.service';
 
 export class EncabezadoComponent implements OnInit {
 
-  validate : boolean = false;
+  usuarioAutenticado : boolean = false;
+  isLoggedIn : boolean;
+  isLoggin : boolean = false;
 
   constructor( 
               private authService : AuthService,
               private tokenStorage : TokenStorageService,
               private ruta : Router)
               { 
+                this.authService.isLoggin.subscribe(data=>{
+                  this.isLoggin = data;
+                })
+                this.isLoggedIn = false;
                 this.authService.currentUser.subscribe(data=>{
                   if (data && data.accessToken){
-                    this.validate = true;
+                    this.usuarioAutenticado = true;
                   } else {
-                    this.validate = false;
+                    this.usuarioAutenticado = false;
                   }
                 });
 
@@ -31,7 +37,7 @@ export class EncabezadoComponent implements OnInit {
   ngOnInit(): void {
   }
 
- login(){
+  iniciarSesion(){
   this.ruta.navigate(['/login']);
  }
 
@@ -41,4 +47,7 @@ export class EncabezadoComponent implements OnInit {
     this.authService.currentUser.next(null);    
   }
 
+  volver(){
+    this.ruta.navigate(["/portfolio"]);
+  }
 }
