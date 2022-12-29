@@ -33,7 +33,7 @@
             >
             <span class="input-group-text" id="basic-addon1">
                 <button (click)="showPassword($event)" 
-                    [class]="{'fa-eye': !showPass, 'fa-eye-slash': showPass}" class="btn fa-solid"
+                    [ngClass]="{'fa-eye': !showPass, 'fa-eye-slash': showPass}" class="btn fa-solid"
                 >
                 </button>
             </span>

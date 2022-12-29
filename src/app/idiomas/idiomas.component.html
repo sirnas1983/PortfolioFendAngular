@@ -4,7 +4,12 @@
     <div class="col-6">
       <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
       <a href="portfolio#info-foto" class="btn float-end fa-solid fa-home"></a>
-      <button *ngIf="usuarioAutenticado"  class="btn float-end fa-solid fa-add" (click)="addItem()"></button>
+      <button 
+        *ngIf="usuarioAutenticado"
+        [ngClass]="{'fa-add': !showForm, 'fa-minus': showForm}" 
+        class="btn float-end fa-solid" 
+        (click)="addItem()">
+      </button>
     </div>
   </div>
   <app-idiomas-form 
@@ -32,7 +37,8 @@
     </div>
     <div class="col-sm-2">           
       <button *ngIf="usuarioAutenticado" class="btn ms-3 float-end" (click)="editItem(idioma)">
-        <span class="fa-solid fa-lg fa-pencil"></span>
+        <span class="fa-solid fa-lg" [ngClass]="{'fa-pencil': !showForm, 'fa-close': showForm}">
+        </span>
       </button>
       <button *ngIf="usuarioAutenticado" class="btn ms-5 float-end" (click)="deleteItem(idioma)">
         <span class="fa-solid fa-lg fa-trash-can" ></span>

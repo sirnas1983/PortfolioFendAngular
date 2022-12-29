@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, SimpleChange } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
+import { ObtenerDatosService} from '../servicios/obtener-datos.service'
 import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class EncabezadoComponent implements OnInit {
   constructor( 
               private authService : AuthService,
               private tokenStorage : TokenStorageService,
-              private ruta : Router)
+              private ruta : Router
+              )
               { 
                 this.authService.isLoggin.subscribe(data=>{
                   this.isLoggin = data;
@@ -35,6 +37,7 @@ export class EncabezadoComponent implements OnInit {
               }
 
   ngOnInit(): void {
+    
   }
 
   iniciarSesion(){

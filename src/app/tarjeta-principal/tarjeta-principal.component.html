@@ -11,9 +11,8 @@
             class="btn" 
             style="margin-left: -20px;" 
             (click)="showFormMethod(persona)">
-              <span 
-                class="fa-solid fa-lg fa-pencil">
-              </span>
+            <span class="fa-solid fa-lg" [ngClass]="{'fa-pencil': !showForm, 'fa-close': showForm}">
+            </span>
           </button>
         </div>
       </div>

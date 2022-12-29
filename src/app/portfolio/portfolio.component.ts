@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../servicios/auth.service';
-import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -9,7 +7,7 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor(private datos: ObtenerDatosService){
+  constructor(){
   
   }
   

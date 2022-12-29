@@ -82,7 +82,6 @@ export class HabilidadesComponent implements OnInit {
       this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
         data => {
           this.datos.obtenerDatos().subscribe(data=>{
-            
           })
           this.loading = false;
           this.id = 0;

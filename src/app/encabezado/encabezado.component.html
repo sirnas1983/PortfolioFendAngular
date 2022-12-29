@@ -7,14 +7,14 @@
           class="light-icon rounded navbar-images">
         </a>
       </li>
-      <li class="nav-item float-start navbar-images">
+      <li class="nav-item float-start navbar-images m3-1">
         <h4 class="vertical-align text-white">#YoProgramo</h4>
       </li>
       <li class="nav-item mx-auto">
       </li>   
       <li class="nav-item">
         <div class="btn-group float-end">
-          <a>
+          <!--<a>-->
             <button type="button" 
             (click)="iniciarSesion()"
             class="btn btn-primary float-end" 
@@ -22,16 +22,16 @@
             style="width: 80px;">
             Login
             </button>
-          </a>
-          <a>
+          <!--</a>-->
+          <!--<a>-->
             <button type="button" 
-              class="ms-3 btn btn-danger float-end" 
+              class="btn btn-danger float-end" 
               *ngIf="usuarioAutenticado" 
               (click)="cerrarSesion($event)"
               style="width: 80px;">
             Logout
             </button>
-          </a>
+          <!--</a>-->
           <!--<a>
             <button type="button" 
               class="ms-3 btn btn-warning float-end" 
