@@ -64,13 +64,21 @@ export class TarjetaPrincipalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  edad (){
+  edad () {
     const hoy : Date = new Date();
     const nacimiento : Date = new Date(this.persona.fechaNacimiento);
-    if ((nacimiento.getMonth() < hoy.getMonth()) || (hoy.getMonth() == nacimiento.getMonth() && nacimiento.getDate() <= hoy.getDate())) {
-      return Math.floor(hoy.getFullYear() - nacimiento.getFullYear())
-    } 
-      return Math.floor(hoy.getFullYear() - nacimiento.getFullYear() + 1)
+    const edad = hoy.getFullYear() - nacimiento.getFullYear();
+    if (hoy.getFullYear() < nacimiento.getFullYear()){
+      return 0;
+    } else if (hoy.getMonth() < nacimiento.getMonth()){
+      return edad - 1;
+    } else if (hoy.getMonth() > nacimiento.getMonth()){
+      return edad;
+    } else if (hoy.getDate() === nacimiento.getDate()){
+      return edad;
+    } else {
+      return edad -1;
+    }
   }
 
   showFormMethod(item : Persona){
