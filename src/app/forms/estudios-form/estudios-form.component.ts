@@ -9,6 +9,7 @@ import { Estudio } from 'src/app/interfaces';
 })
 export class EstudiosFormComponent implements OnInit {
   @Output() actualizarValor = new EventEmitter<Estudio>();
+  @Input() isLoading : boolean = false;
   @Input() editarEstudio : Estudio = {
     id:0,
     titulo : "",
@@ -35,12 +36,16 @@ export class EstudiosFormComponent implements OnInit {
   constructor(private fb : FormBuilder) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnChanges():void{
     this.estudiosForm.controls.titulo.setValue(this.editarEstudio.titulo);
     this.estudiosForm.controls.institucion.setValue(this.editarEstudio.institucion);
     this.estudiosForm.controls.lugar.setValue(this.editarEstudio.lugar);
     this.estudiosForm.controls.nivel.setValue(this.editarEstudio.nivel);
     this.estudiosForm.controls.fechaInicio.setValue(this.editarEstudio.fechaInicio);
-      this.estudiosForm.controls.fechaFin.setValue(this.editarEstudio.fechaFin);
+    this.estudiosForm.controls.fechaFin.setValue(this.editarEstudio.fechaFin);
     this.estudiosForm.controls.promedio.setValue(this.editarEstudio.promedio);
     this.estudiosForm.controls.link.setValue(this.editarEstudio.link);
   }
@@ -50,6 +55,4 @@ export class EstudiosFormComponent implements OnInit {
     this.estudiosForm.reset();
     this.actualizarValor.emit(this.editarEstudio);
   }
-
-
 }

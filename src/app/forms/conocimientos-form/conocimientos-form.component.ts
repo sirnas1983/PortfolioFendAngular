@@ -2,13 +2,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Conocimiento } from 'src/app/interfaces';
 
+
 @Component({
   selector: 'app-conocimientos-form',
   templateUrl: './conocimientos-form.component.html',
   styleUrls: ['./conocimientos-form.component.css']
 })
 export class ConocimientosFormComponent implements OnInit {
+
   @Output() actualizarValor = new EventEmitter<Conocimiento>();
+  @Input() isLoading : boolean = false;
   @Input() editarConocimiento : Conocimiento = {
     id:0,
     nombre : "",
@@ -31,6 +34,10 @@ conocimientosForm = this.fb.group({
   constructor(private fb : FormBuilder) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnChanges() : void{
     this.conocimientosForm.controls.nombre.setValue(this.editarConocimiento.nombre);
     this.conocimientosForm.controls.institucion.setValue(this.editarConocimiento.institucion);
     this.conocimientosForm.controls.area.setValue(this.editarConocimiento.area);

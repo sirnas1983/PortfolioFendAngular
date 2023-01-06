@@ -3,7 +3,6 @@ import { ObtenerDatosService } from '../servicios/obtener-datos.service';
 import { Idioma } from '../interfaces'
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { AuthService } from '../servicios/auth.service';
-import { ViewportScroller } from '@angular/common';
 
 
 @Component({
@@ -22,7 +21,6 @@ export class IdiomasComponent implements OnInit {
   loading : boolean;
   idiomas : Idioma[] = [];
   usuarioAutenticado : boolean = false;
-  showForm : boolean = false;
   idioma : Idioma = {
     id : 0,
     idioma : "",
@@ -45,8 +43,7 @@ export class IdiomasComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
-    private authService : AuthService,
-    private scroller : ViewportScroller
+    private authService : AuthService
     ) {
       this.loading=false; 
       this.datos.datos.subscribe(data=>{
@@ -57,7 +54,6 @@ export class IdiomasComponent implements OnInit {
           this.usuarioAutenticado = true;
         } else {
           this.usuarioAutenticado = false;
-          this.showForm = false;
         }
       });
     }
@@ -73,31 +69,26 @@ export class IdiomasComponent implements OnInit {
   }
 
   addItem(){
-    this.showForm = !this.showForm;
     this.reset()
   }
 
   editItem(idioma : Idioma){
     this.idioma = idioma;
     this.id = idioma.id;
-    this.showForm = !this.showForm;
   }
 
   modifyComponent(contenido : Idioma){
-    this.scroller.scrollToAnchor('language-card');
     contenido.id = this.id;
     this.loading = true;
-    this.showForm = false;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
         this.datos.obtenerDatos().subscribe(data=>{
-          
         })
+        document.getElementById("idiomasModalCloseButton")?.click();
         this.loading = false;
         this.id = 0;
       },
       error =>  {
-        this.showForm = true;
         this.loading = false;
         alert("Error en servidor, reintentelo mas tarde!");
         return;

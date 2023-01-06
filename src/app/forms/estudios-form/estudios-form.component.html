@@ -1,86 +1,101 @@
-<form id="estudios-form"
-class="was-validated" 
-[formGroup]="estudiosForm"
-(ngSubmit)="modifyComponent()"
->
-    <label for="estudios-titulo">Titulo</label><br>
-    <input
-        type="string" 
-        id="estudios-titulo" 
-        style="width:100%" 
-        class="form-control" 
-        required
-        formControlName="titulo"><br>
+<div class="modal fade" id="estudiosModal" tabindex="-1" z-index="10" aria-labelledby="estudiosModalModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="estudiosModalLabel">Formulario Estudios</h5>
+            <button type="button" id="estudiosModalCloseButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
 
-    <label for="estudios-institucion">Establecimiento</label><br>
-    <input
-        type="string" 
-        id="estudios-institucion" 
-        style="width:100%" 
-        class="form-control" 
-        required
-        formControlName="institucion"><br>
+        <div class="modal-body">
+            <form id="estudios-form"
+            class="was-validated" 
+            [formGroup]="estudiosForm"
+            (ngSubmit)="modifyComponent()"
+            >
+                <label for="estudios-titulo">Titulo</label><br>
+                <input
+                    type="string" 
+                    id="estudios-titulo" 
+                    style="width:100%" 
+                    class="form-control" 
+                    required
+                    formControlName="titulo"><br>
+
+                <label for="estudios-institucion">Establecimiento</label><br>
+                <input
+                    type="string" 
+                    id="estudios-institucion" 
+                    style="width:100%" 
+                    class="form-control" 
+                    required
+                    formControlName="institucion"><br>
 
 
-    <label for="estudios-lugar">Lugar</label><br>
-    <input
-        type="string" 
-        id="estudios-lugar" 
-        style="width:100%" 
-        class="form-control" 
-        formControlName="lugar"><br>
+                <label for="estudios-lugar">Lugar</label><br>
+                <input
+                    type="string" 
+                    id="estudios-lugar" 
+                    style="width:100%" 
+                    class="form-control" 
+                    formControlName="lugar"><br>
 
-    <label for="estudios-nivel">Nivel educativo</label><br>
-    <input
-        type="string" 
-        id="estudios-nivel" 
-        style="width:100%" 
-        class="form-control" 
-        required
-        formControlName="nivel"><br>
+                <label for="estudios-nivel">Nivel educativo</label><br>
+                <input
+                    type="string" 
+                    id="estudios-nivel" 
+                    style="width:100%" 
+                    class="form-control" 
+                    required
+                    formControlName="nivel"><br>
 
-    <label for="estudios-fecha-inicio">Fecha de Inicio</label><br>
-    <input
-        type="date" 
-        id="estudios-fecha-inicio"
-        style="width:100%" 
-        class="form-control" 
-        required
-        formControlName="fechaInicio"><br>
+                <label for="estudios-fecha-inicio">Fecha de Inicio</label><br>
+                <input
+                    type="date" 
+                    id="estudios-fecha-inicio"
+                    style="width:100%" 
+                    class="form-control" 
+                    required
+                    formControlName="fechaInicio"><br>
 
-    <label for="estudios-fecha-fin">Fecha de Finalizacion</label><br>
-    <input
-        type="date" 
-        id="estudios-fecha-fin" 
-        style="width:100%" 
-        class="form-control" 
-        formControlName="fechaFin"><br>
+                <label for="estudios-fecha-fin">Fecha de Finalizacion</label><br>
+                <input
+                    type="date" 
+                    id="estudios-fecha-fin" 
+                    style="width:100%" 
+                    class="form-control" 
+                    formControlName="fechaFin"><br>
 
-    <label for="estudios-promedio">Promedio</label><br>
-    <input
-        type="number"
-        step="0.01"
-        max="10"
-        min="0" 
-        style="width:100%" 
-        id="estudios-promedio" 
-        class="form-control" 
-        formControlName="promedio"><br>
+                <label for="estudios-promedio">Promedio</label><br>
+                <input
+                    type="number"
+                    step="0.01"
+                    max="10"
+                    min="0" 
+                    style="width:100%" 
+                    id="estudios-promedio" 
+                    class="form-control" 
+                    formControlName="promedio"><br>
 
-    <label for="estudios-link">Link de institucion</label><br>
-    <input
-        type="text"
-        id="estudios-link" 
-        style="width:100%" 
-        class="form-control" 
-        formControlName="link"><br>
+                <label for="estudios-link">Link de institucion</label><br>
+                <input
+                    type="text"
+                    id="estudios-link" 
+                    style="width:100%" 
+                    class="form-control" 
+                    formControlName="link"><br>
 
-    
-    <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="!estudiosForm.valid"
-    >
-    Guardar
-    </button>
-</form>
+                
+                <button
+                    type="submit"
+                    class="btn m-3 btn-primary"
+                    [disabled]="!estudiosForm.valid"
+                >
+                Guardar
+                </button>
+                <app-loader class="m-2" *ngIf="isLoading"></app-loader>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>

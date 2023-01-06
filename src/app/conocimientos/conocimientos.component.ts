@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Conocimiento } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
@@ -17,6 +16,7 @@ export class ConocimientosComponent implements OnInit {
   apiBorrar='/borrar/conocimiento/';
   apiAgregar='/agregar/conocimiento/1';
 
+  $ : any
   loading : boolean;
   id = 0;
   usuarioAutenticado : boolean = false;
@@ -37,7 +37,6 @@ export class ConocimientosComponent implements OnInit {
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
     private authService : AuthService,
-    private scroller : ViewportScroller
     ) { 
       this.loading = false;
       this.datos.datos.subscribe(data=>{
@@ -75,27 +74,25 @@ export class ConocimientosComponent implements OnInit {
   }
 
   newItem() {
-    this.showForm = !this.showForm;
     this.reset();
   }
   
   editItem(conocimiento : Conocimiento){
-    this.showForm = !this.showForm;
     this.id = conocimiento.id;
     this.conocimiento = conocimiento;
   }
 
   modifyComponent(contenido : Conocimiento){
-    this.scroller.scrollToAnchor('course-card');
     contenido.id = this.id;
-    this.showForm = false;
     this.loading = true;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
         this.datos.obtenerDatos().subscribe(data=>{
           this.loading = false;
+          document.getElementById("conocimientosModalCloseButton")?.click();
         })
         this.id = 0;
+        
       },
       error =>  {
         this.showForm = true;
@@ -103,7 +100,7 @@ export class ConocimientosComponent implements OnInit {
         alert("Error en servidor, reintentelo mas tarde!")
         return;
       }
-    )
+    );
   }
 
   deleteItem(contenido : Conocimiento){

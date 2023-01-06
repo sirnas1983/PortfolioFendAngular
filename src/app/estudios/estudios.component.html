@@ -8,22 +8,20 @@
       <a href="portfolio#info-foto" class="btn float-end fa-solid fa-home"></a>
       <button 
         *ngIf="usuarioAutenticado" 
-        [ngClass]="{'fa-add': !showForm, 'fa-minus': showForm}" 
-        class="btn float-end fa-solid" 
+        data-bs-toggle="modal" 
+        data-bs-target="#estudiosModal" 
+        class="btn float-end fa-solid fa-add" 
         (click)="addItem()">
       </button>
     </div>
   </div>
   <app-estudios-form 
-    class="mb-5"
-    *ngIf="showForm" 
     [editarEstudio]="estudio"
+    [isLoading]="loading"
     (actualizarValor)="modifyComponent($event)"
     id="estudios-form"
     >
   </app-estudios-form>
-  <app-loader *ngIf="loading">
-  </app-loader>
   <div *ngIf="!isHidden">
     <div *ngFor="let estudio of estudios" class="row lh-1 mt-4">
     <hr>
@@ -47,9 +45,14 @@
     </ul>
   </div>
   <div class="col-sm-2">           
-    <button *ngIf="usuarioAutenticado" class="btn ms-3 float-end" (click)="editItem(estudio)">
-      <span class="fa-solid fa-lg" [ngClass]="{'fa-pencil': !showForm, 'fa-close': showForm}">
-      </span>
+    <button 
+      *ngIf="usuarioAutenticado" 
+      class="btn ms-3 float-end" 
+      data-bs-toggle="modal" 
+      data-bs-target="#estudiosModal" 
+      (click)="editItem(estudio)">
+        <span class="fa-solid fa-lg fa-pencil">
+        </span>
     </button>
     <button *ngIf="usuarioAutenticado" class="btn ms-5 float-end" (click)="deleteItem(estudio)">
       <span class="fa-solid fa-lg fa-trash-can" ></span>

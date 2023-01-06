@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
-import { Persona, Skill } from '../interfaces';
+import { Skill } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { AuthService } from '../servicios/auth.service';
-import { resetFakeAsyncZone } from '@angular/core/testing';
 
 @Component({
   selector: 'app-habilidades',
@@ -20,7 +19,6 @@ export class HabilidadesComponent implements OnInit {
   id = 0;
   isHidden = false;
   usuarioAutenticado : boolean = false;
-  showForm : boolean = false;
   skills : Skill[] = [];
   softskills : Skill[] = [];
   hardskills : Skill[] = []; 
@@ -48,7 +46,6 @@ export class HabilidadesComponent implements OnInit {
           this.usuarioAutenticado = true;
         } else {
           this.usuarioAutenticado = false;
-          this.showForm = false;
         }
       });
     }
@@ -73,21 +70,19 @@ export class HabilidadesComponent implements OnInit {
 
   addItem(){
     this.reset();
-    this.showForm = !this.showForm;
   }
 
     modifyComponent(contenido : Skill){
       this.loading = true;
-      this.showForm = false;
       this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
         data => {
           this.datos.obtenerDatos().subscribe(data=>{
+          document.getElementById("habilidadesModalCloseButton")?.click();
           })
           this.loading = false;
           this.id = 0;
         },
         error =>  {
-          this.showForm = true;
           this.loading = false;
           alert("Error en servidor, reintentelo mas tarde!")
           return;
@@ -106,7 +101,6 @@ export class HabilidadesComponent implements OnInit {
         },
         error =>{
           this.loading = false;
-          this.showForm = true;
           alert("Error en servidor, reintentelo mas tarde!");
         }
       )

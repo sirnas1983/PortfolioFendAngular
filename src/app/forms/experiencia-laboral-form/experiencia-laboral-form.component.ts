@@ -10,6 +10,7 @@ import { Experiencia } from 'src/app/interfaces';
 export class ExperienciaLaboralFormComponent implements OnInit {
 
   @Output() actualizarValor = new EventEmitter<Experiencia>();
+  @Input() isLoading : boolean = false;
   @Input() editarExperiencia : Experiencia = {
     id:0,
     nombre : "",
@@ -33,6 +34,9 @@ export class ExperienciaLaboralFormComponent implements OnInit {
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges() : void {
     this.experienciasForm.controls.nombre.setValue(this.editarExperiencia.nombre);
     this.experienciasForm.controls.empresa.setValue(this.editarExperiencia.empresa);
     this.experienciasForm.controls.tareas.setValue(this.editarExperiencia.tareas);

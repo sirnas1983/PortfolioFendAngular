@@ -10,6 +10,7 @@ import { Skill } from 'src/app/interfaces';
 export class HabilidadesFormComponent implements OnInit {
 
   @Output() actualizarValor = new EventEmitter<Skill>();
+  @Input() isLoading : boolean = false;
 
   editarHabilidad : Skill = {
     id:0,
@@ -26,10 +27,13 @@ export class HabilidadesFormComponent implements OnInit {
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnChanges():void{
     this.habilidadesForm.controls.nombre.setValue(this.editarHabilidad.nombre);
     this.habilidadesForm.controls.cantidad.setValue(this.editarHabilidad.cantidad);
     this.habilidadesForm.controls.type.setValue(this.editarHabilidad.type);
-    
   }
 
   modifyComponent() {

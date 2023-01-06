@@ -3,24 +3,24 @@
     <div class="col-6"><h3>Cursos y conocimientos</h3></div>
     <div class="col-6">
       <button (click)="desplegar()" class="btn fa-solid float-end fa-chevron-up toggle"></button>
-      <a href="portfolio#info-foto" class="btn float-end fa-solid fa-home"></a>
+      <a href="portfolio#info-foto" class="btn float-end fa-solid fa-home "></a>
       <button *ngIf="usuarioAutenticado" 
-        [ngClass]="{'fa-add': !showForm, 'fa-minus': showForm}" 
-        class="btn float-end fa-solid" 
+        class="btn float-end fa-solid fa-add"
+        data-bs-toggle="modal" 
+        data-bs-target="#conocimientosModal" 
         (click)="newItem()">
       </button>
     </div>
   </div>
-  
+
+
   <app-conocimientos-form 
-    class="mb-5"
-    id="conocimientos-form" 
-    *ngIf="showForm" 
     [editarConocimiento]="conocimiento"
-    (actualizarValor)="modifyComponent($event)">
+    (actualizarValor)="modifyComponent($event)"
+    [isLoading] = "loading">
   </app-conocimientos-form >
-  <app-loader *ngIf="loading">
-  </app-loader>
+
+  
 
   <div *ngIf="!isHidden">
     <div *ngFor="let conocimiento of conocimientos" class="row lh-1 mt-4">
@@ -40,9 +40,12 @@
       <div class="col-sm-2">           
         <button 
           *ngIf="usuarioAutenticado" 
-          class="btn ms-3 float-end" 
-          (click)="editItem(conocimiento)">
-          <span class="fa-solid fa-lg" [ngClass]="{'fa-pencil': !showForm, 'fa-close': showForm}">
+          class="btn ms-3 float-end"
+          (click)="editItem(conocimiento)"
+          data-bs-toggle="modal" 
+          data-bs-target="#conocimientosModal"  
+          >
+          <span class="fa-solid fa-lg fa-pencil">
           </span>
         </button>
         <button *ngIf="usuarioAutenticado" class="btn ms-5 float-end" (click)="deleteItem(conocimiento)">

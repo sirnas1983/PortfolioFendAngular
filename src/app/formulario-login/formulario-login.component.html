@@ -1,4 +1,6 @@
 
+
+
 <div class="col-m-4" style="margin: auto; max-width: 550px;">
     
     <form [formGroup]="form" class="m-5" (ngSubmit)="login($event)">
@@ -33,7 +35,9 @@
             >
             <span class="input-group-text" id="basic-addon1">
                 <button (click)="showPassword($event)" 
-                    [ngClass]="{'fa-eye': !showPass, 'fa-eye-slash': showPass}" class="btn fa-solid"
+                    [ngClass]="{'fa-eye': !showPass, 'fa-eye-slash': showPass}" 
+                    class="btn fa-solid"
+                    tabindex="2"
                 >
                 </button>
             </span>
@@ -48,6 +52,7 @@
             <button type="submit" 
                 class="col-sm-6 mb-2 btn btn-primary" 
                 style="width: 100%;"
+                tabindex="1"
                 [ngClass]="{'disabled': Password?.errors || Email?.errors || isLoggedIn }">
                 Iniciar Sesión
             </button>
@@ -55,7 +60,8 @@
         <div>
             <button type="button" 
                 class="col-sm-6 mb-2 btn btn-secondary"
-                style="width: 100%;" 
+                style="width: 100%;"
+                tabindex="3" 
                 (click)="volver()">
                 Volver
             </button>

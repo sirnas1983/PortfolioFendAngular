@@ -1,65 +1,72 @@
-<form id="idiomas-form"
-class="was-validated" 
-[formGroup]="idiomasForm"
-(ngSubmit)="modifyComponent()"
->
-    <label for="idiomas-idioma">Idioma</label><br>
-    <input
-        type="string" 
-        id="idiomas-idioma" 
-        style="width:100%" 
-        class="form-control" 
-        required
-        formControlName="idioma"><br>
-
-    <label for="idiomas-comprension" required>Oral</label><br>
-    <select required formControlName="oral"
-    style="width:100%" 
-    class="form-control" 
-    >
-        <option disabled>Elija una opcion</option>
-        <option value="Nativo">Nativo</option>
-        <option value="Avanzado">Avanzado</option>
-        <option value="Intermedio">Intermedio</option>
-        <option value="Basico">Basico</option>
-    </select>
-    <br>
-
-    <label for="idiomas-escrito" required>Escrito</label><br>
-    <select required formControlName="escrito"
-    style="width:100%" 
-    class="form-control" 
-    >
-        <option disabled>Elija una opcion</option>
-        <option value="Nativo">Nativo</option>
-        <option value="Avanzado">Avanzado</option>
-        <option value="Intermedio">Intermedio</option>
-        <option value="Basico">Basico</option>
-    </select>
-    <br>
-
-    <label for="idiomas-comprension" required>Comprension</label><br>
-    <select required formControlName="comprension"
-    style="width:100%" 
-    class="form-control" 
-    >
-        <option disabled>Elija una opcion</option>
-        <option value="Nativo">Nativo</option>
-        <option value="Avanzado">Avanzado</option>
-        <option value="Intermedio">Intermedio</option>
-        <option value="Basico">Basico</option>
-    </select>
-    <br>
-
-    <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="!idiomasForm.valid"
-    >
-    <div class="invalid-feedback">Los campos resaltados son obligatorios</div>
-
-    Guardar
-    </button>
-</form>
-
+<div class="modal fade" id="idiomasModal" tabindex="-1" z-index="10" aria-labelledby="idiomasModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="idiomasModalLabel">Formulario Idiomas</h5>
+            <button type="button" id="idiomasModalCloseButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        <div class="modal-body">
+            <form id="idiomas-form"
+            class="was-validated" 
+            [formGroup]="idiomasForm"
+            (ngSubmit)="modifyComponent()"
+            >
+                <label for="idiomas-idioma">Idioma</label><br>
+                <input
+                    type="string" 
+                    id="idiomas-idioma" 
+                    style="width:100%" 
+                    class="form-control" 
+                    required
+                    formControlName="idioma"><br>
+                <label for="idiomas-comprension" required>Oral</label><br>
+                <select required formControlName="oral"
+                style="width:100%" 
+                class="form-control" 
+                >
+                    <option disabled>Elija una opcion</option>
+                    <option value="Nativo">Nativo</option>
+                    <option value="Avanzado">Avanzado</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Basico">Basico</option>
+                </select>
+                <br>
+                <label for="idiomas-escrito" required>Escrito</label><br>
+                <select required formControlName="escrito"
+                style="width:100%" 
+                class="form-control" 
+                >
+                    <option disabled>Elija una opcion</option>
+                    <option value="Nativo">Nativo</option>
+                    <option value="Avanzado">Avanzado</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Basico">Basico</option>
+                </select>
+                <br>
+                <label for="idiomas-comprension" required>Comprension</label><br>
+                <select required formControlName="comprension"
+                style="width:100%" 
+                class="form-control" 
+                >
+                    <option disabled>Elija una opcion</option>
+                    <option value="Nativo">Nativo</option>
+                    <option value="Avanzado">Avanzado</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Basico">Basico</option>
+                </select>
+                <br>
+                <button
+                    type="submit"
+                    class="btn m-3 btn-primary"
+                    [disabled]="!idiomasForm.valid"
+                >
+                <div class="invalid-feedback">Los campos resaltados son obligatorios</div>
+                Guardar
+                </button>
+                <app-loader class="m-2" *ngIf="isLoading"></app-loader>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 

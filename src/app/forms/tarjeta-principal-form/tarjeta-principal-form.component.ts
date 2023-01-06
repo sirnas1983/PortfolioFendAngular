@@ -15,6 +15,7 @@ import { ObtenerDatosService } from 'src/app/servicios/obtener-datos.service';
 export class TarjetaPrincipalFormComponent implements OnInit {
   
   @Output() actualizarValor = new EventEmitter<PersonaDTO>();
+  @Input() isLoading : boolean = false;
   @Input() editarPersona : Persona = new Persona();
 
 
@@ -61,21 +62,24 @@ principalForm = this.fb.group({
         })
       }
   
+    ngOnChanges():void{
+      this.principalForm.controls.nombre.setValue(this.editarPersona.nombre);
+      this.principalForm.controls.ocupacion.setValue(this.editarPersona.ocupacion);
+      this.principalForm.controls.descripcion.setValue(this.editarPersona.descripcion);
+      this.principalForm.controls.foto.setValue(this.editarPersona.foto);
+      this.principalForm.controls.banner.setValue(this.editarPersona.banner);
+      this.principalForm.controls.acercademi.setValue(this.editarPersona.acercademi);
+      this.principalForm.controls.fechaNacimiento.setValue(this.editarPersona.fechaNacimiento);
+      this.principalForm.controls.whatsapp.setValue(this.editarPersona.whatsapp);
+      this.principalForm.controls.email.setValue(this.editarPersona.email);
+      this.principalForm.controls.repositorio.setValue(this.editarPersona.repositorio);
+      this.principalForm.controls.facebook.setValue(this.editarPersona.facebook);
+      this.principalForm.controls.instagram.setValue(this.editarPersona.instagram);
+      this.principalForm.controls.tweeter.setValue(this.editarPersona.tweeter);
+    }
+
     ngOnInit(): void {
-    this.principalForm.controls.nombre.setValue(this.editarPersona.nombre);
-    this.principalForm.controls.ocupacion.setValue(this.editarPersona.ocupacion);
-    this.principalForm.controls.descripcion.setValue(this.editarPersona.descripcion);
-    this.principalForm.controls.foto.setValue(this.editarPersona.foto);
-    this.principalForm.controls.banner.setValue(this.editarPersona.banner);
-    this.principalForm.controls.acercademi.setValue(this.editarPersona.acercademi);
-    this.principalForm.controls.fechaNacimiento.setValue(this.editarPersona.fechaNacimiento);
-    this.principalForm.controls.whatsapp.setValue(this.editarPersona.whatsapp);
-    this.principalForm.controls.email.setValue(this.editarPersona.email);
-    this.principalForm.controls.repositorio.setValue(this.editarPersona.repositorio);
-    this.principalForm.controls.facebook.setValue(this.editarPersona.facebook);
-    this.principalForm.controls.instagram.setValue(this.editarPersona.instagram);
-    this.principalForm.controls.tweeter.setValue(this.editarPersona.tweeter);
-  }
+    }
 
     modifyComponent() {
       this.personaDTO.acercademi = String(this.principalForm.value.acercademi).toString();

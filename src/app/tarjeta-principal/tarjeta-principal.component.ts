@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Persona, PersonaDTO } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
@@ -33,7 +32,6 @@ export class TarjetaPrincipalComponent implements OnInit {
 
   loading : boolean;
   id = 1;
-  showForm  = false;
   usuarioAutenticado : boolean = false;
   
   apiLista='/ver/persona/1';
@@ -42,8 +40,7 @@ export class TarjetaPrincipalComponent implements OnInit {
   constructor(
     private datos:ObtenerDatosService, 
     private actualizar : ActualizarDatosService,
-    private authService : AuthService,
-    private scroller : ViewportScroller
+    private authService : AuthService
    ) 
     {
       this.loading = false;
@@ -55,7 +52,6 @@ export class TarjetaPrincipalComponent implements OnInit {
           this.usuarioAutenticado = true;
         } else {
           this.usuarioAutenticado = false;
-          this.showForm = false;
         }
       }) 
   }
@@ -82,22 +78,19 @@ export class TarjetaPrincipalComponent implements OnInit {
   }
 
   showFormMethod(item : Persona){
-    this.showForm = !this.showForm;
   }
 
   modifyComponent(contenido : PersonaDTO){
-    this.scroller.scrollToAnchor('info-foto');
     contenido.id = 1;
     this.loading = true;
-    this.showForm = false;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
         this.datos.obtenerDatos().subscribe(data=>{
         })
+        document.getElementById("principalModalCloseButton")?.click();
         this.loading = false;
       },
       error =>  {
-        this.showForm = true;
         this.loading = false;
         alert("Error en servidor, reintentelo mas tarde!");
         return;

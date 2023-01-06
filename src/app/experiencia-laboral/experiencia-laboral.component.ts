@@ -1,4 +1,3 @@
-import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Experiencia } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
@@ -23,7 +22,6 @@ export class ExperienciaLaboralComponent implements OnInit {
   isHidden = false;
   experiencias : Experiencia[] = [];
   usuarioAutenticado : boolean = false;
-  showForm : boolean = false;
   experiencia : Experiencia = {
     id : 0,
     nombre : "",
@@ -52,7 +50,6 @@ export class ExperienciaLaboralComponent implements OnInit {
     private datos:ObtenerDatosService, 
     private actualizar:ActualizarDatosService,
     private authService : AuthService,
-    private scroller : ViewportScroller
     ) {
       this.loading = false; 
       this.datos.datos.subscribe(data=>{
@@ -63,7 +60,6 @@ export class ExperienciaLaboralComponent implements OnInit {
           this.usuarioAutenticado = true;
         } else {
           this.usuarioAutenticado = false;
-          this.showForm = false;
         }
       })
     }
@@ -78,30 +74,26 @@ export class ExperienciaLaboralComponent implements OnInit {
   }
 
   addItem(){
-    this.showForm = !this.showForm;
     this.reset()
   }
 
   editItem(contenido : Experiencia){
     this.experiencia = contenido;
     this.id = contenido.id;
-    this.showForm = !this.showForm;
   }
   
   modifyComponent(contenido : Experiencia){
-    this.scroller.scrollToAnchor('expertize-card');
     contenido.id = this.id;
-    this.showForm = false;
     this.loading = true;
     this.actualizar.actualizarDatos(this.apiAgregar, contenido).subscribe(
       data => {
         this.datos.obtenerDatos().subscribe(data=>{
         this.loading = false;
+        document.getElementById("experienciasModalCloseButton")?.click();
         })
         this.id = 0;
       },
       error =>  {
-        this.showForm = true;
         this.loading = false;
         alert("Error en servidor, reintentelo mas tarde!")
         return;

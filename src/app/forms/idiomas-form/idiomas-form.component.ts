@@ -11,6 +11,7 @@ import { ActualizarDatosService } from 'src/app/servicios/actualizar-datos.servi
 export class IdiomasFormComponent implements OnInit {
 
   @Output() actualizarValor = new EventEmitter<any>();
+  @Input() isLoading : boolean = false;
   @Input() editarIdioma : Idioma = {
     id:0,
     idioma : "",
@@ -29,11 +30,13 @@ export class IdiomasFormComponent implements OnInit {
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
+  }
+  
+  ngOnChanges(): void {
     this.idiomasForm.controls.idioma.setValue(this.editarIdioma.idioma);
     this.idiomasForm.controls.oral.setValue(this.editarIdioma.oral);
     this.idiomasForm.controls.escrito.setValue(this.editarIdioma.escrito);
     this.idiomasForm.controls.comprension.setValue(this.editarIdioma.comprension);
-
   }
 
   modifyComponent() {

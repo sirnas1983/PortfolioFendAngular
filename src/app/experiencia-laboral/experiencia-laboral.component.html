@@ -6,19 +6,19 @@
       <a href="portfolio#info-foto" class="btn float-end fa-solid fa-home"></a>
       <button 
         *ngIf="usuarioAutenticado"
-        [ngClass]="{'fa-add': !showForm, 'fa-minus': showForm}" 
-        class="btn float-end fa-solid" 
+        data-bs-toggle="modal" 
+        data-bs-target="#experienciasModal" 
+        class="btn float-end fa-solid fa-add" 
         (click)="addItem()">
       </button>
     </div>
     <app-experiencia-laboral-form 
       class="mb-5"
-      *ngIf="showForm" 
+      [isLoading]="loading"
       [editarExperiencia]="experiencia"
       (actualizarValor)="modifyComponent($event)">
     </app-experiencia-laboral-form>
-    <app-loader *ngIf="loading">
-    </app-loader>
+
     <div *ngIf="!isHidden">
       <div class="row lh-1 mt-4"  *ngFor="let experiencia of experiencias">
     <hr>
@@ -52,8 +52,14 @@
       </ul>
     </div>
     <div class="col-sm-2">           
-      <button *ngIf="usuarioAutenticado" class="btn ms-3 float-end" (click)="editItem(experiencia)">
-        <span class="fa-solid fa-lg" [ngClass]="{'fa-pencil': !showForm, 'fa-close': showForm}">
+      <button 
+        *ngIf="usuarioAutenticado" 
+        class="btn ms-3 float-end" 
+        data-bs-toggle="modal" 
+        data-bs-target="#experienciasModal" 
+        (click)="editItem(experiencia)">
+        <span 
+          class="fa-solid fa-lg fa-pencil">
         </span>
       </button>
       <button *ngIf="usuarioAutenticado" class="btn ms-5 float-end" (click)="deleteItem(experiencia)">

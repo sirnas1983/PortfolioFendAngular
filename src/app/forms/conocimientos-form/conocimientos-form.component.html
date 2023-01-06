@@ -1,71 +1,83 @@
-<form 
-    id="conocimientos-form"
-    class="was-validated" 
-    [formGroup]="conocimientosForm"
-    (ngSubmit)="modifyComponent()"
->
-    <label for="conocimientos-nombre" class="form-label">Nombre</label>
-    <input
-        type="string" 
-        class="form-control" 
-        id="conocimientos-nombre" 
-        style="width:100%" 
-        required
-        formControlName="nombre">
+<div class="modal fade" id="conocimientosModal" tabindex="-1" z-index="10" aria-labelledby="conocimientosModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="conocimientosModalLabel">Formulario Conocimientos</h5>
+            <button type="button" id="conocimientosModalCloseButton" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
 
-    <label for="conocimientos-institucion" class="form-label">Institucion</label>
-    <input
-        type="string" 
-        class="form-control"
-        id="conocimientos-institucion" 
-        style="width:100%" 
-        required
-        formControlName="institucion">
+        <div class="modal-body">
+        <form 
+            id="conocimientos-form"
+            class="was-validated" 
+            [formGroup]="conocimientosForm"
+            (ngSubmit)="modifyComponent()"
+            z-index="10"
+        >
+            <label for="conocimientos-nombre" class="form-label">Nombre</label>
+            <input
+                type="string" 
+                class="form-control" 
+                id="conocimientos-nombre" 
+                style="width:100%" 
+                required
+                formControlName="nombre">
 
-    <label for="conocimientos-area" class="form-label">Area</label>
-    <input
-        type="string" 
-        class="form-control" 
-        id="conocimientos-area" 
-        style="width:100%" 
-        formControlName="area">
+            <label for="conocimientos-institucion" class="form-label">Institucion</label>
+            <input
+                type="string" 
+                class="form-control"
+                id="conocimientos-institucion" 
+                style="width:100%" 
+                required
+                formControlName="institucion">
 
-    <label for="conocimientos-nivel" class="form-label">Nivel educativo</label>
-    <input
-        type="string" 
-        class="form-control" 
-        id="conocimientos-nivel" 
-        style="width:100%" 
-        required
-        formControlName="nivel">
+            <label for="conocimientos-area" class="form-label">Area</label>
+            <input
+                type="string" 
+                class="form-control" 
+                id="conocimientos-area" 
+                style="width:100%" 
+                formControlName="area">
 
-    <label for="conocimientos-duracion" class="form-label">Duracion (meses)</label>
-    <input
-        type="number"
-        Min="1"
-        class="form-control"
-        id="conocimientos-duracion" 
-        style="width:100%" 
-        formControlName="duracion"
-        required>
+            <label for="conocimientos-nivel" class="form-label">Nivel educativo</label>
+            <input
+                type="string" 
+                class="form-control" 
+                id="conocimientos-nivel" 
+                style="width:100%" 
+                required
+                formControlName="nivel">
 
-
-    <label for="conocimientos-descripcion" class="form-label">Descripcion</label>    
-    <textarea 
-        type="string"
-        class="form-control" 
-        id="conocimientos-descripcion" 
-        style="width:100%" 
-        rows="2" 
-        required
-        formControlName="descripcion">
-    </textarea>
-
-    <button
-        type="submit"
-        class="btn btn-primary mt-3"
-        [disabled]="!conocimientosForm.valid"
-    >
-        Actualizar
-    </button>
-</form>
+            <label for="conocimientos-duracion" class="form-label">Duracion (meses)</label>
+            <input
+                type="number"
+                Min="1"
+                class="form-control"
+                id="conocimientos-duracion" 
+                style="width:100%" 
+                formControlName="duracion"
+                required>
+            <label for="conocimientos-descripcion" class="form-label">Descripcion</label>    
+            <textarea 
+                type="string"
+                class="form-control" 
+                id="conocimientos-descripcion" 
+                style="width:100%" 
+                rows="2" 
+                required
+                formControlName="descripcion">
+            </textarea>
+            <button
+                type="submit"
+                class="btn btn-primary m-3"
+                [disabled]="!conocimientosForm.valid"
+            >
+                Guardar
+            </button>
+            <app-loader class="m-2" *ngIf="isLoading"></app-loader>
+        </form>
+        </div>
+    </div>    
+</div>
+</div>

@@ -1,8 +1,7 @@
-.card form label {
-color : lightcyan;
-
+* {
+    color:black
 }
 
-.card {
-    border: solid 2px green;
+.btn {
+    color:aliceblue;
 }

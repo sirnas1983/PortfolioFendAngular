@@ -6,21 +6,19 @@
       <a href="portfolio#info-foto" class="btn float-end fa-solid fa-home"></a>
       <button 
         *ngIf="usuarioAutenticado"
-        [ngClass]="{'fa-add': !showForm, 'fa-minus': showForm}" 
-        class="btn float-end fa-solid" 
+        data-bs-toggle="modal" 
+        data-bs-target="#idiomasModal" 
+        class="btn float-end fa-solid fa-add" 
         (click)="addItem()">
       </button>
     </div>
   </div>
   <app-idiomas-form 
-  class="mb-5"
-  *ngIf="showForm" 
-  [editarIdioma]="idioma"
-  (actualizarValor)="modifyComponent($event)"
-  >
+    [isLoading]="loading"
+    [editarIdioma]="idioma"
+    (actualizarValor)="modifyComponent($event)"
+    >
   </app-idiomas-form>
-  <app-loader *ngIf="loading">
-  </app-loader>
   <div *ngIf="!isHidden">
   <div class="row lh-1 mt-1" *ngFor="let idioma of idiomas"> 
     <hr>
@@ -36,9 +34,14 @@
       </ul>
     </div>
     <div class="col-sm-2">           
-      <button *ngIf="usuarioAutenticado" class="btn ms-3 float-end" (click)="editItem(idioma)">
-        <span class="fa-solid fa-lg" [ngClass]="{'fa-pencil': !showForm, 'fa-close': showForm}">
-        </span>
+      <button 
+        *ngIf="usuarioAutenticado" 
+        class="btn ms-3 float-end" 
+        (click)="editItem(idioma)" 
+        data-bs-toggle="modal" 
+        data-bs-target="#idiomasModal" >
+          <span class="fa-solid fa-lg fa-pencil">
+          </span>
       </button>
       <button *ngIf="usuarioAutenticado" class="btn ms-5 float-end" (click)="deleteItem(idioma)">
         <span class="fa-solid fa-lg fa-trash-can" ></span>

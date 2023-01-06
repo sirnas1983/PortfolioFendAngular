@@ -64,7 +64,7 @@ import { LoaderComponent } from './loader/loader.component';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [ObtenerDatosService, 
     ActualizarDatosService, 

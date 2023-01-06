@@ -1,47 +1,61 @@
-<form id="idiomas-form"
-class="was-validated" 
-[formGroup]="habilidadesForm"
-(ngSubmit)="modifyComponent()"
->
-    <label for="nombre-habilidades">Nombre de habilidad:</label><br>
-    <input
-        type="string" 
-        id="nombre-habilidades" 
-        style="width:100%" 
-        class="form-control" 
-        required
-        formControlName="nombre"><br>
+<div class="modal fade" id="habilidadesModal" tabindex="-1" z-index="10" aria-labelledby="habilidadesModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="habilidadesModalLabel">Formulario Habilidades</h5>
+            <button type="button" class="btn-close" id="habilidadesModalCloseButton" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
 
-    <label for="cantidad-habilidades" required>Cantidad:</label><br>
-    <input
-    type="number"
-    min="0"
-    max="100"
-    id="cantidad-habilidades" 
-    style="width:100%" 
-    class="form-control" 
-    required
-    formControlName="cantidad"><br>
+        <div class="modal-body">
 
-    <label for="tipo-habilidades" required>Elija el tipo de habilidad:</label>
-    <br>
-    <select required formControlName="type"
-    class="form-control"
-    style="width:100%" 
-    >
-        <option disabled>Elija una opcion</option>
-        <option value="soft">Soft Skill</option>
-        <option value="hard">Hard Skill</option>
-    </select>
-    <br>
+            <form id="habilidades-form"
+            class="was-validated" 
+            [formGroup]="habilidadesForm"
+            (ngSubmit)="modifyComponent()"
+            >
+                <label for="nombre-habilidades">Nombre de habilidad:</label><br>
+                <input
+                    type="string" 
+                    id="nombre-habilidades" 
+                    style="width:100%" 
+                    class="form-control" 
+                    required
+                    formControlName="nombre"><br>
 
-    <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="!habilidadesForm.valid"
-    >
-    Guardar
-    </button>
-</form>
+                <label for="cantidad-habilidades" required>Cantidad:</label><br>
+                <input
+                type="number"
+                min="0"
+                max="100"
+                id="cantidad-habilidades" 
+                style="width:100%" 
+                class="form-control" 
+                required
+                formControlName="cantidad"><br>
 
+                <label for="tipo-habilidades" required>Elija el tipo de habilidad:</label>
+                <br>
+                <select required formControlName="type"
+                class="form-control"
+                style="width:100%" 
+                >
+                    <option disabled>Elija una opcion</option>
+                    <option value="soft">Soft Skill</option>
+                    <option value="hard">Hard Skill</option>
+                </select>
+                <br>
+
+                <button
+                    type="submit"
+                    class="btn m-3 btn-primary"
+                    [disabled]="!habilidadesForm.valid"
+                >
+                Guardar
+                </button>
+                <app-loader class="m-2" *ngIf="isLoading"></app-loader>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
 

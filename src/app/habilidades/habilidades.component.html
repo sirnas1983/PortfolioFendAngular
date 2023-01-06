@@ -8,19 +8,17 @@
       <a href="portfolio#info-foto" class="btn float-end fa-solid fa-home"></a>
       <button 
         *ngIf="usuarioAutenticado" 
-        [ngClass]="{'fa-add': !showForm, 'fa-minus': showForm}" 
-        class="btn float-end fa-solid" 
+        data-bs-toggle="modal" 
+        data-bs-target="#habilidadesModal" 
+        class="btn float-end fa-solid fa-add" 
         (click)="addItem()">
       </button>
     </div>
   </div>
   <app-habilidades-form 
-    class="mb-5"
-    *ngIf="showForm" 
+    [isLoading]="loading"
     (actualizarValor)="modifyComponent($event)">
   </app-habilidades-form>
-  <app-loader *ngIf="loading">
-  </app-loader>
   <div *ngIf="!isHidden">
     <hr>
   <div class="row">

@@ -10,8 +10,10 @@
           <button *ngIf="usuarioAutenticado" 
             class="btn" 
             style="margin-left: -20px;" 
-            (click)="showFormMethod(persona)">
-            <span class="fa-solid fa-lg" [ngClass]="{'fa-pencil': !showForm, 'fa-close': showForm}">
+            (click)="showFormMethod(persona)"
+            data-bs-toggle="modal" 
+            data-bs-target="#principalModal">
+            <span class="fa-solid fa-lg fa-pencil">
             </span>
           </button>
         </div>
@@ -30,14 +32,11 @@
         </a>
       <p>
     <app-tarjeta-principal-form 
-      class="mb-5"
-      *ngIf="showForm"
+      [isLoading]="loading"
       (actualizarValor)="modifyComponent($event)" 
       [editarPersona]="persona"
       >
     </app-tarjeta-principal-form>
-    <app-loader *ngIf="loading">
-    </app-loader>
   
     </div>
     <div class="col-sm-4">
