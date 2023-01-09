@@ -73,17 +73,16 @@
                     id="experiencias-link" 
                     style="width:100%" 
                     class="form-control" 
-                    formControlName="link"><br>
-
-                
+                    formControlName="link">
+                <br>
+                <app-loader class="m-2" *ngIf="isLoading"></app-loader>
                 <button
                     type="submit"
                     class="btn m-3 btn-primary"
-                    [disabled]="!experienciasForm.valid"
+                    [disabled]="!experienciasForm.valid || isLoading"
                 >
                 Guardar
                 </button>
-                <app-loader class="m-2" *ngIf="isLoading"></app-loader>
 
             </form>
         </div>

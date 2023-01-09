@@ -47,7 +47,6 @@ export class InteresesComponent implements OnInit {
   }
   
   editItem(interes : Interes){
-    console.log(interes);
   }
 
   deleteItem(interes : Interes){

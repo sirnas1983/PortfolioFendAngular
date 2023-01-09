@@ -31,6 +31,7 @@ import { AuthService } from './servicios/auth.service';
 import { TokenStorageService } from './servicios/token-storage.service';
 import { authInterceptorProviders } from './servicios/interceptor.service';
 import { LoaderComponent } from './loader/loader.component';
+import { ConfirmDeleteComponent } from './forms/confirm-delete/confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -55,8 +56,8 @@ import { LoaderComponent } from './loader/loader.component';
     TarjetaPrincipalFormComponent,
     HabilidadesFormComponent,
     PortfolioComponent,
-    LoaderComponent
-
+    LoaderComponent,
+    ConfirmDeleteComponent
     ],
     
   imports: [

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, SimpleChange } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth.service';
-import { ObtenerDatosService} from '../servicios/obtener-datos.service'
 import { TokenStorageService } from '../servicios/token-storage.service';
 
 @Component({
@@ -33,11 +32,9 @@ export class EncabezadoComponent implements OnInit {
                     this.usuarioAutenticado = false;
                   }
                 });
-
               }
 
   ngOnInit(): void {
-    
   }
 
   iniciarSesion(){

@@ -55,15 +55,15 @@
                     <option value="Basico">Basico</option>
                 </select>
                 <br>
+                <app-loader class="m-2" *ngIf="isLoading"></app-loader>
                 <button
                     type="submit"
                     class="btn m-3 btn-primary"
-                    [disabled]="!idiomasForm.valid"
+                    [disabled]="!idiomasForm.valid || isLoading"
                 >
                 <div class="invalid-feedback">Los campos resaltados son obligatorios</div>
                 Guardar
                 </button>
-                <app-loader class="m-2" *ngIf="isLoading"></app-loader>
             </form>
         </div>
     </div>

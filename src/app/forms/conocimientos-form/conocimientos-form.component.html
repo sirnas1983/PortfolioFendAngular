@@ -68,14 +68,15 @@
                 required
                 formControlName="descripcion">
             </textarea>
+            <br>
+            <app-loader class="m-2" *ngIf="isLoading"></app-loader>
             <button
                 type="submit"
                 class="btn btn-primary m-3"
-                [disabled]="!conocimientosForm.valid"
+                [disabled]="!conocimientosForm.valid || isLoading"
             >
                 Guardar
             </button>
-            <app-loader class="m-2" *ngIf="isLoading"></app-loader>
         </form>
         </div>
     </div>    

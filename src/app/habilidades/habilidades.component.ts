@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObtenerDatosService } from '../servicios/obtener-datos.service';
-import { Skill } from '../interfaces';
+import { Conocimiento, Skill } from '../interfaces';
 import { ActualizarDatosService } from '../servicios/actualizar-datos.service';
 import { AuthService } from '../servicios/auth.service';
 
@@ -89,14 +89,18 @@ export class HabilidadesComponent implements OnInit {
         }
       )
     }
+    selectItem(conocimiento : Skill){
+      this.skill = conocimiento;
+    }
   
-    deleteItem(contenido : Skill){
+    deleteItem(event : Event){
       this.loading = true;
-      this.actualizar.borrarDatos(this.apiBorrar + `${contenido.id}`).subscribe(
+      this.actualizar.borrarDatos(this.apiBorrar + `${this.skill.id}`).subscribe(
         data=>{
-          this.skills = this.skills.filter(item => item != contenido);
+          this.skills = this.skills.filter(item => item != this.skill);
           this.softskills = this.skills.filter((skill : Skill) => skill.type === 'soft'); 
           this.hardskills = this.skills.filter((skill : Skill) => skill.type === 'hard');
+          document.getElementById("deleteModalCloseButton")?.click();
           this.loading = false;
         },
         error =>{

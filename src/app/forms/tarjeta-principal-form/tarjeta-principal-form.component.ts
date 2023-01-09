@@ -58,7 +58,6 @@ principalForm = this.fb.group({
      ) {
         this.datos.datos.subscribe(data=>{
           this.editarPersona = data;
-          console.log(this.editarPersona.id);
         })
       }
   

@@ -19,6 +19,10 @@
     [isLoading]="loading"
     (actualizarValor)="modifyComponent($event)">
   </app-habilidades-form>
+  <app-confirm-delete-form 
+    [isLoading]="loading"
+    (confirmar)="deleteItem($event)">
+  </app-confirm-delete-form>
   <div *ngIf="!isHidden">
     <hr>
   <div class="row">
@@ -29,7 +33,8 @@
             {{soft.nombre}} - {{soft.cantidad}}%
           </div>
           <div class="progress-bar bg-transparent mx-auto" ></div>
-          <button *ngIf="usuarioAutenticado" (click)="deleteItem(soft)" class="btn fa-solid fa-trash-can float-end">
+          <button *ngIf="usuarioAutenticado" (click)="selectItem(soft)" data-bs-toggle="modal" 
+          data-bs-target="#deleteModal" class="btn fa-solid fa-trash-can float-end">
           </button>
         </div>
         </div>
@@ -40,7 +45,8 @@
               {{hard.nombre}} - {{hard.cantidad}}%
             </div>
             <div class="progress-bar bg-transparent mx-auto" ></div>
-            <button *ngIf="usuarioAutenticado" (click)="deleteItem(hard)" class="btn fa-solid fa-trash-can float-end">
+            <button *ngIf="usuarioAutenticado" (click)="selectItem(hard)" data-bs-toggle="modal" 
+            data-bs-target="#deleteModal" class="btn fa-solid fa-trash-can float-end">
             </button>
           </div>
           </div>

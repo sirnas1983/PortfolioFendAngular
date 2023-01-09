@@ -166,10 +166,10 @@
                 <button
                         type="submit"
                         class="btn btn-primary m-3"
-                        [disabled]="!principalForm.valid"
+                        [disabled]="!principalForm.valid || isLoading"
                     >
                     Guardar
-                    </button>
+                </button>
             </form>
         </div>
     </div>

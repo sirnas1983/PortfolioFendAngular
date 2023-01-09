@@ -32,6 +32,5 @@ export class InfoContactoComponent implements OnInit {
   }
   
   editItem(persona : Persona){
-    console.log(persona);
   }
 }

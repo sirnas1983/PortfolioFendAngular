@@ -53,7 +53,7 @@
                 class="col-sm-6 mb-2 btn btn-primary" 
                 style="width: 100%;"
                 tabindex="1"
-                [ngClass]="{'disabled': Password?.errors || Email?.errors || isLoggedIn }">
+                [ngClass]="{'disabled': Password?.errors || Email?.errors || isLoggedIn  || loading}">
                 Iniciar Sesión
             </button>
         </div>
